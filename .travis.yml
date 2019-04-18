@@ -20,4 +20,4 @@ install:
 script:
   - coverage run setup.py test
   - coverage xml
-  - sonar-scanner -Dsonar.projectVersion=`crtools --version`
+  - sonar-scanner -Dsonar.projectVersion=`python -c "import sys; from pyroyale import __version__; sys.stdout.write(__version__)"`

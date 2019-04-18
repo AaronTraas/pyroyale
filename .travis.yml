@@ -13,9 +13,15 @@ addons:
     token:
       secure: "INq6COelHO8q9s0CC2VsOouMRcjsrRXCNVF0odRm8Xzlb/sgx0JzvvE6tf+Yxx0ahfNPJtkTZgxLaUmIvT3oNj0Y4KQGR/00POxzg3Rg3kLknbm5d7p/bk3qaEezb8ECNPXZwjxH/nubijTNKPe1ZcUMPiVtz1rNM3dy1KemOKzYWugt17hyMM2zOPSOASkRF8R7amTKCkWr2yTiwpfHbxj5vO2CmiIOJAXSfm+bwYx38vu7qO4FVIf9BPHhdQD3PulXD4v9mPi0q4uwd2y3qzGWrQd9QSmL3w/5V+I2Q2RL0eOZbcBvO74iTw5yRnJyZFGB5tu7oZwlFFZ4UARLemr4g/uGD+IJKOXE4alukK1U5WscXh6vnAD991zhdkY2juS9QwM6agJ5+cgocFoWuAJRNUiu86BZ8mnLdnD7DYkWbbAHXkkpD3Ox+kD7DkLyx2s/4HIfLg5yNRUz86PjZICl47soJi09qW4XgfBtnKbMDVZtSw9XJEosJAr/ilXH7u3bdubpeEjxNWpB5+iTOpHDvVzH0KtexXfTd0wScNMlh9iWmQ8XnuqFvnsdXoVBUixZiY7l521UP8ck42+mh+NNLUeEN3SdwQ650LbFg/DUWaVK7sQFsFxXsE3onlsck69QFyqC1wN3uwtbziv3ToLeGUqrd25gCqUvzHTS6qY="
 
+before_install:
+  - pip install -U pip
+
 install:
-  - python setup.py install
   - pip install coverage pytest pytest-runner requests_mock
+  - python setup.py install
+
+before_script:
+  export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 script:
   - coverage run setup.py test

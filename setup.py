@@ -42,7 +42,7 @@ setup(
 
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=['requests'],
-    test_requires=['pytest','pytest-runner','coverage','requests_mock'],
+    tests_requires=['pytest','pytest-runner','coverage','requests_mock'],
 
     include_package_data=True,
 

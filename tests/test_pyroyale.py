@@ -1,4 +1,4 @@
-from crtools.api import ClashRoyaleAPI, ClashRoyaleAPIError, ClashRoyaleAPIMissingFieldsError, ClashRoyaleAPIClanNotFound, ClashRoyaleAPIAuthenticationError
+from pyroyale import ClashRoyaleAPI, ClashRoyaleAPIError, ClashRoyaleAPIMissingFieldsError, ClashRoyaleAPIClanNotFound, ClashRoyaleAPIAuthenticationError
 import json
 import pytest
 import requests_mock

@@ -47,6 +47,40 @@ def test_api_clan_info():
         print('WARNING: skipping integration tests.')
         return
 
-    response_object = api.clan.clan_info()
+    response = api.clan.clan_info()
 
-    assert True
+    assert response['tag'] == CLAN_ID
+    assert response['members'] == len(response['memberList'])
+
+def test_api_clan_warlog():
+    if not api:
+        print('WARNING: skipping integration tests.')
+        return
+
+    response = api.clan.warlog()
+
+    assert len(response) > 0
+
+    in_standings = False
+    for clan in response[0]['standings']:
+        if clan['clan']['tag'] == CLAN_ID:
+            in_standings = True
+
+    assert in_standings == True
+
+def test_api_current_war():
+    if not api:
+        print('WARNING: skipping integration tests.')
+        return
+
+    response = api.clan.current_war()
+
+    assert 'state' in response
+    assert response['state'] in ['notInWar', 'collectionDay', 'warDay']
+
+    # if war isn't happening, bail early
+    if response['state'] == 'notInWar':
+        return
+
+    assert response['clan']['tag'] == CLAN_ID
+    assert response['clan']['participants'] == len(response['participants'])

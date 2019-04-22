@@ -12,7 +12,7 @@ API_KEY = 'FakeApiKey'
 CLAN_TAG = '#FakeClanTag'
 CLAN_TAG_ESCAPED = urllib.parse.quote_plus(CLAN_TAG)
 
-api = ClashRoyaleAPI(MOCK_BASEURL, API_KEY, CLAN_TAG)
+api = ClashRoyaleAPI(API_KEY, CLAN_TAG, MOCK_BASEURL)
 
 def test_api_clan_info_success(requests_mock):
     mock_object = {'foo':'bar'}

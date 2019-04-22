@@ -11,16 +11,16 @@ API_KEY = 'FakeApiKey'
 CLAN_TAG = '#FakeClanTag'
 CLAN_TAG_ESCAPED = urllib.parse.quote_plus(CLAN_TAG)
 
-api = ClashRoyaleAPI(MOCK_BASEURL, API_KEY, CLAN_TAG)
+api = ClashRoyaleAPI(API_KEY, CLAN_TAG, MOCK_BASEURL)
 
 def test_missing_api_credentials():
     try:
-        api = ClashRoyaleAPI('http://foo.bar', False, CLAN_TAG)
+        api = ClashRoyaleAPI(False, CLAN_TAG, MOCK_BASEURL)
     except ClashRoyaleAPIMissingFieldsError as e:
         assert e.field_name == 'api_key'
 
     try:
-        api = ClashRoyaleAPI('http://foo.bar', API_KEY, False)
+        api = ClashRoyaleAPI(API_KEY, False, MOCK_BASEURL)
     except ClashRoyaleAPIMissingFieldsError as e:
         assert e.field_name == 'clan_tag'
 

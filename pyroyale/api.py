@@ -15,7 +15,7 @@ class ClashRoyaleAPI:
     api_key = False
     clan_tag = False
 
-    def __init__(self, baseurl, api_key, clan_tag):
+    def __init__(self, api_key, clan_tag, baseurl='https://api.clashroyale.com'):
         self.logger = logging.getLogger('.'.join([__name__, self.__class__.__name__]))
 
         if api_key == False:

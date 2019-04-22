@@ -13,7 +13,7 @@ def getConfigData():
 
     if not os.path.isfile(config_file_name):
         print('ERROR: ~/.crtools not found.')
-        exit(0)
+        return None
 
     parser = ConfigParser()
     parser.read(config_file_name)

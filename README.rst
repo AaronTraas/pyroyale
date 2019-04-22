@@ -12,7 +12,7 @@ Work in Progress
 
 You probably shouldn't use this yet. It's very much a work in progress. It's
 also an incomplete implementation at this time. I've only implemented the few
-API endpoints required for `crtools <https://github.com/AaronTraas/Clash-Royale-Clan-Tools`,
+API endpoints required for `crtools <https://github.com/AaronTraas/Clash-Royale-Clan-Tools>`_,
 which are:
 
 - /v1/clans/{clan_tag}

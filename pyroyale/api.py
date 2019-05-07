@@ -45,10 +45,17 @@ class ClashRoyaleAPI:
         elif r.status_code == 404:
             raise ClashRoyaleAPIClanNotFound(self.clan_tag)
         else:
-            if(r.json()['reason'] == 'accessDenied'):
+            reason = 'No reason'
+            try:
+                reason = r.json()['reason']
+            except Exception as e:
+                raise ClashRoyaleAPIError("Error connecting to ClashRoyaleAPI ({})".format(r.status_code));
+
+            if(reason == 'accessDenied'):
                 raise ClashRoyaleAPIAuthenticationError(r.json()['message'])
             else:
                 raise ClashRoyaleAPIError(r.content);
+
 
 class ClanAPI:
 

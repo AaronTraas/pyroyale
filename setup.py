@@ -1,5 +1,5 @@
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages  # noqa: H301
 # To use a consistent encoding
 from codecs import open
 from os import path
@@ -8,12 +8,14 @@ import re
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 # single-sourcing the version
 with open(path.join(here, 'pyroyale/_version.py')) as f:
     exec(f.read())
+
+REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
 
 setup(
     name='pyroyale',
@@ -22,11 +24,10 @@ setup(
     version=__version__,
 
     description='Clash Royale API wrapper for Python 3',
-    long_description=long_description,
-    url='https://github.com/AaronTraas/pyroyale',
     author='Aaron Traas',
     author_email='aaron@traas.org',
     license='LGPLv3+',
+    url='https://github.com/AaronTraas/pyroyale',
     classifiers=[
         #'Development Status :: 5 - Production/Stable',
         'Development Status :: 3 - Alpha',
@@ -35,16 +36,11 @@ setup(
         'Programming Language :: Python :: 3',
     ],
 
-    # What does your project relate to?
-    keywords='ClashRoyale',
-
-    packages=find_packages(exclude=['tests']),
-
-    # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['requests'],
-    tests_requires=['pytest','pytest-runner','coverage','requests_mock'],
-
+    keywords=["Clash Royale"],
+    install_requires=REQUIRES,
+    packages=find_packages(),
     include_package_data=True,
+    long_description=long_description,
 
     project_urls={  # Optional
         'Bug Reports': 'https://github.com/AaronTraas/pyroyale/issues',

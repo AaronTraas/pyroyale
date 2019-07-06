@@ -1,17 +1,6 @@
 from __future__ import absolute_import
 
-from ._version import __version__
-
-# import apis into sdk package
-from pyroyale.api.cards_api import CardsApi
-from pyroyale.api.clans_api import ClansApi
-from pyroyale.api.locations_api import LocationsApi
-from pyroyale.api.players_api import PlayersApi
-from pyroyale.api.tournaments_api import TournamentsApi
-# import ApiClient
-from pyroyale.api_client import ApiClient
-from pyroyale.configuration import Configuration
-# import models into sdk package
+# import models into model package
 from pyroyale.models.arena import Arena
 from pyroyale.models.battle_log import BattleLog
 from pyroyale.models.battle_log_inner import BattleLogInner

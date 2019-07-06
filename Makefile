@@ -9,9 +9,11 @@ clean:
 	rm -rf build dist .pytest_cache *.egg-info $(SRCDIR)/__pycache__ $(TESTDIR)/__pycache__ MANIFEST
 
 install:
+	pip3 install -r requirements.txt
 	python3 setup.py install
 
 develop:
+	pip3 install -r requirements.txt
 	python3 setup.py develop
 
 test-depend:

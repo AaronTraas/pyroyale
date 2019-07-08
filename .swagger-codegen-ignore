@@ -26,3 +26,4 @@
 .travis.yml
 setup.py
 tox.ini
+pyroyale/configuration.py

@@ -53,12 +53,6 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         # Authentication Settings
         # dict to store API key(s)
         self.api_key = {}
-        # dict to store API prefix (e.g. Bearer)
-        self.api_key_prefix = {}
-        # Username for HTTP basic authentication
-        self.username = ""
-        # Password for HTTP basic authentication
-        self.password = ""
         # Logging Settings
         self.logger = {}
         self.logger["package_logger"] = logging.getLogger("pyroyale")
@@ -196,25 +190,13 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.logger_formatter = logging.Formatter(self.__logger_format)
 
     def get_api_key_with_prefix(self, identifier):
-        """Gets API key (with prefix if set).
+        """Gets API key (with 'Bearer' as prefix).
 
         :param identifier: The identifier of apiKey.
         :return: The token for api key authentication.
         """
-        if (self.api_key.get(identifier) and
-                self.api_key_prefix.get(identifier)):
-            return self.api_key_prefix[identifier] + ' ' + self.api_key[identifier]  # noqa: E501
-        elif self.api_key.get(identifier):
-            return self.api_key[identifier]
-
-    def get_basic_auth_token(self):
-        """Gets HTTP basic authentication header (string).
-
-        :return: The token for basic HTTP authentication.
-        """
-        return urllib3.util.make_headers(
-            basic_auth=self.username + ':' + self.password
-        ).get('authorization')
+        if self.api_key.get(identifier):
+            return 'Bearer ' + self.api_key[identifier]
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.

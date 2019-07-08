@@ -1,0 +1,1327 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: Clash Royale API
+  description: Unofficial Swagger docs for the official Clash Royale API
+  termsOfService: http://supercell.com/en/terms-of-service/
+tags:
+  - name: clans
+  - name: players
+  - name: tournaments
+  - name: cards
+  - name: locations
+paths:
+  /clans:
+    get:
+      summary: Search clans
+      description: >
+        Search all clans by name and/or filtering the results using various criteria. At least one filtering criteria must be defined and if name is used as part of search, it is required to be at least three characters long.
+
+        It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API.
+      tags:
+        - clans
+      operationId: searchClans
+      parameters:
+        - name: name
+          in: query
+          description: >
+            Search clans by name. If name is used as part of search query, it needs to be at least three characters long. Name search parameter is interpreted as wild card search, so it may appear anywhere in the clan name.
+          required: false
+          schema:
+            type: string
+            minLength: 3
+        - name: locationId
+          in: query
+          description: >
+            Filter by clan location identifier. For list of available locations, refer to getLocations operation.
+          required: false
+          schema:
+            type: integer
+        - name: minMembers
+          in: query
+          description: |
+            Filter by minimum amount of clan members.
+          required: false
+          schema:
+            type: integer
+        - name: maxMembers
+          in: query
+          description: |
+            Filter by maximum amount of clan members.
+          required: false
+          schema:
+            type: integer
+        - name: minScore
+          in: query
+          description: |
+            Filter by minimum amount of clan score.
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: |
+            Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from theresponse, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClanSearchResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/clans/{clanTag}':
+    get:
+      summary: Get clan information
+      description: >
+        Get information about a single clan by clan tag. Clan tags can be found using clan search operation.
+
+        Note that clan tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example clan tag '#2ABC' would become '%232ABC' in the URL.
+      tags:
+        - clans
+      operationId: getClan
+      parameters:
+        - name: clanTag
+          in: path
+          description: Tag of the clan to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clan'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/clans/{clanTag}/members':
+    get:
+      summary: List clan members
+      description: List clan members
+      tags:
+        - clans
+      operationId: getClanMembers
+      parameters:
+        - name: clanTag
+          in: path
+          description: Tag of the clan whose members to retrieve.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClanMemberList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/clans/{clanTag}/warlog':
+    get:
+      summary: Retrieve clan's clan war log
+      description: Retrieve clan's clan war log
+      tags:
+        - clans
+      operationId: getClanWarLog
+      parameters:
+        - name: clanTag
+          in: path
+          description: Tag of the clan whose war log to retrieve.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarLog'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/clans/{clanTag}/currentwar':
+    get:
+      summary: Information about clan's current clan war
+      description: Retrieve information about clan's current clan war
+      tags:
+        - clans
+      operationId: getCurrentWar
+      parameters:
+        - name: clanTag
+          in: path
+          description: Tag of the clan whose war log to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentWar'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/players/{playerTag}':
+    get:
+      summary: Get player information
+      description: >
+        Get information about a single player by player tag. Player tags can befound either in game or by from clan member lists.
+
+        Note that player tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example player tag '#2ABC' would become '%232ABC' in the URL.
+      tags:
+        - players
+      operationId: getPlayer
+      parameters:
+        - name: playerTag
+          in: path
+          description: |
+            Tag of the player to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerDetail'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/players/{playerTag}/upcomingchests':
+    get:
+      summary: Get information about player's upcoming chests
+      description: |
+        Get list of reward chests that the player will receive next in the game.
+      tags:
+        - players
+      operationId: getPlayerUpcomingChests
+      parameters:
+        - name: playerTag
+          in: path
+          description: |
+            Tag of the player whose information to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpcomingChestsList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/players/{playerTag}/battlelog':
+    get:
+      summary: Get log of recent battles for a player
+      description: |
+        Get list of recent battle results for a player.
+      tags:
+        - players
+      operationId: getPlayerBattles
+      parameters:
+        - name: playerTag
+          in: path
+          description: |
+            Tag of the player whose information to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BattleLog'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  /tournaments:
+    get:
+      summary: Search tournaments
+      description: >
+        Search all tournaments by name.
+
+        It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API.
+      tags:
+        - tournaments
+      operationId: searchTournaments
+      parameters:
+        - name: name
+          in: query
+          description: |
+            Search tournaments by name.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+        - name: limit
+          in: query
+          description: |
+            Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentSearchResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/tournaments/{tournamentTag}':
+    get:
+      summary: Get tournament information
+      description: |
+        Get information about a single tournament by a tournament tag.
+      tags:
+        - tournaments
+      operationId: getTournament
+      parameters:
+        - name: tournamentTag
+          in: path
+          description: |
+            Tag of the tournament to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  /globaltournaments:
+    get:
+      summary: List global tournaments
+      description: List all available global tournaments.
+      tags:
+        - tournaments
+      operationId: getGlobalTournaments
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentSearchResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+
+  /cards:
+    get:
+      summary: Get list of available cards
+      description: |
+        Get list of all available cards.
+      tags:
+        - cards
+      operationId: getCards
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  /locations:
+    get:
+      summary: List locations
+      description: List all available locations
+      tags:
+        - locations
+      operationId: getLocations
+      parameters:
+        - name: limit
+          in: query
+          description: |
+            Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/locations/{locationId}':
+    get:
+      summary: Get location information
+      description: Get information about specific location
+      tags:
+        - locations
+      operationId: getLocation
+      parameters:
+        - name: locationId
+          in: path
+          description: Identifier of the location to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/locations/{locationId}/rankings/clans':
+    get:
+      summary: Get clan rankings for a specific location
+      description: Get clan rankings for a specific location
+      tags:
+        - locations
+      operationId: getClanRanking
+      parameters:
+        - name: locationId
+          in: path
+          description: Identifier of the location to retrieve.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: |
+            Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be
+            found from the
+            response, inside the 'paging' property. Note that only after or
+            before can be specified for a
+            request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClanRankingList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/locations/{locationId}/rankings/players':
+    get:
+      summary: Get player rankings for a specific location
+      description: Get player rankings for a specific location
+      tags:
+        - locations
+      operationId: getPlayerRanking
+      parameters:
+        - name: locationId
+          in: path
+          description: Identifier of the location to retrieve.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: |
+            Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerRankingList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+  '/locations/{locationId}/rankings/clanwars':
+    get:
+      summary: Get clan war rankings for a specific location
+      description: Get clan war rankings for a specific location
+      tags:
+        - locations
+      operationId: getClanWarsRanking
+      parameters:
+        - name: locationId
+          in: path
+          description: Identifier of the location to retrieve.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: |
+            Limit the number of items returned in the response.
+          required: false
+          schema:
+            type: integer
+        - name: after
+          in: query
+          description: >
+            Return only items that occur after this marker. After marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+        - name: before
+          in: query
+          description: >
+            Return only items that occur before this marker. Before marker can be found from the response, inside the 'paging' property. Note that only after or before can be specified for a request, not both.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClanWarsRankingList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RequestThrottled'
+        '500':
+          $ref: '#/components/responses/UnknownException'
+        '503':
+          $ref: '#/components/responses/InMaintenance'
+security:
+  - JWT: []
+servers:
+  - url: 'https://api.clashroyale.com/v1'
+components:
+  responses:
+    BadRequest:
+      description: Client provided incorrect parameters for the request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: >
+        Access denied, either because of missing/incorrect credentials or used API token does not grant access to the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RequestThrottled:
+      description: >
+        Request was throttled, because amount of requests was above the threshold defined for the used API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnknownException:
+      description: |
+        Unknown error happened when handling the request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InMaintenance:
+      description: |
+        Service is temprorarily unavailable because of maintenance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    JWT:
+      type: apiKey
+      description: JSON Web Token used as an API key
+      name: authorization
+      in: header
+  schemas:
+    Error:
+      type: object
+      properties:
+        reason:
+          type: string
+        message:
+          type: string
+    ClanBase:
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        badgeId:
+          type: integer
+    SearchResultClan:
+      allOf:
+        - $ref: '#/components/schemas/ClanBase'
+        - type: object
+          properties:
+            type:
+              type: string
+            clanScore:
+              type: integer
+            requiredTrophies:
+              type: integer
+            donationsPerWeek:
+              type: integer
+            clanChestLevel:
+              type: integer
+            clanChestMaxLevel:
+              type: integer
+            members:
+              type: integer
+            location:
+              $ref: '#/components/schemas/Location'
+    Clan:
+      allOf:
+        - $ref: '#/components/schemas/SearchResultClan'
+        - type: object
+          properties:
+            description:
+              type: string
+            clanChestStatus:
+              type: string
+            clanChestPoints:
+              type: integer
+            memberList:
+              type: array
+              items:
+                $ref: '#/components/schemas/ClanMember'
+    PlayerBase:
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        expLevel:
+          type: integer
+        trophies:
+          type: integer
+        arena:
+          $ref: '#/components/schemas/Arena'
+    ClanMember:
+      allOf:
+        - $ref: '#/components/schemas/PlayerBase'
+        - type: object
+          properties:
+            role:
+              type: string
+            clanRank:
+              type: integer
+            previousClanRank:
+              type: integer
+            donations:
+              type: integer
+            donationsReceived:
+              type: integer
+            clanChestPoints:
+              type: integer
+    Arena:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        isCountry:
+          type: boolean
+        countryCode:
+          type: string
+    ClanSearchResult:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResultClan'
+    ClanMemberList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClanMember'
+    WarParticipant:
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        cardsEarned:
+          type: integer
+        battlesPlayed:
+          type: integer
+        wins:
+          type: integer
+    WarLog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              seasonId:
+                type: integer
+              createdDate:
+                type: string
+              participants:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WarParticipant'
+    CurrentWar:
+      type: object
+      properties:
+        state:
+          type: string
+        warEndTime:
+          type: string
+        clan:
+          type: object
+          properties:
+            tag:
+              type: string
+            name:
+              type: string
+            badgeId:
+              type: integer
+            clanScore:
+              type: integer
+            participants:
+              type: integer
+            battlesPlayed:
+              type: integer
+            wins:
+              type: integer
+            crowns:
+              type: integer
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarParticipant'
+    SeasonStatistics:
+      type: object
+      properties:
+        id:
+          type: string
+        trophies:
+          type: integer
+        bestTrophies:
+          type: integer
+    PlayerDetail:
+      allOf:
+        - $ref: '#/components/schemas/PlayerBase'
+        - type: object
+          properties:
+            bestTrophies:
+              type: integer
+            wins:
+              type: integer
+            losses:
+              type: integer
+            battleCount:
+              type: integer
+            threeCrownWins:
+              type: integer
+            challengeCardsWon:
+              type: integer
+            challengeMaxWins:
+              type: integer
+            tournamentCardsWon:
+              type: integer
+            tournamentBattleCount:
+              type: integer
+            role:
+              type: string
+            donations:
+              type: integer
+            donationsReceived:
+              type: integer
+            totalDonations:
+              type: integer
+            warDayWins:
+              type: integer
+            clanCardsCollected:
+              type: integer
+            clan:
+              $ref: '#/components/schemas/ClanBase'
+            arena:
+              $ref: '#/components/schemas/Arena'
+            leagueStatistics:
+              type: object
+              properties:
+                currentSeason:
+                  $ref: '#/components/schemas/SeasonStatistics'
+                previousSeason:
+                  $ref: '#/components/schemas/SeasonStatistics'
+                bestSeason:
+                  $ref: '#/components/schemas/SeasonStatistics'
+            achievements:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  stars:
+                    type: integer
+                  value:
+                    type: integer
+                  target:
+                    type: integer
+                  info:
+                    type: string
+            cards:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  level:
+                    type: integer
+                  maxLevel:
+                    type: integer
+                  count:
+                    type: integer
+                  iconUrls:
+                    type: object
+                    properties:
+                      medium:
+                        type: string
+            currentFavouriteCard:
+              type: object
+              properties:
+                name:
+                  type: string
+                id:
+                  type: integer
+                maxLevel:
+                  type: integer
+                iconUrls:
+                  type: object
+                  properties:
+                    medium:
+                      type: string
+    UpcomingChestsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              name:
+                type: string
+    BattleLogTeam:
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        startingTrophies:
+          type: integer
+        trophyChange:
+          type: integer
+        crowns:
+          type: integer
+        clan:
+          $ref: '#/components/schemas/ClanBase'
+        cards:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              level:
+                type: integer
+              maxLevel:
+                type: integer
+              iconUrls:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    medium:
+                      type: string
+    BattleLog:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+          battleTime:
+            type: string
+          arena:
+            $ref: '#/components/schemas/Arena'
+          gameMode:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+          deckSelection:
+            type: string
+          team:
+            type: array
+            items:
+              $ref: '#/components/schemas/BattleLogTeam'
+          opponent:
+            type: array
+            items:
+              $ref: '#/components/schemas/BattleLogTeam'
+    TournamentBase:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+              type:
+                type: string
+              status:
+                type: string
+              creatorTag:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              capacity:
+                type: integer
+              maxCapacity:
+                type: integer
+              preparationDuration:
+                type: integer
+              duration:
+                type: integer
+              createdTime:
+                type: string
+    TournamentSearchResult:
+      allOf:
+        - $ref: '#/components/schemas/TournamentBase'
+    Tournament:
+      allOf:
+        - $ref: '#/components/schemas/TournamentBase'
+        - type: object
+          properties:
+            startedTime:
+              type: string
+            membersList:
+              type: array
+              items:
+                type: object
+                properties:
+                  tag:
+                    type: string
+                  name:
+                    type: string
+                  score:
+                    type: integer
+                  rank:
+                    type: integer
+                  clan:
+                    $ref: '#/components/schemas/ClanBase'
+    CardList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              id:
+                type: integer
+              maxLevel:
+                type: integer
+              iconUrls:
+                type: object
+                properties:
+                  medium:
+                    type: string
+    LocationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+    ClanRankingList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+              name:
+                type: string
+              rank:
+                type: integer
+              previousRank:
+                type: integer
+              location:
+                $ref: '#/components/schemas/Location'
+              clanScore:
+                type: integer
+              badgeId:
+                type: integer
+              members:
+                type: integer
+    PlayerRankingList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+              name:
+                type: string
+              expLevel:
+                type: integer
+              trophies:
+                type: integer
+              rank:
+                type: integer
+              previousRank:
+                type: integer
+              clan:
+                $ref: '#/components/schemas/ClanBase'
+              arena:
+                $ref: '#/components/schemas/Arena'
+    ClanWarsRankingList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+              name:
+                type: string
+              rank:
+                type: integer
+              previousRank:
+                type: integer
+              location:
+                $ref: '#/components/schemas/Location'
+              clanScore:
+                type: integer
+              badgeId:
+                type: integer
+              members:
+                type: integer

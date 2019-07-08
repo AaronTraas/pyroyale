@@ -17,10 +17,13 @@ develop:
 	python3 setup.py develop
 
 test-depend:
-	pip3 install coverage pytest pytest-runner requests_mock
+	pip3 install -r test-requirements.txt
 
 test: test-depend
 	python3 setup.py test
+
+integration: develop
+	python3 -m pytest -rApP integration
 
 coverage: test-depend
 	coverage run setup.py test

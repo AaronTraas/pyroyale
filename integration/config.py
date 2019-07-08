@@ -1,5 +1,5 @@
+import time
 from configparser import ConfigParser
-import pytest
 import os
 
 def getConfigData():
@@ -34,9 +34,3 @@ def getConfigData():
 		exit(0)
 
 	return (config['api']['api_key'], config['api']['clan_id'])
-
-
-api_key, clan_id = getConfigData()
-
-print('DEBUG: api_key: "{}"\nDEBUG: clan_id: "{}"'.format(api_key, clan_id))
-

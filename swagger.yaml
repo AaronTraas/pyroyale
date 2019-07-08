@@ -949,6 +949,27 @@ components:
           type: integer
         wins:
           type: integer
+    WarClan:
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        badgeId:
+          type: string
+        clanScore:
+          type: integer
+        participants:
+          type: integer
+        crowns:
+          type: integer
+        battlesRemaining:
+          type: integer
+        battlesPlayed:
+          type: integer
+        wins:
+          type: integer
     WarLog:
       type: object
       properties:
@@ -995,6 +1016,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WarParticipant'
+        clans:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarClan'
     SeasonStatistics:
       type: object
       properties:

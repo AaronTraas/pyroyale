@@ -36,3 +36,6 @@ sonar: coverage
 upload:
 	python3 setup.py sdist bdist_wheel
 	twine upload dist/*
+
+swagger:
+	swagger-codegen generate -i swagger.yaml -l python -DpackageName=pyroyale -o .

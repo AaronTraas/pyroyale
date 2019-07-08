@@ -105,3 +105,4 @@ venv.bak/
 
 .scannerwork
 crtools-out/
+.swagger-codegen

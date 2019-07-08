@@ -18,6 +18,7 @@ develop:
 
 test-depend:
 	pip3 install -r test-requirements.txt
+	pip3 install coverage pytest pytest-runner requests_mock
 
 test: test-depend
 	python3 setup.py test

@@ -1,0 +1,4 @@
+{
+    "modelPackage" : "pyroyale.model",
+    "apiPackage" : "pyroyale.api"
+}

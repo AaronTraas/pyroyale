@@ -15,6 +15,7 @@ import re  # noqa: F401
 
 import six
 from pyroyale.models.current_war_clan import CurrentWarClan  # noqa: F401,E501
+from pyroyale.models.war_clan import WarClan  # noqa: F401,E501
 from pyroyale.models.war_participant import WarParticipant  # noqa: F401,E501
 
 
@@ -34,22 +35,25 @@ class CurrentWar(object):
         'state': 'str',
         'war_end_time': 'str',
         'clan': 'CurrentWarClan',
-        'participants': 'list[WarParticipant]'
+        'participants': 'list[WarParticipant]',
+        'clans': 'list[WarClan]'
     }
 
     attribute_map = {
         'state': 'state',
         'war_end_time': 'warEndTime',
         'clan': 'clan',
-        'participants': 'participants'
+        'participants': 'participants',
+        'clans': 'clans'
     }
 
-    def __init__(self, state=None, war_end_time=None, clan=None, participants=None):  # noqa: E501
+    def __init__(self, state=None, war_end_time=None, clan=None, participants=None, clans=None):  # noqa: E501
         """CurrentWar - a model defined in Swagger"""  # noqa: E501
         self._state = None
         self._war_end_time = None
         self._clan = None
         self._participants = None
+        self._clans = None
         self.discriminator = None
         if state is not None:
             self.state = state
@@ -59,6 +63,8 @@ class CurrentWar(object):
             self.clan = clan
         if participants is not None:
             self.participants = participants
+        if clans is not None:
+            self.clans = clans
 
     @property
     def state(self):
@@ -143,6 +149,27 @@ class CurrentWar(object):
         """
 
         self._participants = participants
+
+    @property
+    def clans(self):
+        """Gets the clans of this CurrentWar.  # noqa: E501
+
+
+        :return: The clans of this CurrentWar.  # noqa: E501
+        :rtype: list[WarClan]
+        """
+        return self._clans
+
+    @clans.setter
+    def clans(self, clans):
+        """Sets the clans of this CurrentWar.
+
+
+        :param clans: The clans of this CurrentWar.  # noqa: E501
+        :type: list[WarClan]
+        """
+
+        self._clans = clans
 
     def to_dict(self):
         """Returns the model properties as a dict"""

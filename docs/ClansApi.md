@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get clan information
 
-Get information about a single clan by clan tag. Clan tags can be found using clan search operation. Note that clan tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example clan tag '#2ABC' would become '%232ABC' in the URL.
+Get information about a single clan by clan tag. Clan tags can be found using clan search operation. Note that clan tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example clan tag '#2ABC' would become '%232ABC' in the URL. 
 
 ### Example
 ```python
@@ -47,7 +47,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clan_tag** | **str**| Tag of the clan to retrieve. |
+ **clan_tag** | **str**| Tag of the clan to retrieve. | 
 
 ### Return type
 
@@ -104,10 +104,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clan_tag** | **str**| Tag of the clan whose members to retrieve. |
- **limit** | **int**| Limit the number of items returned in the response. | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **clan_tag** | **str**| Tag of the clan whose members to retrieve. | 
+ **limit** | **int**| Limit the number of items returned in the response. | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -164,10 +164,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clan_tag** | **str**| Tag of the clan whose war log to retrieve. |
- **limit** | **int**| Limit the number of items returned in the response. | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **clan_tag** | **str**| Tag of the clan whose war log to retrieve. | 
+ **limit** | **int**| Limit the number of items returned in the response. | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -221,7 +221,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clan_tag** | **str**| Tag of the clan whose war log to retrieve. |
+ **clan_tag** | **str**| Tag of the clan whose war log to retrieve. | 
 
 ### Return type
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 Search clans
 
-Search all clans by name and/or filtering the results using various criteria. At least one filtering criteria must be defined and if name is used as part of search, it is required to be at least three characters long. It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API.
+Search all clans by name and/or filtering the results using various criteria. At least one filtering criteria must be defined and if name is used as part of search, it is required to be at least three characters long. It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API. 
 
 ### Example
 ```python
@@ -282,14 +282,14 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Search clans by name. If name is used as part of search query, it needs to be at least three characters long. Name search parameter is interpreted as wild card search, so it may appear anywhere in the clan name.  | [optional]
- **location_id** | **int**| Filter by clan location identifier. For list of available locations, refer to getLocations operation.  | [optional]
- **min_members** | **int**| Filter by minimum amount of clan members.  | [optional]
- **max_members** | **int**| Filter by maximum amount of clan members.  | [optional]
- **min_score** | **int**| Filter by minimum amount of clan score.  | [optional]
- **limit** | **int**| Limit the number of items returned in the response.  | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from theresponse, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **name** | **str**| Search clans by name. If name is used as part of search query, it needs to be at least three characters long. Name search parameter is interpreted as wild card search, so it may appear anywhere in the clan name.  | [optional] 
+ **location_id** | **int**| Filter by clan location identifier. For list of available locations, refer to getLocations operation.  | [optional] 
+ **min_members** | **int**| Filter by minimum amount of clan members.  | [optional] 
+ **max_members** | **int**| Filter by maximum amount of clan members.  | [optional] 
+ **min_score** | **int**| Filter by minimum amount of clan score.  | [optional] 
+ **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from theresponse, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 

@@ -50,10 +50,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **location_id** | **str**| Identifier of the location to retrieve. |
- **limit** | **int**| Limit the number of items returned in the response.  | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **location_id** | **str**| Identifier of the location to retrieve. | 
+ **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -110,10 +110,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **location_id** | **str**| Identifier of the location to retrieve. |
- **limit** | **int**| Limit the number of items returned in the response.  | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **location_id** | **str**| Identifier of the location to retrieve. | 
+ **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -167,7 +167,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **location_id** | **str**| Identifier of the location to retrieve. |
+ **location_id** | **str**| Identifier of the location to retrieve. | 
 
 ### Return type
 
@@ -223,9 +223,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| Limit the number of items returned in the response.  | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -282,10 +282,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **location_id** | **str**| Identifier of the location to retrieve. |
- **limit** | **int**| Limit the number of items returned in the response.  | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **location_id** | **str**| Identifier of the location to retrieve. | 
+ **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 

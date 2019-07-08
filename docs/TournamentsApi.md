@@ -63,7 +63,7 @@ This endpoint does not need any parameter.
 
 Get tournament information
 
-Get information about a single tournament by a tournament tag.
+Get information about a single tournament by a tournament tag. 
 
 ### Example
 ```python
@@ -81,7 +81,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = pyroyale.TournamentsApi(pyroyale.ApiClient(configuration))
-tournament_tag = 'tournament_tag_example' # str | Tag of the tournament to retrieve.
+tournament_tag = 'tournament_tag_example' # str | Tag of the tournament to retrieve. 
 
 try:
     # Get tournament information
@@ -95,7 +95,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tournament_tag** | **str**| Tag of the tournament to retrieve.  |
+ **tournament_tag** | **str**| Tag of the tournament to retrieve.  | 
 
 ### Return type
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 Search tournaments
 
-Search all tournaments by name. It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API.
+Search all tournaments by name. It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API. 
 
 ### Example
 ```python
@@ -152,10 +152,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Search tournaments by name.  | [optional]
- **limit** | **int**| Limit the number of items returned in the response.  | [optional]
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional]
+ **name** | **str**| Search tournaments by name.  | [optional] 
+ **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Get player information
 
-Get information about a single player by player tag. Player tags can befound either in game or by from clan member lists. Note that player tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example player tag '#2ABC' would become '%232ABC' in the URL.
+Get information about a single player by player tag. Player tags can befound either in game or by from clan member lists. Note that player tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example player tag '#2ABC' would become '%232ABC' in the URL. 
 
 ### Example
 ```python
@@ -31,7 +31,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = pyroyale.PlayersApi(pyroyale.ApiClient(configuration))
-player_tag = 'player_tag_example' # str | Tag of the player to retrieve.
+player_tag = 'player_tag_example' # str | Tag of the player to retrieve. 
 
 try:
     # Get player information
@@ -45,7 +45,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **player_tag** | **str**| Tag of the player to retrieve.  |
+ **player_tag** | **str**| Tag of the player to retrieve.  | 
 
 ### Return type
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 Get log of recent battles for a player
 
-Get list of recent battle results for a player.
+Get list of recent battle results for a player. 
 
 ### Example
 ```python
@@ -85,7 +85,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = pyroyale.PlayersApi(pyroyale.ApiClient(configuration))
-player_tag = 'player_tag_example' # str | Tag of the player whose information to retrieve.
+player_tag = 'player_tag_example' # str | Tag of the player whose information to retrieve. 
 
 try:
     # Get log of recent battles for a player
@@ -99,7 +99,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **player_tag** | **str**| Tag of the player whose information to retrieve.  |
+ **player_tag** | **str**| Tag of the player whose information to retrieve.  | 
 
 ### Return type
 
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 
 Get information about player's upcoming chests
 
-Get list of reward chests that the player will receive next in the game.
+Get list of reward chests that the player will receive next in the game. 
 
 ### Example
 ```python
@@ -139,7 +139,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = pyroyale.PlayersApi(pyroyale.ApiClient(configuration))
-player_tag = 'player_tag_example' # str | Tag of the player whose information to retrieve.
+player_tag = 'player_tag_example' # str | Tag of the player whose information to retrieve. 
 
 try:
     # Get information about player's upcoming chests
@@ -153,7 +153,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **player_tag** | **str**| Tag of the player whose information to retrieve.  |
+ **player_tag** | **str**| Tag of the player whose information to retrieve.  | 
 
 ### Return type
 

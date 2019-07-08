@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 Get list of available cards
 
-Get list of all available cards.
+Get list of all available cards. 
 
 ### Example
 ```python

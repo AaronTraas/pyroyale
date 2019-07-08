@@ -41,6 +41,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description=long_description,
+    long_description_content_type='text/markdown',
 
     project_urls={  # Optional
         'Bug Reports': 'https://github.com/AaronTraas/pyroyale/issues',

@@ -34,6 +34,7 @@ class CurrentWar(object):
     swagger_types = {
         'state': 'str',
         'war_end_time': 'str',
+        'collection_end_time': 'str',
         'clan': 'CurrentWarClan',
         'participants': 'list[WarParticipant]',
         'clans': 'list[WarClan]'
@@ -42,15 +43,17 @@ class CurrentWar(object):
     attribute_map = {
         'state': 'state',
         'war_end_time': 'warEndTime',
+        'collection_end_time': 'collectionEndTime',
         'clan': 'clan',
         'participants': 'participants',
         'clans': 'clans'
     }
 
-    def __init__(self, state=None, war_end_time=None, clan=None, participants=None, clans=None):  # noqa: E501
+    def __init__(self, state=None, war_end_time=None, collection_end_time=None, clan=None, participants=None, clans=None):  # noqa: E501
         """CurrentWar - a model defined in Swagger"""  # noqa: E501
         self._state = None
         self._war_end_time = None
+        self._collection_end_time = None
         self._clan = None
         self._participants = None
         self._clans = None
@@ -59,6 +62,8 @@ class CurrentWar(object):
             self.state = state
         if war_end_time is not None:
             self.war_end_time = war_end_time
+        if collection_end_time is not None:
+            self.collection_end_time = collection_end_time
         if clan is not None:
             self.clan = clan
         if participants is not None:
@@ -107,6 +112,27 @@ class CurrentWar(object):
         """
 
         self._war_end_time = war_end_time
+
+    @property
+    def collection_end_time(self):
+        """Gets the collection_end_time of this CurrentWar.  # noqa: E501
+
+
+        :return: The collection_end_time of this CurrentWar.  # noqa: E501
+        :rtype: str
+        """
+        return self._collection_end_time
+
+    @collection_end_time.setter
+    def collection_end_time(self, collection_end_time):
+        """Sets the collection_end_time of this CurrentWar.
+
+
+        :param collection_end_time: The collection_end_time of this CurrentWar.  # noqa: E501
+        :type: str
+        """
+
+        self._collection_end_time = collection_end_time
 
     @property
     def clan(self):

@@ -2,7 +2,9 @@ import time
 from configparser import ConfigParser
 import os
 
-def getConfigData():
+import pyroyale
+
+def getConfiguration():
 	config_file_name = os.path.expanduser('~/.crtools')
 
 	config = {}
@@ -29,8 +31,7 @@ def getConfigData():
 		print('ERROR: ~/.crtools does not contain property "api_key" in section "[api]".')
 		exit(0)
 
-	if 'clan_id' not in config['api']:
-		print('ERROR: ~/.crtools does not contain property "clan_id" in section "[api]".')
-		exit(0)
+	configuration = pyroyale.Configuration()
+	configuration.api_key['authorization'] = config['api']['api_key']
 
-	return (config['api']['api_key'], config['api']['clan_id'])
+	return configuration

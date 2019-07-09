@@ -3,6 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**tag** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
+**exp_level** | **int** |  | [optional] 
+**trophies** | **int** |  | [optional] 
+**arena** | [**Arena**](Arena.md) |  | [optional] 
 **role** | **str** |  | [optional] 
 **clan_rank** | **int** |  | [optional] 
 **previous_clan_rank** | **int** |  | [optional] 

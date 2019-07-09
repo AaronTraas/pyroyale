@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **state** | **str** |  | [optional] 
 **war_end_time** | **str** |  | [optional] 
+**collection_end_time** | **str** |  | [optional] 
 **clan** | [**CurrentWarClan**](CurrentWarClan.md) |  | [optional] 
 **participants** | [**list[WarParticipant]**](WarParticipant.md) |  | [optional] 
 **clans** | [**list[WarClan]**](WarClan.md) |  | [optional] 

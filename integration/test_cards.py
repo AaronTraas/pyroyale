@@ -3,19 +3,16 @@ import config
 import pyroyale
 from pyroyale.rest import ApiException
 
-api_key, clan_id = config.getConfigData()
-
-configuration = pyroyale.Configuration()
-configuration.api_key['authorization'] = api_key
+configuration = config.getConfiguration()
 
 def test_cards():
 
     # create an instance of the API class
-    api_instance = pyroyale.CardsApi(pyroyale.ApiClient(configuration))
+    api = pyroyale.CardsApi(pyroyale.ApiClient(configuration))
 
     try:
         # Get list of available cards
-        cardList = api_instance.get_cards()
+        cardList = api.get_cards()
         #print(cardList)
         assert type(cardList.items) == list
         for card in cardList.items:

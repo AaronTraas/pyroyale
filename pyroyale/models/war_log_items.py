@@ -15,6 +15,7 @@ import re  # noqa: F401
 
 import six
 from pyroyale.models.war_participant import WarParticipant  # noqa: F401,E501
+from pyroyale.models.war_standing_clan import WarStandingClan  # noqa: F401,E501
 
 
 class WarLogItems(object):
@@ -32,20 +33,23 @@ class WarLogItems(object):
     swagger_types = {
         'season_id': 'int',
         'created_date': 'str',
-        'participants': 'list[WarParticipant]'
+        'participants': 'list[WarParticipant]',
+        'standings': 'list[WarStandingClan]'
     }
 
     attribute_map = {
         'season_id': 'seasonId',
         'created_date': 'createdDate',
-        'participants': 'participants'
+        'participants': 'participants',
+        'standings': 'standings'
     }
 
-    def __init__(self, season_id=None, created_date=None, participants=None):  # noqa: E501
+    def __init__(self, season_id=None, created_date=None, participants=None, standings=None):  # noqa: E501
         """WarLogItems - a model defined in Swagger"""  # noqa: E501
         self._season_id = None
         self._created_date = None
         self._participants = None
+        self._standings = None
         self.discriminator = None
         if season_id is not None:
             self.season_id = season_id
@@ -53,6 +57,8 @@ class WarLogItems(object):
             self.created_date = created_date
         if participants is not None:
             self.participants = participants
+        if standings is not None:
+            self.standings = standings
 
     @property
     def season_id(self):
@@ -116,6 +122,27 @@ class WarLogItems(object):
         """
 
         self._participants = participants
+
+    @property
+    def standings(self):
+        """Gets the standings of this WarLogItems.  # noqa: E501
+
+
+        :return: The standings of this WarLogItems.  # noqa: E501
+        :rtype: list[WarStandingClan]
+        """
+        return self._standings
+
+    @standings.setter
+    def standings(self, standings):
+        """Sets the standings of this WarLogItems.
+
+
+        :param standings: The standings of this WarLogItems.  # noqa: E501
+        :type: list[WarStandingClan]
+        """
+
+        self._standings = standings
 
     def to_dict(self):
         """Returns the model properties as a dict"""

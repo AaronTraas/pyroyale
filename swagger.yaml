@@ -839,41 +839,88 @@ components:
         badgeId:
           type: integer
     SearchResultClan:
-      allOf:
-        - $ref: '#/components/schemas/ClanBase'
-        - type: object
-          properties:
-            type:
-              type: string
-            clanScore:
-              type: integer
-            requiredTrophies:
-              type: integer
-            donationsPerWeek:
-              type: integer
-            clanChestLevel:
-              type: integer
-            clanChestMaxLevel:
-              type: integer
-            members:
-              type: integer
-            location:
-              $ref: '#/components/schemas/Location'
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        badgeId:
+          type: integer
+        type:
+          type: string
+        clanScore:
+          type: integer
+        requiredTrophies:
+          type: integer
+        donationsPerWeek:
+          type: integer
+        clanWarTrophies:
+          type: integer
+        clanChestLevel:
+          type: integer
+        clanChestMaxLevel:
+          type: integer
+        members:
+          type: integer
+        location:
+          $ref: '#/components/schemas/Location'
     Clan:
-      allOf:
-        - $ref: '#/components/schemas/SearchResultClan'
-        - type: object
-          properties:
-            description:
-              type: string
-            clanChestStatus:
-              type: string
-            clanChestPoints:
-              type: integer
-            memberList:
-              type: array
-              items:
-                $ref: '#/components/schemas/ClanMember'
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        badgeId:
+          type: integer
+        type:
+          type: string
+        clanScore:
+          type: integer
+        requiredTrophies:
+          type: integer
+        donationsPerWeek:
+          type: integer
+        clanWarTrophies:
+          type: integer
+        clanChestLevel:
+          type: integer
+        clanChestMaxLevel:
+          type: integer
+        members:
+          type: integer
+        location:
+          $ref: '#/components/schemas/Location'
+        description:
+          type: string
+        clanChestStatus:
+          type: string
+        clanChestPoints:
+          type: integer
+        memberList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClanMember'
+    WarStandingClan:
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        badgeId:
+          type: integer
+        clanScore:
+          type: integer
+        participants:
+          type: integer
+        battlesPlayed:
+          type: integer
+        wins:
+          type: integer
+        crowns:
+          type: integer
     PlayerBase:
       type: object
       properties:
@@ -888,22 +935,30 @@ components:
         arena:
           $ref: '#/components/schemas/Arena'
     ClanMember:
-      allOf:
-        - $ref: '#/components/schemas/PlayerBase'
-        - type: object
-          properties:
-            role:
-              type: string
-            clanRank:
-              type: integer
-            previousClanRank:
-              type: integer
-            donations:
-              type: integer
-            donationsReceived:
-              type: integer
-            clanChestPoints:
-              type: integer
+      type: object
+      properties:
+        tag:
+          type: string
+        name:
+          type: string
+        expLevel:
+          type: integer
+        trophies:
+          type: integer
+        arena:
+          $ref: '#/components/schemas/Arena'
+        role:
+          type: string
+        clanRank:
+          type: integer
+        previousClanRank:
+          type: integer
+        donations:
+          type: integer
+        donationsReceived:
+          type: integer
+        clanChestPoints:
+          type: integer
     Arena:
       type: object
       properties:
@@ -947,6 +1002,8 @@ components:
           type: integer
         battlesPlayed:
           type: integer
+        collectionDayBattlesPlayed:
+          type: integer
         wins:
           type: integer
     WarClan:
@@ -986,12 +1043,18 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/WarParticipant'
+              standings:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WarStandingClan'
     CurrentWar:
       type: object
       properties:
         state:
           type: string
         warEndTime:
+          type: string
+        collectionEndTime:
           type: string
         clan:
           type: object

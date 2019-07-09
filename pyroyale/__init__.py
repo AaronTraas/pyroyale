@@ -66,3 +66,4 @@ from pyroyale.models.war_clan import WarClan
 from pyroyale.models.war_log import WarLog
 from pyroyale.models.war_log_items import WarLogItems
 from pyroyale.models.war_participant import WarParticipant
+from pyroyale.models.war_standing_clan import WarStandingClan

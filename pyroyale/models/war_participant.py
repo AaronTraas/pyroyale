@@ -33,6 +33,7 @@ class WarParticipant(object):
         'name': 'str',
         'cards_earned': 'int',
         'battles_played': 'int',
+        'collection_day_battles_played': 'int',
         'wins': 'int'
     }
 
@@ -41,15 +42,17 @@ class WarParticipant(object):
         'name': 'name',
         'cards_earned': 'cardsEarned',
         'battles_played': 'battlesPlayed',
+        'collection_day_battles_played': 'collectionDayBattlesPlayed',
         'wins': 'wins'
     }
 
-    def __init__(self, tag=None, name=None, cards_earned=None, battles_played=None, wins=None):  # noqa: E501
+    def __init__(self, tag=None, name=None, cards_earned=None, battles_played=None, collection_day_battles_played=None, wins=None):  # noqa: E501
         """WarParticipant - a model defined in Swagger"""  # noqa: E501
         self._tag = None
         self._name = None
         self._cards_earned = None
         self._battles_played = None
+        self._collection_day_battles_played = None
         self._wins = None
         self.discriminator = None
         if tag is not None:
@@ -60,6 +63,8 @@ class WarParticipant(object):
             self.cards_earned = cards_earned
         if battles_played is not None:
             self.battles_played = battles_played
+        if collection_day_battles_played is not None:
+            self.collection_day_battles_played = collection_day_battles_played
         if wins is not None:
             self.wins = wins
 
@@ -146,6 +151,27 @@ class WarParticipant(object):
         """
 
         self._battles_played = battles_played
+
+    @property
+    def collection_day_battles_played(self):
+        """Gets the collection_day_battles_played of this WarParticipant.  # noqa: E501
+
+
+        :return: The collection_day_battles_played of this WarParticipant.  # noqa: E501
+        :rtype: int
+        """
+        return self._collection_day_battles_played
+
+    @collection_day_battles_played.setter
+    def collection_day_battles_played(self, collection_day_battles_played):
+        """Sets the collection_day_battles_played of this WarParticipant.
+
+
+        :param collection_day_battles_played: The collection_day_battles_played of this WarParticipant.  # noqa: E501
+        :type: int
+        """
+
+        self._collection_day_battles_played = collection_day_battles_played
 
     @property
     def wins(self):

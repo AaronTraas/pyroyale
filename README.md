@@ -136,6 +136,7 @@ Class | Method | HTTP request | Description
  - [WarLog](docs/WarLog.md)
  - [WarLogItems](docs/WarLogItems.md)
  - [WarParticipant](docs/WarParticipant.md)
+ - [WarStanding](docs/WarStanding.md)
  - [WarStandingClan](docs/WarStandingClan.md)
 
 ## Documentation For Authorization

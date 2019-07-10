@@ -15,7 +15,7 @@ import re  # noqa: F401
 
 import six
 from pyroyale.models.war_participant import WarParticipant  # noqa: F401,E501
-from pyroyale.models.war_standing_clan import WarStandingClan  # noqa: F401,E501
+from pyroyale.models.war_standing import WarStanding  # noqa: F401,E501
 
 
 class WarLogItems(object):
@@ -34,7 +34,7 @@ class WarLogItems(object):
         'season_id': 'int',
         'created_date': 'str',
         'participants': 'list[WarParticipant]',
-        'standings': 'list[WarStandingClan]'
+        'standings': 'list[WarStanding]'
     }
 
     attribute_map = {
@@ -129,7 +129,7 @@ class WarLogItems(object):
 
 
         :return: The standings of this WarLogItems.  # noqa: E501
-        :rtype: list[WarStandingClan]
+        :rtype: list[WarStanding]
         """
         return self._standings
 
@@ -139,7 +139,7 @@ class WarLogItems(object):
 
 
         :param standings: The standings of this WarLogItems.  # noqa: E501
-        :type: list[WarStandingClan]
+        :type: list[WarStanding]
         """
 
         self._standings = standings

@@ -921,6 +921,14 @@ components:
           type: integer
         crowns:
           type: integer
+    WarStanding:
+      type: object
+      properties:
+        clan:
+          type: object
+          $ref: '#/components/schemas/WarStandingClan'
+        trophyChange:
+          type: integer
     PlayerBase:
       type: object
       properties:
@@ -1046,7 +1054,7 @@ components:
               standings:
                 type: array
                 items:
-                  $ref: '#/components/schemas/WarStandingClan'
+                  $ref: '#/components/schemas/WarStanding'
     CurrentWar:
       type: object
       properties:

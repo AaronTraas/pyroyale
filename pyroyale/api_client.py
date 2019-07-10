@@ -2,7 +2,7 @@
 """
     Clash Royale API
 
-    Unofficial Swagger docs for the official Clash Royale API  # noqa: E501
+    Unofficial Swagger definition for the official Clash Royale API  # noqa: E501
 
     OpenAPI spec version: 1.0
     

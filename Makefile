@@ -38,4 +38,7 @@ upload:
 	twine upload dist/*
 
 swagger:
-	swagger-codegen generate -i swagger.yaml -l python -DpackageName=pyroyale -o .
+	swagger-codegen generate -i https://raw.githubusercontent.com/AaronTraas/clashroyale-swagger/master/swagger.yaml -l python -DpackageName=pyroyale -o .
+
+swagger-local:
+	swagger-codegen generate -i ../clashroyale-swagger/swagger.yaml -l python -DpackageName=pyroyale -o .

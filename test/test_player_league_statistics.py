@@ -3,7 +3,7 @@
 """
     Clash Royale API
 
-    Unofficial Swagger docs for the official Clash Royale API  # noqa: E501
+    Unofficial Swagger definition for the official Clash Royale API  # noqa: E501
 
     OpenAPI spec version: 1.0
 
@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pyroyale
-from pyroyale.models.player_detail_cards import PlayerDetailCards  # noqa: E501
+from pyroyale.models.player_league_statistics import PlayerLeagueStatistics  # noqa: E501
 from pyroyale.rest import ApiException
 
 
-class TestPlayerDetailCards(unittest.TestCase):
-    """PlayerDetailCards unit test stubs"""
+class TestPlayerLeagueStatistics(unittest.TestCase):
+    """PlayerLeagueStatistics unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestPlayerDetailCards(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPlayerDetailCards(self):
-        """Test PlayerDetailCards"""
+    def testPlayerLeagueStatistics(self):
+        """Test PlayerLeagueStatistics"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.player_detail_cards.PlayerDetailCards()  # noqa: E501
+        # model = pyroyale.models.player_league_statistics.PlayerLeagueStatistics()  # noqa: E501
         pass
 
 

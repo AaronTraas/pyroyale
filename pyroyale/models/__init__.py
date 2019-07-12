@@ -15,7 +15,6 @@ from __future__ import absolute_import
 
 # import models into model package
 from pyroyale.models.arena import Arena
-from pyroyale.models.battle_log import BattleLog
 from pyroyale.models.battle_log_entry import BattleLogEntry
 from pyroyale.models.battle_log_game_mode import BattleLogGameMode
 from pyroyale.models.battle_log_team import BattleLogTeam

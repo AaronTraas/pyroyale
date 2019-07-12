@@ -95,7 +95,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Arena](docs/Arena.md)
- - [BattleLog](docs/BattleLog.md)
  - [BattleLogEntry](docs/BattleLogEntry.md)
  - [BattleLogGameMode](docs/BattleLogGameMode.md)
  - [BattleLogTeam](docs/BattleLogTeam.md)

@@ -74,6 +74,14 @@ def test_player_AaronTraas_battle_log():
 
         assert len(battles) >= 1
 
+        battle = battles[0]
+
+        assert battle.type in ['PvP', 'clanWarWarDay', 'clanWarCollectionDay', 'challenge']
+        assert len(battle.team) >= 1
+        assert len(battle.opponent) >= 1
+        assert battle.game_mode.id >= 72000000
+        assert len(battle.game_mode.name) >= 2
+
     except ApiException as e:
         print("Exception when calling PlayersApi.get_player_battles(): %s\n" % e)
         assert False

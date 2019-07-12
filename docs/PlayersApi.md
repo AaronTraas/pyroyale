@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_player_battles**
-> BattleLog get_player_battles(player_tag)
+> list[BattleLogEntry] get_player_battles(player_tag)
 
 Get log of recent battles for a player
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BattleLog**](BattleLog.md)
+[**list[BattleLogEntry]**](BattleLogEntry.md)
 
 ### Authorization
 

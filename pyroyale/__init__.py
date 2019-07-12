@@ -25,7 +25,6 @@ from pyroyale.api_client import ApiClient
 from pyroyale.configuration import Configuration
 # import models into sdk package
 from pyroyale.models.arena import Arena
-from pyroyale.models.battle_log import BattleLog
 from pyroyale.models.battle_log_entry import BattleLogEntry
 from pyroyale.models.battle_log_game_mode import BattleLogGameMode
 from pyroyale.models.battle_log_team import BattleLogTeam

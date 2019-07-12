@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.tournament_list import TournamentList  # noqa: F401,E501
+from pyroyale.models.tournament import Tournament  # noqa: F401,E501
 
 
 class TournamentSearchResult(object):
@@ -30,7 +30,7 @@ class TournamentSearchResult(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'TournamentList'
+        'items': 'list[Tournament]'
     }
 
     attribute_map = {
@@ -50,7 +50,7 @@ class TournamentSearchResult(object):
 
 
         :return: The items of this TournamentSearchResult.  # noqa: E501
-        :rtype: TournamentList
+        :rtype: list[Tournament]
         """
         return self._items
 
@@ -60,7 +60,7 @@ class TournamentSearchResult(object):
 
 
         :param items: The items of this TournamentSearchResult.  # noqa: E501
-        :type: TournamentList
+        :type: list[Tournament]
         """
 
         self._items = items

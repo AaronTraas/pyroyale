@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.tournament_list import TournamentList  # noqa: F401,E501
+from pyroyale.models.tournament import Tournament  # noqa: F401,E501
 from pyroyale.models.tournament_player import TournamentPlayer  # noqa: F401,E501
 
 
@@ -31,7 +31,7 @@ class TournamentDetail(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'TournamentList',
+        'items': 'list[Tournament]',
         'started_time': 'str',
         'members_list': 'list[TournamentPlayer]'
     }
@@ -61,7 +61,7 @@ class TournamentDetail(object):
 
 
         :return: The items of this TournamentDetail.  # noqa: E501
-        :rtype: TournamentList
+        :rtype: list[Tournament]
         """
         return self._items
 
@@ -71,7 +71,7 @@ class TournamentDetail(object):
 
 
         :param items: The items of this TournamentDetail.  # noqa: E501
-        :type: TournamentList
+        :type: list[Tournament]
         """
 
         self._items = items

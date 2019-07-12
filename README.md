@@ -96,7 +96,6 @@ Class | Method | HTTP request | Description
 
  - [Arena](docs/Arena.md)
  - [BattleLogEntry](docs/BattleLogEntry.md)
- - [BattleLogGameMode](docs/BattleLogGameMode.md)
  - [BattleLogTeam](docs/BattleLogTeam.md)
  - [BattleLogTeamList](docs/BattleLogTeamList.md)
  - [Card](docs/Card.md)
@@ -115,6 +114,7 @@ Class | Method | HTTP request | Description
  - [ClanWarRanked](docs/ClanWarRanked.md)
  - [ClanWarsRankingList](docs/ClanWarsRankingList.md)
  - [Error](docs/Error.md)
+ - [GameMode](docs/GameMode.md)
  - [Location](docs/Location.md)
  - [LocationList](docs/LocationList.md)
  - [PlayerAchievement](docs/PlayerAchievement.md)
@@ -127,7 +127,6 @@ Class | Method | HTTP request | Description
  - [SeasonStatistics](docs/SeasonStatistics.md)
  - [Tournament](docs/Tournament.md)
  - [TournamentDetail](docs/TournamentDetail.md)
- - [TournamentList](docs/TournamentList.md)
  - [TournamentPlayer](docs/TournamentPlayer.md)
  - [TournamentSearchResult](docs/TournamentSearchResult.md)
  - [War](docs/War.md)

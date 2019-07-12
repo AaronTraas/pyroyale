@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pyroyale
-from pyroyale.models.tournament_list import TournamentList  # noqa: E501
+from pyroyale.models.game_mode import GameMode  # noqa: E501
 from pyroyale.rest import ApiException
 
 
-class TestTournamentList(unittest.TestCase):
-    """TournamentList unit test stubs"""
+class TestGameMode(unittest.TestCase):
+    """GameMode unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestTournamentList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testTournamentList(self):
-        """Test TournamentList"""
+    def testGameMode(self):
+        """Test GameMode"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.tournament_list.TournamentList()  # noqa: E501
+        # model = pyroyale.models.game_mode.GameMode()  # noqa: E501
         pass
 
 

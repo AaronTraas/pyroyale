@@ -14,6 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
+from pyroyale.models.game_mode import GameMode  # noqa: F401,E501
 
 
 class Tournament(object):
@@ -32,6 +33,8 @@ class Tournament(object):
         'tag': 'str',
         'type': 'str',
         'status': 'str',
+        'level_cap': 'int',
+        'first_place_card_prize': 'int',
         'creator_tag': 'str',
         'name': 'str',
         'description': 'str',
@@ -39,13 +42,16 @@ class Tournament(object):
         'max_capacity': 'int',
         'preparation_duration': 'int',
         'duration': 'int',
-        'created_time': 'str'
+        'created_time': 'str',
+        'game_mode': 'GameMode'
     }
 
     attribute_map = {
         'tag': 'tag',
         'type': 'type',
         'status': 'status',
+        'level_cap': 'levelCap',
+        'first_place_card_prize': 'firstPlaceCardPrize',
         'creator_tag': 'creatorTag',
         'name': 'name',
         'description': 'description',
@@ -53,14 +59,17 @@ class Tournament(object):
         'max_capacity': 'maxCapacity',
         'preparation_duration': 'preparationDuration',
         'duration': 'duration',
-        'created_time': 'createdTime'
+        'created_time': 'createdTime',
+        'game_mode': 'gameMode'
     }
 
-    def __init__(self, tag=None, type=None, status=None, creator_tag=None, name=None, description=None, capacity=None, max_capacity=None, preparation_duration=None, duration=None, created_time=None):  # noqa: E501
+    def __init__(self, tag=None, type=None, status=None, level_cap=None, first_place_card_prize=None, creator_tag=None, name=None, description=None, capacity=None, max_capacity=None, preparation_duration=None, duration=None, created_time=None, game_mode=None):  # noqa: E501
         """Tournament - a model defined in Swagger"""  # noqa: E501
         self._tag = None
         self._type = None
         self._status = None
+        self._level_cap = None
+        self._first_place_card_prize = None
         self._creator_tag = None
         self._name = None
         self._description = None
@@ -69,6 +78,7 @@ class Tournament(object):
         self._preparation_duration = None
         self._duration = None
         self._created_time = None
+        self._game_mode = None
         self.discriminator = None
         if tag is not None:
             self.tag = tag
@@ -76,6 +86,10 @@ class Tournament(object):
             self.type = type
         if status is not None:
             self.status = status
+        if level_cap is not None:
+            self.level_cap = level_cap
+        if first_place_card_prize is not None:
+            self.first_place_card_prize = first_place_card_prize
         if creator_tag is not None:
             self.creator_tag = creator_tag
         if name is not None:
@@ -92,6 +106,8 @@ class Tournament(object):
             self.duration = duration
         if created_time is not None:
             self.created_time = created_time
+        if game_mode is not None:
+            self.game_mode = game_mode
 
     @property
     def tag(self):
@@ -155,6 +171,48 @@ class Tournament(object):
         """
 
         self._status = status
+
+    @property
+    def level_cap(self):
+        """Gets the level_cap of this Tournament.  # noqa: E501
+
+
+        :return: The level_cap of this Tournament.  # noqa: E501
+        :rtype: int
+        """
+        return self._level_cap
+
+    @level_cap.setter
+    def level_cap(self, level_cap):
+        """Sets the level_cap of this Tournament.
+
+
+        :param level_cap: The level_cap of this Tournament.  # noqa: E501
+        :type: int
+        """
+
+        self._level_cap = level_cap
+
+    @property
+    def first_place_card_prize(self):
+        """Gets the first_place_card_prize of this Tournament.  # noqa: E501
+
+
+        :return: The first_place_card_prize of this Tournament.  # noqa: E501
+        :rtype: int
+        """
+        return self._first_place_card_prize
+
+    @first_place_card_prize.setter
+    def first_place_card_prize(self, first_place_card_prize):
+        """Sets the first_place_card_prize of this Tournament.
+
+
+        :param first_place_card_prize: The first_place_card_prize of this Tournament.  # noqa: E501
+        :type: int
+        """
+
+        self._first_place_card_prize = first_place_card_prize
 
     @property
     def creator_tag(self):
@@ -323,6 +381,27 @@ class Tournament(object):
         """
 
         self._created_time = created_time
+
+    @property
+    def game_mode(self):
+        """Gets the game_mode of this Tournament.  # noqa: E501
+
+
+        :return: The game_mode of this Tournament.  # noqa: E501
+        :rtype: GameMode
+        """
+        return self._game_mode
+
+    @game_mode.setter
+    def game_mode(self, game_mode):
+        """Sets the game_mode of this Tournament.
+
+
+        :param game_mode: The game_mode of this Tournament.  # noqa: E501
+        :type: GameMode
+        """
+
+        self._game_mode = game_mode
 
     def to_dict(self):
         """Returns the model properties as a dict"""

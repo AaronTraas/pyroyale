@@ -26,7 +26,6 @@ from pyroyale.configuration import Configuration
 # import models into sdk package
 from pyroyale.models.arena import Arena
 from pyroyale.models.battle_log_entry import BattleLogEntry
-from pyroyale.models.battle_log_game_mode import BattleLogGameMode
 from pyroyale.models.battle_log_team import BattleLogTeam
 from pyroyale.models.battle_log_team_list import BattleLogTeamList
 from pyroyale.models.card import Card
@@ -45,6 +44,7 @@ from pyroyale.models.clan_search_result_clan import ClanSearchResultClan
 from pyroyale.models.clan_war_ranked import ClanWarRanked
 from pyroyale.models.clan_wars_ranking_list import ClanWarsRankingList
 from pyroyale.models.error import Error
+from pyroyale.models.game_mode import GameMode
 from pyroyale.models.location import Location
 from pyroyale.models.location_list import LocationList
 from pyroyale.models.player_achievement import PlayerAchievement
@@ -57,7 +57,6 @@ from pyroyale.models.player_ranking_list import PlayerRankingList
 from pyroyale.models.season_statistics import SeasonStatistics
 from pyroyale.models.tournament import Tournament
 from pyroyale.models.tournament_detail import TournamentDetail
-from pyroyale.models.tournament_list import TournamentList
 from pyroyale.models.tournament_player import TournamentPlayer
 from pyroyale.models.tournament_search_result import TournamentSearchResult
 from pyroyale.models.war import War

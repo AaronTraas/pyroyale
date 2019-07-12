@@ -15,8 +15,8 @@ import re  # noqa: F401
 
 import six
 from pyroyale.models.arena import Arena  # noqa: F401,E501
-from pyroyale.models.battle_log_game_mode import BattleLogGameMode  # noqa: F401,E501
 from pyroyale.models.battle_log_team_list import BattleLogTeamList  # noqa: F401,E501
+from pyroyale.models.game_mode import GameMode  # noqa: F401,E501
 
 
 class BattleLogEntry(object):
@@ -36,7 +36,7 @@ class BattleLogEntry(object):
         'battle_time': 'str',
         'is_ladder_tournament': 'bool',
         'arena': 'Arena',
-        'game_mode': 'BattleLogGameMode',
+        'game_mode': 'GameMode',
         'deck_selection': 'str',
         'team': 'BattleLogTeamList',
         'opponent': 'BattleLogTeamList'
@@ -171,7 +171,7 @@ class BattleLogEntry(object):
 
 
         :return: The game_mode of this BattleLogEntry.  # noqa: E501
-        :rtype: BattleLogGameMode
+        :rtype: GameMode
         """
         return self._game_mode
 
@@ -181,7 +181,7 @@ class BattleLogEntry(object):
 
 
         :param game_mode: The game_mode of this BattleLogEntry.  # noqa: E501
-        :type: BattleLogGameMode
+        :type: GameMode
         """
 
         self._game_mode = game_mode

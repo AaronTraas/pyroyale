@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **battle_time** | **str** |  | [optional] 
 **is_ladder_tournament** | **bool** |  | [optional] 
 **arena** | [**Arena**](Arena.md) |  | [optional] 
-**game_mode** | [**BattleLogGameMode**](BattleLogGameMode.md) |  | [optional] 
+**game_mode** | [**GameMode**](GameMode.md) |  | [optional] 
 **deck_selection** | **str** |  | [optional] 
 **team** | [**BattleLogTeamList**](BattleLogTeamList.md) |  | [optional] 
 **opponent** | [**BattleLogTeamList**](BattleLogTeamList.md) |  | [optional] 

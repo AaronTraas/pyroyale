@@ -8,6 +8,9 @@ clean:
 	python3 setup.py clean
 	rm -rf build dist .pytest_cache *.egg-info $(SRCDIR)/__pycache__ $(TESTDIR)/__pycache__ MANIFEST
 
+delete-models:
+	rm -rf pyroyale/models
+
 install:
 	pip3 install -r requirements.txt
 	python3 setup.py install
@@ -40,8 +43,8 @@ upload:
 	python3 setup.py sdist bdist_wheel
 	twine upload dist/*
 
-swagger:
+swagger: delete-models
 	swagger-codegen generate -i https://raw.githubusercontent.com/AaronTraas/clashroyale-swagger/master/swagger.yaml -l python -DpackageName=pyroyale -o .
 
-swagger-local:
+swagger-local: delete-models
 	swagger-codegen generate -i ../clashroyale-swagger/swagger.yaml -l python -DpackageName=pyroyale -o .

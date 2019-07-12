@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_current_war**
-> CurrentWar get_current_war(clan_tag)
+> WarCurrent get_current_war(clan_tag)
 
 Information about clan's current clan war
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CurrentWar**](CurrentWar.md)
+[**WarCurrent**](WarCurrent.md)
 
 ### Authorization
 

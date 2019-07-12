@@ -3,6 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**tag** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
+**exp_level** | **int** |  | [optional] 
+**trophies** | **int** |  | [optional] 
+**arena** | [**Arena**](Arena.md) |  | [optional] 
 **best_trophies** | **int** |  | [optional] 
 **wins** | **int** |  | [optional] 
 **losses** | **int** |  | [optional] 
@@ -19,11 +24,12 @@ Name | Type | Description | Notes
 **war_day_wins** | **int** |  | [optional] 
 **clan_cards_collected** | **int** |  | [optional] 
 **clan** | [**ClanBase**](ClanBase.md) |  | [optional] 
-**arena** | [**Arena**](Arena.md) |  | [optional] 
 **league_statistics** | [**PlayerLeagueStatistics**](PlayerLeagueStatistics.md) |  | [optional] 
-**achievements** | [**list[PlayerAchievements]**](PlayerAchievements.md) |  | [optional] 
-**cards** | [**CardList**](CardList.md) |  | [optional] 
+**achievements** | [**list[PlayerAchievement]**](PlayerAchievement.md) |  | [optional] 
+**badges** | [**list[PlayerBadge]**](PlayerBadge.md) |  | [optional] 
+**cards** | [**list[Card]**](Card.md) |  | [optional] 
 **current_favourite_card** | [**Card**](Card.md) |  | [optional] 
+**star_points** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -59,7 +59,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_tournament**
-> Tournament get_tournament(tournament_tag)
+> TournamentDetail get_tournament(tournament_tag)
 
 Get tournament information
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tournament**](Tournament.md)
+[**TournamentDetail**](TournamentDetail.md)
 
 ### Authorization
 

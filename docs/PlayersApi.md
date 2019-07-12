@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_player_upcoming_chests**
-> UpcomingChestsList get_player_upcoming_chests(player_tag)
+> ChestList get_player_upcoming_chests(player_tag)
 
 Get information about player's upcoming chests
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpcomingChestsList**](UpcomingChestsList.md)
+[**ChestList**](ChestList.md)
 
 ### Authorization
 

@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,60 @@ class TestArena(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testArena(self):
-        """Test Arena"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.arena.Arena()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.arena.Arena()
         pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.arena.Arena(
+            id='id',
+            name='name'
+        )
+
+        assert model.id=='id'
+        assert model.name=='name'
+
+    def testToDict(self):
+        model = pyroyale.models.arena.Arena(
+            id=123,
+            name='name'
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['id']==123
+        assert modelDict['name']=='name'
+
+    def testToString(self):
+        model = pyroyale.models.arena.Arena('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.arena.Arena('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.arena.Arena('A')
+        model_a2 = pyroyale.models.arena.Arena('A')
+        model_b  = pyroyale.models.arena.Arena('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

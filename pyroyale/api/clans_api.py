@@ -352,7 +352,7 @@ class ClansApi(object):
 
         :param async_req bool
         :param str clan_tag: Tag of the clan whose war log to retrieve. (required)
-        :return: CurrentWar
+        :return: WarCurrent
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -374,7 +374,7 @@ class ClansApi(object):
 
         :param async_req bool
         :param str clan_tag: Tag of the clan whose war log to retrieve. (required)
-        :return: CurrentWar
+        :return: WarCurrent
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -428,7 +428,7 @@ class ClansApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CurrentWar',  # noqa: E501
+            response_type='WarCurrent',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

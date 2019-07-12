@@ -33,7 +33,7 @@ class TestPlayerDetail(unittest.TestCase):
     def testDefaults(self):
         model = pyroyale.models.player_detail.PlayerDetail()
         pass
-"""
+
     def testConstructorInitializers(self):
         model = pyroyale.models.player_detail.PlayerDetail(
             tag='tag',
@@ -41,12 +41,26 @@ class TestPlayerDetail(unittest.TestCase):
             exp_level='exp_level',
             trophies='trophies',
             arena='arena',
+            best_trophies='best_trophies',
             role='role',
-            clan_rank='clan_rank',
-            previous_clan_rank='previous_clan_rank',
+            wins='wins',
+            losses='losses',
+            battle_count='battle_count',
+            three_crown_wins='three_crown_wins',
+            challenge_cards_won='challenge_cards_won',
+            challenge_max_wins='challenge_max_wins',
+            tournament_cards_won='tournament_cards_won',
+            tournament_battle_count='tournament_battle_count',
             donations='donations',
             donations_received='donations_received',
-            clan_chest_points='clan_chest_points'
+            total_donations='total_donations',
+            war_day_wins='war_day_wins',
+            clan_cards_collected='clan_cards_collected',
+            clan='clan',
+            league_statistics='league_statistics',
+            achievements='achievements',
+            cards='cards',
+            current_favourite_card='current_favourite_card'
         )
 
         assert model.tag=='tag'
@@ -55,23 +69,19 @@ class TestPlayerDetail(unittest.TestCase):
         assert model.trophies=='trophies'
         assert model.arena=='arena'
         assert model.role=='role'
-        assert model.clan_rank=='clan_rank'
-        assert model.donations=='donations'
-        assert model.donations_received=='donations_received'
-        assert model.clan_chest_points=='clan_chest_points'
 
     def testToDict(self):
         model = pyroyale.models.player_detail.PlayerDetail(
             tag='tag',
             trophies=123,
-            clan_chest_points=[pyroyale.models.player_detail.PlayerDetail(name='name')]
+            arena=[pyroyale.models.player_detail.PlayerDetail(name='name')]
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['tag']=='tag'
         assert modelDict['trophies']==123
-        assert modelDict['clan_chest_points'][0]['name']=='name'
+        assert modelDict['arena'][0]['name']=='name'
 
     def testToString(self):
         model = pyroyale.models.player_detail.PlayerDetail('TestStringSequence')
@@ -103,7 +113,6 @@ class TestPlayerDetail(unittest.TestCase):
         assert model_a == model_a2
         assert model_a != model_b
         assert model_a != 'not a'
-"""
 
 if __name__ == '__main__':
     unittest.main()

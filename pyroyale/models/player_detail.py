@@ -16,9 +16,9 @@ import re  # noqa: F401
 import six
 from pyroyale.models.arena import Arena  # noqa: F401,E501
 from pyroyale.models.card import Card  # noqa: F401,E501
-from pyroyale.models.card_list import CardList  # noqa: F401,E501
 from pyroyale.models.clan_base import ClanBase  # noqa: F401,E501
-from pyroyale.models.player_achievements import PlayerAchievements  # noqa: F401,E501
+from pyroyale.models.player_achievement import PlayerAchievement  # noqa: F401,E501
+from pyroyale.models.player_badge import PlayerBadge  # noqa: F401,E501
 from pyroyale.models.player_league_statistics import PlayerLeagueStatistics  # noqa: F401,E501
 
 
@@ -35,6 +35,11 @@ class PlayerDetail(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'tag': 'str',
+        'name': 'str',
+        'exp_level': 'int',
+        'trophies': 'int',
+        'arena': 'Arena',
         'best_trophies': 'int',
         'wins': 'int',
         'losses': 'int',
@@ -51,14 +56,20 @@ class PlayerDetail(object):
         'war_day_wins': 'int',
         'clan_cards_collected': 'int',
         'clan': 'ClanBase',
-        'arena': 'Arena',
         'league_statistics': 'PlayerLeagueStatistics',
-        'achievements': 'list[PlayerAchievements]',
-        'cards': 'CardList',
-        'current_favourite_card': 'Card'
+        'achievements': 'list[PlayerAchievement]',
+        'badges': 'list[PlayerBadge]',
+        'cards': 'list[Card]',
+        'current_favourite_card': 'Card',
+        'star_points': 'int'
     }
 
     attribute_map = {
+        'tag': 'tag',
+        'name': 'name',
+        'exp_level': 'expLevel',
+        'trophies': 'trophies',
+        'arena': 'arena',
         'best_trophies': 'bestTrophies',
         'wins': 'wins',
         'losses': 'losses',
@@ -75,15 +86,21 @@ class PlayerDetail(object):
         'war_day_wins': 'warDayWins',
         'clan_cards_collected': 'clanCardsCollected',
         'clan': 'clan',
-        'arena': 'arena',
         'league_statistics': 'leagueStatistics',
         'achievements': 'achievements',
+        'badges': 'badges',
         'cards': 'cards',
-        'current_favourite_card': 'currentFavouriteCard'
+        'current_favourite_card': 'currentFavouriteCard',
+        'star_points': 'starPoints'
     }
 
-    def __init__(self, best_trophies=None, wins=None, losses=None, battle_count=None, three_crown_wins=None, challenge_cards_won=None, challenge_max_wins=None, tournament_cards_won=None, tournament_battle_count=None, role=None, donations=None, donations_received=None, total_donations=None, war_day_wins=None, clan_cards_collected=None, clan=None, arena=None, league_statistics=None, achievements=None, cards=None, current_favourite_card=None):  # noqa: E501
+    def __init__(self, tag=None, name=None, exp_level=None, trophies=None, arena=None, best_trophies=None, wins=None, losses=None, battle_count=None, three_crown_wins=None, challenge_cards_won=None, challenge_max_wins=None, tournament_cards_won=None, tournament_battle_count=None, role=None, donations=None, donations_received=None, total_donations=None, war_day_wins=None, clan_cards_collected=None, clan=None, league_statistics=None, achievements=None, badges=None, cards=None, current_favourite_card=None, star_points=None):  # noqa: E501
         """PlayerDetail - a model defined in Swagger"""  # noqa: E501
+        self._tag = None
+        self._name = None
+        self._exp_level = None
+        self._trophies = None
+        self._arena = None
         self._best_trophies = None
         self._wins = None
         self._losses = None
@@ -100,12 +117,23 @@ class PlayerDetail(object):
         self._war_day_wins = None
         self._clan_cards_collected = None
         self._clan = None
-        self._arena = None
         self._league_statistics = None
         self._achievements = None
+        self._badges = None
         self._cards = None
         self._current_favourite_card = None
+        self._star_points = None
         self.discriminator = None
+        if tag is not None:
+            self.tag = tag
+        if name is not None:
+            self.name = name
+        if exp_level is not None:
+            self.exp_level = exp_level
+        if trophies is not None:
+            self.trophies = trophies
+        if arena is not None:
+            self.arena = arena
         if best_trophies is not None:
             self.best_trophies = best_trophies
         if wins is not None:
@@ -138,16 +166,123 @@ class PlayerDetail(object):
             self.clan_cards_collected = clan_cards_collected
         if clan is not None:
             self.clan = clan
-        if arena is not None:
-            self.arena = arena
         if league_statistics is not None:
             self.league_statistics = league_statistics
         if achievements is not None:
             self.achievements = achievements
+        if badges is not None:
+            self.badges = badges
         if cards is not None:
             self.cards = cards
         if current_favourite_card is not None:
             self.current_favourite_card = current_favourite_card
+        if star_points is not None:
+            self.star_points = star_points
+
+    @property
+    def tag(self):
+        """Gets the tag of this PlayerDetail.  # noqa: E501
+
+
+        :return: The tag of this PlayerDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._tag
+
+    @tag.setter
+    def tag(self, tag):
+        """Sets the tag of this PlayerDetail.
+
+
+        :param tag: The tag of this PlayerDetail.  # noqa: E501
+        :type: str
+        """
+
+        self._tag = tag
+
+    @property
+    def name(self):
+        """Gets the name of this PlayerDetail.  # noqa: E501
+
+
+        :return: The name of this PlayerDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this PlayerDetail.
+
+
+        :param name: The name of this PlayerDetail.  # noqa: E501
+        :type: str
+        """
+
+        self._name = name
+
+    @property
+    def exp_level(self):
+        """Gets the exp_level of this PlayerDetail.  # noqa: E501
+
+
+        :return: The exp_level of this PlayerDetail.  # noqa: E501
+        :rtype: int
+        """
+        return self._exp_level
+
+    @exp_level.setter
+    def exp_level(self, exp_level):
+        """Sets the exp_level of this PlayerDetail.
+
+
+        :param exp_level: The exp_level of this PlayerDetail.  # noqa: E501
+        :type: int
+        """
+
+        self._exp_level = exp_level
+
+    @property
+    def trophies(self):
+        """Gets the trophies of this PlayerDetail.  # noqa: E501
+
+
+        :return: The trophies of this PlayerDetail.  # noqa: E501
+        :rtype: int
+        """
+        return self._trophies
+
+    @trophies.setter
+    def trophies(self, trophies):
+        """Sets the trophies of this PlayerDetail.
+
+
+        :param trophies: The trophies of this PlayerDetail.  # noqa: E501
+        :type: int
+        """
+
+        self._trophies = trophies
+
+    @property
+    def arena(self):
+        """Gets the arena of this PlayerDetail.  # noqa: E501
+
+
+        :return: The arena of this PlayerDetail.  # noqa: E501
+        :rtype: Arena
+        """
+        return self._arena
+
+    @arena.setter
+    def arena(self, arena):
+        """Sets the arena of this PlayerDetail.
+
+
+        :param arena: The arena of this PlayerDetail.  # noqa: E501
+        :type: Arena
+        """
+
+        self._arena = arena
 
     @property
     def best_trophies(self):
@@ -486,27 +621,6 @@ class PlayerDetail(object):
         self._clan = clan
 
     @property
-    def arena(self):
-        """Gets the arena of this PlayerDetail.  # noqa: E501
-
-
-        :return: The arena of this PlayerDetail.  # noqa: E501
-        :rtype: Arena
-        """
-        return self._arena
-
-    @arena.setter
-    def arena(self, arena):
-        """Sets the arena of this PlayerDetail.
-
-
-        :param arena: The arena of this PlayerDetail.  # noqa: E501
-        :type: Arena
-        """
-
-        self._arena = arena
-
-    @property
     def league_statistics(self):
         """Gets the league_statistics of this PlayerDetail.  # noqa: E501
 
@@ -533,7 +647,7 @@ class PlayerDetail(object):
 
 
         :return: The achievements of this PlayerDetail.  # noqa: E501
-        :rtype: list[PlayerAchievements]
+        :rtype: list[PlayerAchievement]
         """
         return self._achievements
 
@@ -543,10 +657,31 @@ class PlayerDetail(object):
 
 
         :param achievements: The achievements of this PlayerDetail.  # noqa: E501
-        :type: list[PlayerAchievements]
+        :type: list[PlayerAchievement]
         """
 
         self._achievements = achievements
+
+    @property
+    def badges(self):
+        """Gets the badges of this PlayerDetail.  # noqa: E501
+
+
+        :return: The badges of this PlayerDetail.  # noqa: E501
+        :rtype: list[PlayerBadge]
+        """
+        return self._badges
+
+    @badges.setter
+    def badges(self, badges):
+        """Sets the badges of this PlayerDetail.
+
+
+        :param badges: The badges of this PlayerDetail.  # noqa: E501
+        :type: list[PlayerBadge]
+        """
+
+        self._badges = badges
 
     @property
     def cards(self):
@@ -554,7 +689,7 @@ class PlayerDetail(object):
 
 
         :return: The cards of this PlayerDetail.  # noqa: E501
-        :rtype: CardList
+        :rtype: list[Card]
         """
         return self._cards
 
@@ -564,7 +699,7 @@ class PlayerDetail(object):
 
 
         :param cards: The cards of this PlayerDetail.  # noqa: E501
-        :type: CardList
+        :type: list[Card]
         """
 
         self._cards = cards
@@ -589,6 +724,27 @@ class PlayerDetail(object):
         """
 
         self._current_favourite_card = current_favourite_card
+
+    @property
+    def star_points(self):
+        """Gets the star_points of this PlayerDetail.  # noqa: E501
+
+
+        :return: The star_points of this PlayerDetail.  # noqa: E501
+        :rtype: int
+        """
+        return self._star_points
+
+    @star_points.setter
+    def star_points(self, star_points):
+        """Sets the star_points of this PlayerDetail.
+
+
+        :param star_points: The star_points of this PlayerDetail.  # noqa: E501
+        :type: int
+        """
+
+        self._star_points = star_points
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.clan_ranking_list_items import ClanRankingListItems  # noqa: F401,E501
+from pyroyale.models.clan_ranked import ClanRanked  # noqa: F401,E501
 
 
 class ClanRankingList(object):
@@ -30,7 +30,7 @@ class ClanRankingList(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[ClanRankingListItems]'
+        'items': 'list[ClanRanked]'
     }
 
     attribute_map = {
@@ -50,7 +50,7 @@ class ClanRankingList(object):
 
 
         :return: The items of this ClanRankingList.  # noqa: E501
-        :rtype: list[ClanRankingListItems]
+        :rtype: list[ClanRanked]
         """
         return self._items
 
@@ -60,7 +60,7 @@ class ClanRankingList(object):
 
 
         :param items: The items of this ClanRankingList.  # noqa: E501
-        :type: list[ClanRankingListItems]
+        :type: list[ClanRanked]
         """
 
         self._items = items

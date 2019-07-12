@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.search_result_clan import SearchResultClan  # noqa: F401,E501
+from pyroyale.models.clan_search_result_clan import ClanSearchResultClan  # noqa: F401,E501
 
 
 class ClanSearchResult(object):
@@ -30,7 +30,7 @@ class ClanSearchResult(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[SearchResultClan]'
+        'items': 'list[ClanSearchResultClan]'
     }
 
     attribute_map = {
@@ -50,7 +50,7 @@ class ClanSearchResult(object):
 
 
         :return: The items of this ClanSearchResult.  # noqa: E501
-        :rtype: list[SearchResultClan]
+        :rtype: list[ClanSearchResultClan]
         """
         return self._items
 
@@ -60,7 +60,7 @@ class ClanSearchResult(object):
 
 
         :param items: The items of this ClanSearchResult.  # noqa: E501
-        :type: list[SearchResultClan]
+        :type: list[ClanSearchResultClan]
         """
 
         self._items = items

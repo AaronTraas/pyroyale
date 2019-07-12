@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.war_log_items import WarLogItems  # noqa: F401,E501
+from pyroyale.models.war import War  # noqa: F401,E501
 
 
 class WarLog(object):
@@ -30,7 +30,7 @@ class WarLog(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[WarLogItems]'
+        'items': 'list[War]'
     }
 
     attribute_map = {
@@ -50,7 +50,7 @@ class WarLog(object):
 
 
         :return: The items of this WarLog.  # noqa: E501
-        :rtype: list[WarLogItems]
+        :rtype: list[War]
         """
         return self._items
 
@@ -60,7 +60,7 @@ class WarLog(object):
 
 
         :param items: The items of this WarLog.  # noqa: E501
-        :type: list[WarLogItems]
+        :type: list[War]
         """
 
         self._items = items

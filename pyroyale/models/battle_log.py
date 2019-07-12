@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.battle_log_inner import BattleLogInner  # noqa: F401,E501
+from pyroyale.models.battle_log_entry import BattleLogEntry  # noqa: F401,E501
 
 
 class BattleLog(object):

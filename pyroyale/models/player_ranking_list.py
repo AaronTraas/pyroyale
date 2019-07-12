@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.player_ranking_list_items import PlayerRankingListItems  # noqa: F401,E501
+from pyroyale.models.player_ranked import PlayerRanked  # noqa: F401,E501
 
 
 class PlayerRankingList(object):
@@ -30,7 +30,7 @@ class PlayerRankingList(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[PlayerRankingListItems]'
+        'items': 'list[PlayerRanked]'
     }
 
     attribute_map = {
@@ -50,7 +50,7 @@ class PlayerRankingList(object):
 
 
         :return: The items of this PlayerRankingList.  # noqa: E501
-        :rtype: list[PlayerRankingListItems]
+        :rtype: list[PlayerRanked]
         """
         return self._items
 
@@ -60,7 +60,7 @@ class PlayerRankingList(object):
 
 
         :param items: The items of this PlayerRankingList.  # noqa: E501
-        :type: list[PlayerRankingListItems]
+        :type: list[PlayerRanked]
         """
 
         self._items = items

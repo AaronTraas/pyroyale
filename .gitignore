@@ -103,6 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+.coverage
 .scannerwork
-crtools-out/
 .swagger-codegen

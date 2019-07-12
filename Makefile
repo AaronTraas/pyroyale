@@ -30,6 +30,9 @@ coverage: test-depend
 	coverage run setup.py test
 	coverage xml
 
+coverage-html: coverage
+	coverage html
+
 sonar: coverage
 	sonar-scanner -Dsonar.projectVersion=`python -c "import sys; from pyroyale._version import __version__; sys.stdout.write(__version__)"`
 

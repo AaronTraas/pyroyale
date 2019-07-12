@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,90 @@ class TestClan(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testClan(self):
-        """Test Clan"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.clan.Clan()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.clan.Clan()
         pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.clan.Clan(
+            tag='tag',
+            name='name',
+            badge_id='badge_id',
+            type='type',
+            clan_score='clan_score',
+            required_trophies='required_trophies',
+            donations_per_week='donations_per_week',
+            clan_war_trophies='clan_war_trophies',
+            clan_chest_level='clan_chest_level',
+            clan_chest_max_level='clan_chest_max_level',
+            members='members',
+            location='location',
+            description='description',
+            clan_chest_status='clan_chest_status',
+            clan_chest_points='clan_chest_points',
+            member_list='member_list'
+        )
+
+        assert model.tag=='tag'
+        assert model.name=='name'
+        assert model.badge_id=='badge_id'
+        assert model.type=='type'
+        assert model.clan_score=='clan_score'
+        assert model.required_trophies=='required_trophies'
+        assert model.donations_per_week=='donations_per_week'
+        assert model.clan_war_trophies=='clan_war_trophies'
+        assert model.clan_chest_level=='clan_chest_level'
+        assert model.clan_chest_max_level=='clan_chest_max_level'
+        assert model.members=='members'
+        assert model.location=='location'
+        assert model.description=='description'
+        assert model.clan_chest_status=='clan_chest_status'
+        assert model.clan_chest_points=='clan_chest_points'
+        assert model.member_list=='member_list'
+
+    def testToDict(self):
+        model = pyroyale.models.clan.Clan(
+            tag='tag',
+            clan_score=123,
+            member_list=[pyroyale.models.clan.Clan(name='clanname')]
+        )
+
+        clanDict = model.to_dict()
+
+        assert clanDict['tag']=='tag'
+        assert clanDict['clan_score']==123
+        assert clanDict['member_list'][0]['name']=='clanname'
+
+    def testToString(self):
+        model = pyroyale.models.clan.Clan(tag='TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.clan.Clan(tag='TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.clan.Clan('A')
+        model_a2 = pyroyale.models.clan.Clan('A')
+        model_b  = pyroyale.models.clan.Clan('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

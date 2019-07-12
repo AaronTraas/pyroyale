@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.battle_log_team_cards import BattleLogTeamCards  # noqa: F401,E501
+from pyroyale.models.card_list import CardList  # noqa: F401,E501
 from pyroyale.models.clan_base import ClanBase  # noqa: F401,E501
 
 
@@ -37,7 +37,7 @@ class BattleLogTeam(object):
         'trophy_change': 'int',
         'crowns': 'int',
         'clan': 'ClanBase',
-        'cards': 'list[BattleLogTeamCards]'
+        'cards': 'CardList'
     }
 
     attribute_map = {
@@ -207,7 +207,7 @@ class BattleLogTeam(object):
 
 
         :return: The cards of this BattleLogTeam.  # noqa: E501
-        :rtype: list[BattleLogTeamCards]
+        :rtype: CardList
         """
         return self._cards
 
@@ -217,7 +217,7 @@ class BattleLogTeam(object):
 
 
         :param cards: The cards of this BattleLogTeam.  # noqa: E501
-        :type: list[BattleLogTeamCards]
+        :type: CardList
         """
 
         self._cards = cards

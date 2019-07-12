@@ -20,10 +20,10 @@ Name | Type | Description | Notes
 **clan_cards_collected** | **int** |  | [optional] 
 **clan** | [**ClanBase**](ClanBase.md) |  | [optional] 
 **arena** | [**Arena**](Arena.md) |  | [optional] 
-**league_statistics** | [**PlayerDetailLeagueStatistics**](PlayerDetailLeagueStatistics.md) |  | [optional] 
-**achievements** | [**list[PlayerDetailAchievements]**](PlayerDetailAchievements.md) |  | [optional] 
-**cards** | [**list[PlayerDetailCards]**](PlayerDetailCards.md) |  | [optional] 
-**current_favourite_card** | [**PlayerDetailCurrentFavouriteCard**](PlayerDetailCurrentFavouriteCard.md) |  | [optional] 
+**league_statistics** | [**PlayerLeagueStatistics**](PlayerLeagueStatistics.md) |  | [optional] 
+**achievements** | [**list[PlayerAchievements]**](PlayerAchievements.md) |  | [optional] 
+**cards** | [**CardList**](CardList.md) |  | [optional] 
+**current_favourite_card** | [**Card**](Card.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

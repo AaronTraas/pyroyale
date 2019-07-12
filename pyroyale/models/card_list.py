@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.player_detail_current_favourite_card import PlayerDetailCurrentFavouriteCard  # noqa: F401,E501
+from pyroyale.models.card import Card  # noqa: F401,E501
 
 
 class CardList(object):
@@ -30,7 +30,7 @@ class CardList(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[PlayerDetailCurrentFavouriteCard]'
+        'items': 'list[Card]'
     }
 
     attribute_map = {
@@ -50,7 +50,7 @@ class CardList(object):
 
 
         :return: The items of this CardList.  # noqa: E501
-        :rtype: list[PlayerDetailCurrentFavouriteCard]
+        :rtype: list[Card]
         """
         return self._items
 
@@ -60,7 +60,7 @@ class CardList(object):
 
 
         :param items: The items of this CardList.  # noqa: E501
-        :type: list[PlayerDetailCurrentFavouriteCard]
+        :type: list[Card]
         """
 
         self._items = items

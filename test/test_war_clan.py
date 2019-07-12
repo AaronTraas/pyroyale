@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,76 @@ class TestWarClan(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testWarClan(self):
-        """Test WarClan"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.war_clan.WarClan()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.war_clan.WarClan()
         pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.war_clan.WarClan(
+            tag='tag',
+            name='name',
+            badge_id='badge_id',
+            clan_score='clan_score',
+            participants='participants',
+            crowns = 'crowns',
+            battles_remaining = 'battles_remaining',
+            battles_played = 'battles_played',
+            wins = 'wins'
+        )
+
+        assert model.tag=='tag'
+        assert model.name=='name'
+        assert model.badge_id=='badge_id'
+        assert model.clan_score=='clan_score'
+        assert model.participants=='participants'
+        assert model.crowns=='crowns'
+        assert model.battles_remaining=='battles_remaining'
+        assert model.battles_played=='battles_played'
+        assert model.wins=='wins'
+
+    def testToDict(self):
+        model = pyroyale.models.war_clan.WarClan(
+            tag='tag',
+            clan_score=123,
+            participants=[pyroyale.models.war_clan.WarClan(name='clanname')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['tag']=='tag'
+        assert modelDict['clan_score']==123
+        assert modelDict['participants'][0]['name']=='clanname'
+
+    def testToString(self):
+        model = pyroyale.models.war_clan.WarClan('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.war_clan.WarClan('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.war_clan.WarClan('A')
+        model_a2 = pyroyale.models.war_clan.WarClan('A')
+        model_b  = pyroyale.models.war_clan.WarClan('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

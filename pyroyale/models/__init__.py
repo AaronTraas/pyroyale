@@ -19,7 +19,8 @@ from pyroyale.models.battle_log import BattleLog
 from pyroyale.models.battle_log_inner import BattleLogInner
 from pyroyale.models.battle_log_inner_game_mode import BattleLogInnerGameMode
 from pyroyale.models.battle_log_team import BattleLogTeam
-from pyroyale.models.battle_log_team_cards import BattleLogTeamCards
+from pyroyale.models.card import Card
+from pyroyale.models.card_icon_urls import CardIconUrls
 from pyroyale.models.card_list import CardList
 from pyroyale.models.clan import Clan
 from pyroyale.models.clan_base import ClanBase
@@ -34,13 +35,10 @@ from pyroyale.models.current_war_clan import CurrentWarClan
 from pyroyale.models.error import Error
 from pyroyale.models.location import Location
 from pyroyale.models.location_list import LocationList
+from pyroyale.models.player_achievements import PlayerAchievements
 from pyroyale.models.player_base import PlayerBase
 from pyroyale.models.player_detail import PlayerDetail
-from pyroyale.models.player_detail_achievements import PlayerDetailAchievements
-from pyroyale.models.player_detail_cards import PlayerDetailCards
-from pyroyale.models.player_detail_current_favourite_card import PlayerDetailCurrentFavouriteCard
-from pyroyale.models.player_detail_icon_urls import PlayerDetailIconUrls
-from pyroyale.models.player_detail_league_statistics import PlayerDetailLeagueStatistics
+from pyroyale.models.player_league_statistics import PlayerLeagueStatistics
 from pyroyale.models.player_ranking_list import PlayerRankingList
 from pyroyale.models.player_ranking_list_items import PlayerRankingListItems
 from pyroyale.models.search_result_clan import SearchResultClan

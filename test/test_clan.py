@@ -78,21 +78,21 @@ class TestClan(unittest.TestCase):
             member_list=[pyroyale.models.clan.Clan(name='clanname')]
         )
 
-        clanDict = model.to_dict()
+        modelDict = model.to_dict()
 
-        assert clanDict['tag']=='tag'
-        assert clanDict['clan_score']==123
-        assert clanDict['member_list'][0]['name']=='clanname'
+        assert modelDict['tag']=='tag'
+        assert modelDict['clan_score']==123
+        assert modelDict['member_list'][0]['name']=='clanname'
 
     def testToString(self):
-        model = pyroyale.models.clan.Clan(tag='TestStringSequence')
+        model = pyroyale.models.clan.Clan('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.clan.Clan(tag='TestStringSequence')
+        model = pyroyale.models.clan.Clan('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput

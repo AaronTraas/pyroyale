@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,12 +30,80 @@ class TestPlayerDetail(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPlayerDetail(self):
-        """Test PlayerDetail"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.player_detail.PlayerDetail()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.player_detail.PlayerDetail()
         pass
+"""
+    def testConstructorInitializers(self):
+        model = pyroyale.models.player_detail.PlayerDetail(
+            tag='tag',
+            name='name',
+            exp_level='exp_level',
+            trophies='trophies',
+            arena='arena',
+            role='role',
+            clan_rank='clan_rank',
+            previous_clan_rank='previous_clan_rank',
+            donations='donations',
+            donations_received='donations_received',
+            clan_chest_points='clan_chest_points'
+        )
 
+        assert model.tag=='tag'
+        assert model.name=='name'
+        assert model.exp_level=='exp_level'
+        assert model.trophies=='trophies'
+        assert model.arena=='arena'
+        assert model.role=='role'
+        assert model.clan_rank=='clan_rank'
+        assert model.donations=='donations'
+        assert model.donations_received=='donations_received'
+        assert model.clan_chest_points=='clan_chest_points'
+
+    def testToDict(self):
+        model = pyroyale.models.player_detail.PlayerDetail(
+            tag='tag',
+            trophies=123,
+            clan_chest_points=[pyroyale.models.player_detail.PlayerDetail(name='name')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['tag']=='tag'
+        assert modelDict['trophies']==123
+        assert modelDict['clan_chest_points'][0]['name']=='name'
+
+    def testToString(self):
+        model = pyroyale.models.player_detail.PlayerDetail('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.player_detail.PlayerDetail('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.player_detail.PlayerDetail('A')
+        model_a2 = pyroyale.models.player_detail.PlayerDetail('A')
+        model_b  = pyroyale.models.player_detail.PlayerDetail('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
+"""
 
 if __name__ == '__main__':
     unittest.main()

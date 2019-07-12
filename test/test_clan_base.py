@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -31,8 +33,65 @@ class TestClanBase(unittest.TestCase):
     def testClanBase(self):
         """Test ClanBase"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.clan_base.ClanBase()  # noqa: E501
         pass
+
+    def testDefaults(self):
+        model = pyroyale.models.clan_base.ClanBase()
+        pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.clan_base.ClanBase(
+            tag='tag',
+            name='name',
+            badge_id='badge_id'
+        )
+
+        assert model.tag=='tag'
+        assert model.name=='name'
+        assert model.badge_id=='badge_id'
+
+    def testToDict(self):
+        model = pyroyale.models.clan_base.ClanBase(
+            tag={'foo':'bar'},
+            name=[pyroyale.models.clan_base.ClanBase()],
+            badge_id=123
+        )
+
+        clanDict = model.to_dict()
+
+        assert clanDict['tag']['foo']=='bar'
+        assert clanDict['badge_id']==123
+
+    def testToString(self):
+        model = pyroyale.models.clan_base.ClanBase(tag='TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.clan_base.ClanBase(tag='TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.clan_base.ClanBase('A')
+        model_a2 = pyroyale.models.clan_base.ClanBase('A')
+        model_b  = pyroyale.models.clan_base.ClanBase('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

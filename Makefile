@@ -9,6 +9,7 @@ clean:
 	rm -rf build dist .pytest_cache *.egg-info $(SRCDIR)/__pycache__ $(TESTDIR)/__pycache__ MANIFEST
 
 delete-models:
+	rm -rf docs
 	rm -rf pyroyale/models
 
 install:

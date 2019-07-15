@@ -15,7 +15,7 @@ import re  # noqa: F401
 
 import six
 from pyroyale.models.arena import Arena  # noqa: F401,E501
-from pyroyale.models.battle_log_team_list import BattleLogTeamList  # noqa: F401,E501
+from pyroyale.models.battle_log_team import BattleLogTeam  # noqa: F401,E501
 from pyroyale.models.game_mode import GameMode  # noqa: F401,E501
 
 
@@ -38,8 +38,8 @@ class BattleLogEntry(object):
         'arena': 'Arena',
         'game_mode': 'GameMode',
         'deck_selection': 'str',
-        'team': 'BattleLogTeamList',
-        'opponent': 'BattleLogTeamList'
+        'team': 'list[BattleLogTeam]',
+        'opponent': 'list[BattleLogTeam]'
     }
 
     attribute_map = {
@@ -213,7 +213,7 @@ class BattleLogEntry(object):
 
 
         :return: The team of this BattleLogEntry.  # noqa: E501
-        :rtype: BattleLogTeamList
+        :rtype: list[BattleLogTeam]
         """
         return self._team
 
@@ -223,7 +223,7 @@ class BattleLogEntry(object):
 
 
         :param team: The team of this BattleLogEntry.  # noqa: E501
-        :type: BattleLogTeamList
+        :type: list[BattleLogTeam]
         """
 
         self._team = team
@@ -234,7 +234,7 @@ class BattleLogEntry(object):
 
 
         :return: The opponent of this BattleLogEntry.  # noqa: E501
-        :rtype: BattleLogTeamList
+        :rtype: list[BattleLogTeam]
         """
         return self._opponent
 
@@ -244,7 +244,7 @@ class BattleLogEntry(object):
 
 
         :param opponent: The opponent of this BattleLogEntry.  # noqa: E501
-        :type: BattleLogTeamList
+        :type: list[BattleLogTeam]
         """
 
         self._opponent = opponent

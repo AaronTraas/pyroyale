@@ -27,7 +27,6 @@ from pyroyale.configuration import Configuration
 from pyroyale.models.arena import Arena
 from pyroyale.models.battle_log_entry import BattleLogEntry
 from pyroyale.models.battle_log_team import BattleLogTeam
-from pyroyale.models.battle_log_team_list import BattleLogTeamList
 from pyroyale.models.card import Card
 from pyroyale.models.card_icon_urls import CardIconUrls
 from pyroyale.models.card_list import CardList

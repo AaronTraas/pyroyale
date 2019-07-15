@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **arena** | [**Arena**](Arena.md) |  | [optional] 
 **game_mode** | [**GameMode**](GameMode.md) |  | [optional] 
 **deck_selection** | **str** |  | [optional] 
-**team** | [**BattleLogTeamList**](BattleLogTeamList.md) |  | [optional] 
-**opponent** | [**BattleLogTeamList**](BattleLogTeamList.md) |  | [optional] 
+**team** | [**list[BattleLogTeam]**](BattleLogTeam.md) |  | [optional] 
+**opponent** | [**list[BattleLogTeam]**](BattleLogTeam.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

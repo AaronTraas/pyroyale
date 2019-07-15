@@ -97,7 +97,6 @@ Class | Method | HTTP request | Description
  - [Arena](docs/Arena.md)
  - [BattleLogEntry](docs/BattleLogEntry.md)
  - [BattleLogTeam](docs/BattleLogTeam.md)
- - [BattleLogTeamList](docs/BattleLogTeamList.md)
  - [Card](docs/Card.md)
  - [CardIconUrls](docs/CardIconUrls.md)
  - [CardList](docs/CardList.md)

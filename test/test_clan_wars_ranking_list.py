@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,69 @@ class TestClanWarsRankingList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testClanWarsRankingList(self):
-        """Test ClanWarsRankingList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList()
         pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList(
+            items='items'
+        )
+
+        assert model.items=='items'
+
+    def testToDict(self):
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList(
+            items='items'
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']=='items'
+
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList(
+            items=123,
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']==123
+
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList(
+            items=pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList(items='items'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']['items']=='items'
+
+    def testToString(self):
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList('A')
+        model_a2 = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList('A')
+        model_b  = pyroyale.models.clan_wars_ranking_list.ClanWarsRankingList('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,69 @@ class TestPlayerRankingList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPlayerRankingList(self):
-        """Test PlayerRankingList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.player_ranking_list.PlayerRankingList()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.player_ranking_list.PlayerRankingList()
         pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.player_ranking_list.PlayerRankingList(
+            items='items'
+        )
+
+        assert model.items=='items'
+
+    def testToDict(self):
+        model = pyroyale.models.player_ranking_list.PlayerRankingList(
+            items='items'
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']=='items'
+
+        model = pyroyale.models.player_ranking_list.PlayerRankingList(
+            items=123,
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']==123
+
+        model = pyroyale.models.player_ranking_list.PlayerRankingList(
+            items=pyroyale.models.player_ranking_list.PlayerRankingList(items='items'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']['items']=='items'
+
+    def testToString(self):
+        model = pyroyale.models.player_ranking_list.PlayerRankingList('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.player_ranking_list.PlayerRankingList('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.player_ranking_list.PlayerRankingList('A')
+        model_a2 = pyroyale.models.player_ranking_list.PlayerRankingList('A')
+        model_b  = pyroyale.models.player_ranking_list.PlayerRankingList('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,12 +30,69 @@ class TestLocationList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testLocationList(self):
-        """Test LocationList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.location_list.LocationList()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.location_list.LocationList()
         pass
 
+    def testConstructorInitializers(self):
+        model = pyroyale.models.location_list.LocationList(
+            items='items'
+        )
+
+        assert model.items=='items'
+
+    def testToDict(self):
+        model = pyroyale.models.location_list.LocationList(
+            items='items'
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']=='items'
+
+        model = pyroyale.models.location_list.LocationList(
+            items=123,
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']==123
+
+        model = pyroyale.models.location_list.LocationList(
+            items=pyroyale.models.location_list.LocationList(items='items'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']['items']=='items'
+
+    def testToString(self):
+        model = pyroyale.models.location_list.LocationList('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.location_list.LocationList('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.location_list.LocationList('A')
+        model_a2 = pyroyale.models.location_list.LocationList('A')
+        model_b  = pyroyale.models.location_list.LocationList('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 if __name__ == '__main__':
     unittest.main()

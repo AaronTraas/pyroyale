@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,12 +30,66 @@ class TestChest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testChest(self):
-        """Test Chest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.chest.Chest()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.chest.Chest()
         pass
 
+    def testConstructorInitializers(self):
+        model = pyroyale.models.chest.Chest(
+            index='index',
+            name='name'
+        )
+
+        assert model.index=='index'
+        assert model.name=='name'
+
+    def testToDict(self):
+        model = pyroyale.models.chest.Chest(
+            index=123,
+            name='name',
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['index']==123
+        assert modelDict['name']=='name'
+
+        model = pyroyale.models.chest.Chest(
+            index=pyroyale.models.chest.Chest(index='index'),
+        )
+        modelDict = model.to_dict()
+        assert modelDict['index']['index']=='index'
+
+    def testToString(self):
+        model = pyroyale.models.chest.Chest('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.chest.Chest('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.chest.Chest('A')
+        model_a2 = pyroyale.models.chest.Chest('A')
+        model_b  = pyroyale.models.chest.Chest('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 if __name__ == '__main__':
     unittest.main()

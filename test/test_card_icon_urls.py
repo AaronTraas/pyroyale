@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,12 +30,69 @@ class TestCardIconUrls(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testCardIconUrls(self):
-        """Test CardIconUrls"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.card_icon_urls.CardIconUrls()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.card_icon_urls.CardIconUrls()
         pass
 
+    def testConstructorInitializers(self):
+        model = pyroyale.models.card_icon_urls.CardIconUrls(
+            medium='medium'
+        )
+
+        assert model.medium=='medium'
+
+    def testToDict(self):
+        model = pyroyale.models.card_icon_urls.CardIconUrls(
+            medium='medium',
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['medium']=='medium'
+
+        model = pyroyale.models.card_icon_urls.CardIconUrls(
+            medium=123,
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['medium']==123
+
+        model = pyroyale.models.card_icon_urls.CardIconUrls(
+            medium=pyroyale.models.card_icon_urls.CardIconUrls(medium='medium'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['medium']['medium']=='medium'
+
+    def testToString(self):
+        model = pyroyale.models.card_icon_urls.CardIconUrls('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.card_icon_urls.CardIconUrls('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.card_icon_urls.CardIconUrls('A')
+        model_a2 = pyroyale.models.card_icon_urls.CardIconUrls('A')
+        model_b  = pyroyale.models.card_icon_urls.CardIconUrls('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 if __name__ == '__main__':
     unittest.main()

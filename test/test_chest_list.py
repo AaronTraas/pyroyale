@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,69 @@ class TestChestList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testChestList(self):
-        """Test ChestList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.chest_list.ChestList()  # noqa: E501
+    def testDefaults(self):
+        model = pyroyale.models.chest_list.ChestList()
         pass
+
+    def testConstructorInitializers(self):
+        model = pyroyale.models.chest_list.ChestList(
+            items='items'
+        )
+
+        assert model.items=='items'
+
+    def testToDict(self):
+        model = pyroyale.models.chest_list.ChestList(
+            items='items'
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']=='items'
+
+        model = pyroyale.models.chest_list.ChestList(
+            items=123,
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']==123
+
+        model = pyroyale.models.chest_list.ChestList(
+            items=pyroyale.models.chest_list.ChestList(items='items'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']['items']=='items'
+
+    def testToString(self):
+        model = pyroyale.models.chest_list.ChestList('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = pyroyale.models.chest_list.ChestList('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = pyroyale.models.chest_list.ChestList('A')
+        model_a2 = pyroyale.models.chest_list.ChestList('A')
+        model_b  = pyroyale.models.chest_list.ChestList('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

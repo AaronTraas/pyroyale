@@ -31,11 +31,11 @@ class TestWarClan(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.war_clan.WarClan()
+        model = WarClan()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.war_clan.WarClan(
+        model = WarClan(
             tag='tag',
             name='name',
             badge_id='badge_id',
@@ -58,10 +58,10 @@ class TestWarClan(unittest.TestCase):
         assert model.wins=='wins'
 
     def testToDict(self):
-        model = pyroyale.models.war_clan.WarClan(
+        model = WarClan(
             tag='tag',
             clan_score=123,
-            participants=[pyroyale.models.war_clan.WarClan(name='clanname')]
+            participants=[WarClan(name='clanname')]
         )
 
         modelDict = model.to_dict()
@@ -71,14 +71,14 @@ class TestWarClan(unittest.TestCase):
         assert modelDict['participants'][0]['name']=='clanname'
 
     def testToString(self):
-        model = pyroyale.models.war_clan.WarClan('TestStringSequence')
+        model = WarClan('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.war_clan.WarClan('TestStringSequence')
+        model = WarClan('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -92,9 +92,9 @@ class TestWarClan(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.war_clan.WarClan('A')
-        model_a2 = pyroyale.models.war_clan.WarClan('A')
-        model_b  = pyroyale.models.war_clan.WarClan('B')
+        model_a  = WarClan('A')
+        model_a2 = WarClan('A')
+        model_b  = WarClan('B')
 
         assert model_a == model_a
         assert model_a == model_a2

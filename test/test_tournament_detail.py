@@ -31,7 +31,7 @@ class TestTournamentDetail(unittest.TestCase):
     def testTournamentDetail(self):
         """Test TournamentDetail"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.tournament_detail.TournamentDetail()  # noqa: E501
+        # model = TournamentDetail()  # noqa: E501
         pass
 
 

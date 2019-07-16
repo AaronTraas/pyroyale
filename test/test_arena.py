@@ -31,11 +31,11 @@ class TestArena(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.arena.Arena()
+        model = Arena()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.arena.Arena(
+        model = Arena(
             id='id',
             name='name'
         )
@@ -44,7 +44,7 @@ class TestArena(unittest.TestCase):
         assert model.name=='name'
 
     def testToDict(self):
-        model = pyroyale.models.arena.Arena(
+        model = Arena(
             id=123,
             name='name'
         )
@@ -55,14 +55,14 @@ class TestArena(unittest.TestCase):
         assert modelDict['name']=='name'
 
     def testToString(self):
-        model = pyroyale.models.arena.Arena('TestStringSequence')
+        model = Arena('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.arena.Arena('TestStringSequence')
+        model = Arena('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -76,9 +76,9 @@ class TestArena(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.arena.Arena('A')
-        model_a2 = pyroyale.models.arena.Arena('A')
-        model_b  = pyroyale.models.arena.Arena('B')
+        model_a  = Arena('A')
+        model_a2 = Arena('A')
+        model_b  = Arena('B')
 
         assert model_a == model_a
         assert model_a == model_a2

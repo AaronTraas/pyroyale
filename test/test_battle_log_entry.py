@@ -31,11 +31,11 @@ class TestBattleLogEntry(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.battle_log_entry.BattleLogEntry()
+        model = BattleLogEntry()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.battle_log_entry.BattleLogEntry(
+        model = BattleLogEntry(
             type='type',
             battle_time='battle_time',
             is_ladder_tournament='is_ladder_tournament',
@@ -56,7 +56,7 @@ class TestBattleLogEntry(unittest.TestCase):
         assert model.opponent=='opponent'
 
     def testToDict(self):
-        model = pyroyale.models.battle_log_entry.BattleLogEntry(
+        model = BattleLogEntry(
             type=123,
             battle_time='battle_time',
         )
@@ -67,14 +67,14 @@ class TestBattleLogEntry(unittest.TestCase):
         assert modelDict['battle_time']=='battle_time'
 
     def testToString(self):
-        model = pyroyale.models.battle_log_entry.BattleLogEntry('TestStringSequence')
+        model = BattleLogEntry('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.battle_log_entry.BattleLogEntry('TestStringSequence')
+        model = BattleLogEntry('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -88,9 +88,9 @@ class TestBattleLogEntry(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.battle_log_entry.BattleLogEntry('A')
-        model_a2 = pyroyale.models.battle_log_entry.BattleLogEntry('A')
-        model_b  = pyroyale.models.battle_log_entry.BattleLogEntry('B')
+        model_a  = BattleLogEntry('A')
+        model_a2 = BattleLogEntry('A')
+        model_b  = BattleLogEntry('B')
 
         assert model_a == model_a
         assert model_a == model_a2

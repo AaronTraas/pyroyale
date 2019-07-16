@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,67 @@ class TestError(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testError(self):
-        """Test Error"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.error.Error()  # noqa: E501
+    def testDefaults(self):
+        model = Error()
         pass
+
+    def testConstructorInitializers(self):
+        model = Error(
+            reason='reason',
+            message='message'
+        )
+
+        assert model.reason=='reason'
+        assert model.message=='message'
+
+    def testToDict(self):
+        model = Error(
+            reason='reason',
+            message=123
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['reason']=='reason'
+        assert modelDict['message']==123
+
+        model = Error(
+            reason=Error(reason='reason'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['reason']['reason']=='reason'
+
+    def testToString(self):
+        model = Error('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = Error('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = Error('A')
+        model_a2 = Error('A')
+        model_b  = Error('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

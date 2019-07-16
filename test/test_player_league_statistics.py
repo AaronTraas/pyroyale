@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,12 +30,63 @@ class TestPlayerLeagueStatistics(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPlayerLeagueStatistics(self):
-        """Test PlayerLeagueStatistics"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.player_league_statistics.PlayerLeagueStatistics()  # noqa: E501
+    def testDefaults(self):
+        model = PlayerLeagueStatistics()
         pass
 
+    def testConstructorInitializers(self):
+        model = PlayerLeagueStatistics(
+            current_season='current_season',
+            previous_season='previous_season',
+            best_season='best_season'
+        )
+
+        assert model.current_season=='current_season'
+        assert model.previous_season=='previous_season'
+        assert model.best_season=='best_season'
+
+    def testToDict(self):
+        model = PlayerLeagueStatistics(
+            current_season=123,
+            previous_season='previous_season',
+            best_season=[PlayerLeagueStatistics(previous_season='previous_season')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['current_season']==123
+        assert modelDict['best_season'][0]['previous_season']=='previous_season'
+
+    def testToString(self):
+        model = PlayerLeagueStatistics('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = PlayerLeagueStatistics('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = PlayerLeagueStatistics('A')
+        model_a2 = PlayerLeagueStatistics('A')
+        model_b  = PlayerLeagueStatistics('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 if __name__ == '__main__':
     unittest.main()

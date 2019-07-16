@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -31,8 +33,69 @@ class TestLocation(unittest.TestCase):
     def testLocation(self):
         """Test Location"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.location.Location()  # noqa: E501
+        # model = Location()  # noqa: E501
         pass
+
+    def testDefaults(self):
+        model = Location()
+        pass
+
+    def testConstructorInitializers(self):
+        model = Location(
+            id='id',
+            name='name',
+            is_country='is_country',
+            country_code='country_code'
+        )
+
+        assert model.id=='id'
+        assert model.name=='name'
+        assert model.is_country=='is_country'
+        assert model.country_code=='country_code'
+
+    def testToDict(self):
+        model = Location(
+            id='id',
+            name=123,
+            is_country=[Location(name='clanname')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['id']=='id'
+        assert modelDict['name']==123
+        assert modelDict['is_country'][0]['name']=='clanname'
+
+    def testToString(self):
+        model = Location('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = Location('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = Location('A')
+        model_a2 = Location('A')
+        model_b  = Location('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

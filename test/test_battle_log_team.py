@@ -33,15 +33,15 @@ class TestBattleLogTeam(unittest.TestCase):
     def testBattleLogTeam(self):
         """Test BattleLogTeam"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.battle_log_team.BattleLogTeam()  # noqa: E501
+        # model = BattleLogTeam()  # noqa: E501
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.battle_log_team.BattleLogTeam()
+        model = BattleLogTeam()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.battle_log_team.BattleLogTeam(
+        model = BattleLogTeam(
             tag='tag',
             name='name',
             starting_trophies='starting_trophies',
@@ -60,10 +60,10 @@ class TestBattleLogTeam(unittest.TestCase):
         assert model.cards=='cards'
 
     def testToDict(self):
-        model = pyroyale.models.battle_log_team.BattleLogTeam(
+        model = BattleLogTeam(
             tag='tag',
             starting_trophies=123,
-            clan=pyroyale.models.battle_log_team.BattleLogTeam(tag='tag'),
+            clan=BattleLogTeam(tag='tag'),
         )
 
         modelDict = model.to_dict()
@@ -73,14 +73,14 @@ class TestBattleLogTeam(unittest.TestCase):
         assert modelDict['clan']['tag']=='tag'
 
     def testToString(self):
-        model = pyroyale.models.battle_log_team.BattleLogTeam('TestStringSequence')
+        model = BattleLogTeam('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.battle_log_team.BattleLogTeam('TestStringSequence')
+        model = BattleLogTeam('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -94,9 +94,9 @@ class TestBattleLogTeam(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.battle_log_team.BattleLogTeam('A')
-        model_a2 = pyroyale.models.battle_log_team.BattleLogTeam('A')
-        model_b  = pyroyale.models.battle_log_team.BattleLogTeam('B')
+        model_a  = BattleLogTeam('A')
+        model_a2 = BattleLogTeam('A')
+        model_b  = BattleLogTeam('B')
 
         assert model_a == model_a
         assert model_a == model_a2

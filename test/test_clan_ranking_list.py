@@ -31,47 +31,47 @@ class TestClanRankingList(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.clan_ranking_list.ClanRankingList()
+        model = ClanRankingList()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.clan_ranking_list.ClanRankingList(
+        model = ClanRankingList(
             items='items'
         )
 
         assert model.items=='items'
 
     def testToDict(self):
-        model = pyroyale.models.clan_ranking_list.ClanRankingList(
+        model = ClanRankingList(
             items='items'
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']=='items'
 
-        model = pyroyale.models.clan_ranking_list.ClanRankingList(
+        model = ClanRankingList(
             items=123,
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']==123
 
-        model = pyroyale.models.clan_ranking_list.ClanRankingList(
-            items=pyroyale.models.clan_ranking_list.ClanRankingList(items='items'),
+        model = ClanRankingList(
+            items=ClanRankingList(items='items'),
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
 
     def testToString(self):
-        model = pyroyale.models.clan_ranking_list.ClanRankingList('TestStringSequence')
+        model = ClanRankingList('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.clan_ranking_list.ClanRankingList('TestStringSequence')
+        model = ClanRankingList('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -85,9 +85,9 @@ class TestClanRankingList(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.clan_ranking_list.ClanRankingList('A')
-        model_a2 = pyroyale.models.clan_ranking_list.ClanRankingList('A')
-        model_b  = pyroyale.models.clan_ranking_list.ClanRankingList('B')
+        model_a  = ClanRankingList('A')
+        model_a2 = ClanRankingList('A')
+        model_b  = ClanRankingList('B')
 
         assert model_a == model_a
         assert model_a == model_a2

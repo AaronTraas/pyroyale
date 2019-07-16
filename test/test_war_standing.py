@@ -31,7 +31,7 @@ class TestWarStanding(unittest.TestCase):
     def testWarStanding(self):
         """Test WarStanding"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.war_standing.WarStanding()  # noqa: E501
+        # model = WarStanding()  # noqa: E501
         pass
 
 

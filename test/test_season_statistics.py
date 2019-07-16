@@ -31,7 +31,7 @@ class TestSeasonStatistics(unittest.TestCase):
     def testSeasonStatistics(self):
         """Test SeasonStatistics"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.season_statistics.SeasonStatistics()  # noqa: E501
+        # model = SeasonStatistics()  # noqa: E501
         pass
 
 

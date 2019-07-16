@@ -31,11 +31,11 @@ class TestChest(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.chest.Chest()
+        model = Chest()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.chest.Chest(
+        model = Chest(
             index='index',
             name='name'
         )
@@ -44,7 +44,7 @@ class TestChest(unittest.TestCase):
         assert model.name=='name'
 
     def testToDict(self):
-        model = pyroyale.models.chest.Chest(
+        model = Chest(
             index=123,
             name='name',
         )
@@ -54,21 +54,21 @@ class TestChest(unittest.TestCase):
         assert modelDict['index']==123
         assert modelDict['name']=='name'
 
-        model = pyroyale.models.chest.Chest(
-            index=pyroyale.models.chest.Chest(index='index'),
+        model = Chest(
+            index=Chest(index='index'),
         )
         modelDict = model.to_dict()
         assert modelDict['index']['index']=='index'
 
     def testToString(self):
-        model = pyroyale.models.chest.Chest('TestStringSequence')
+        model = Chest('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.chest.Chest('TestStringSequence')
+        model = Chest('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -82,9 +82,9 @@ class TestChest(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.chest.Chest('A')
-        model_a2 = pyroyale.models.chest.Chest('A')
-        model_b  = pyroyale.models.chest.Chest('B')
+        model_a  = Chest('A')
+        model_a2 = Chest('A')
+        model_b  = Chest('B')
 
         assert model_a == model_a
         assert model_a == model_a2

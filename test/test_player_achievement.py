@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,66 @@ class TestPlayerAchievement(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPlayerAchievement(self):
-        """Test PlayerAchievement"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.player_achievement.PlayerAchievement()  # noqa: E501
+    def testDefaults(self):
+        model = PlayerAchievement()
         pass
+
+    def testConstructorInitializers(self):
+        model = PlayerAchievement(
+            name='name',
+            stars='stars',
+            value='value',
+            target='target',
+            info='info'
+        )
+
+        assert model.name=='name'
+        assert model.stars=='stars'
+        assert model.value=='value'
+        assert model.target=='target'
+        assert model.info=='info'
+
+    def testToDict(self):
+        model = PlayerAchievement(
+            target=123,
+            info=[PlayerAchievement(name='clanname')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['target']==123
+        assert modelDict['info'][0]['name']=='clanname'
+
+    def testToString(self):
+        model = PlayerAchievement('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = PlayerAchievement('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = PlayerAchievement('A')
+        model_a2 = PlayerAchievement('A')
+        model_b  = PlayerAchievement('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

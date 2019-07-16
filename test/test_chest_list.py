@@ -31,47 +31,47 @@ class TestChestList(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.chest_list.ChestList()
+        model = ChestList()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.chest_list.ChestList(
+        model = ChestList(
             items='items'
         )
 
         assert model.items=='items'
 
     def testToDict(self):
-        model = pyroyale.models.chest_list.ChestList(
+        model = ChestList(
             items='items'
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']=='items'
 
-        model = pyroyale.models.chest_list.ChestList(
+        model = ChestList(
             items=123,
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']==123
 
-        model = pyroyale.models.chest_list.ChestList(
-            items=pyroyale.models.chest_list.ChestList(items='items'),
+        model = ChestList(
+            items=ChestList(items='items'),
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
 
     def testToString(self):
-        model = pyroyale.models.chest_list.ChestList('TestStringSequence')
+        model = ChestList('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.chest_list.ChestList('TestStringSequence')
+        model = ChestList('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -85,9 +85,9 @@ class TestChestList(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.chest_list.ChestList('A')
-        model_a2 = pyroyale.models.chest_list.ChestList('A')
-        model_b  = pyroyale.models.chest_list.ChestList('B')
+        model_a  = ChestList('A')
+        model_a2 = ChestList('A')
+        model_b  = ChestList('B')
 
         assert model_a == model_a
         assert model_a == model_a2

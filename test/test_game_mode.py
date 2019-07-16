@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,12 +30,67 @@ class TestGameMode(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testGameMode(self):
-        """Test GameMode"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.game_mode.GameMode()  # noqa: E501
+    def testDefaults(self):
+        model = GameMode()
         pass
 
+    def testConstructorInitializers(self):
+        model = GameMode(
+            id='id',
+            name='name'
+        )
+
+        assert model.id=='id'
+        assert model.name=='name'
+
+    def testToDict(self):
+        model = GameMode(
+            id='id',
+            name=123
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['id']=='id'
+        assert modelDict['name']==123
+
+        model = GameMode(
+            id=GameMode(id='id'),
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['id']['id']=='id'
+
+    def testToString(self):
+        model = GameMode('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = GameMode('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = GameMode('A')
+        model_a2 = GameMode('A')
+        model_b  = GameMode('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 if __name__ == '__main__':
     unittest.main()

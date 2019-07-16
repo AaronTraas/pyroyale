@@ -33,51 +33,51 @@ class TestClanSearchResult(unittest.TestCase):
     def testClanSearchResult(self):
         """Test ClanSearchResult"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.clan_search_result.ClanSearchResult()  # noqa: E501
+        # model = ClanSearchResult()  # noqa: E501
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.clan_search_result.ClanSearchResult()
+        model = ClanSearchResult()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.clan_search_result.ClanSearchResult(
+        model = ClanSearchResult(
             items='items'
         )
 
         assert model.items=='items'
 
     def testToDict(self):
-        model = pyroyale.models.clan_search_result.ClanSearchResult(
+        model = ClanSearchResult(
             items='items'
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']=='items'
 
-        model = pyroyale.models.clan_search_result.ClanSearchResult(
+        model = ClanSearchResult(
             items=123,
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']==123
 
-        model = pyroyale.models.clan_search_result.ClanSearchResult(
-            items=pyroyale.models.clan_search_result.ClanSearchResult(items='items'),
+        model = ClanSearchResult(
+            items=ClanSearchResult(items='items'),
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
 
     def testToString(self):
-        model = pyroyale.models.clan_search_result.ClanSearchResult('TestStringSequence')
+        model = ClanSearchResult('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.clan_search_result.ClanSearchResult('TestStringSequence')
+        model = ClanSearchResult('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -91,9 +91,9 @@ class TestClanSearchResult(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.clan_search_result.ClanSearchResult('A')
-        model_a2 = pyroyale.models.clan_search_result.ClanSearchResult('A')
-        model_b  = pyroyale.models.clan_search_result.ClanSearchResult('B')
+        model_a  = ClanSearchResult('A')
+        model_a2 = ClanSearchResult('A')
+        model_b  = ClanSearchResult('B')
 
         assert model_a == model_a
         assert model_a == model_a2

@@ -31,11 +31,11 @@ class TestPlayerBase(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.player_base.PlayerBase()
+        model = PlayerBase()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.player_base.PlayerBase(
+        model = PlayerBase(
             tag='tag',
             name='name',
             exp_level='exp_level',
@@ -50,10 +50,10 @@ class TestPlayerBase(unittest.TestCase):
         assert model.arena=='arena'
 
     def testToDict(self):
-        model = pyroyale.models.player_base.PlayerBase(
+        model = PlayerBase(
             tag='tag',
             trophies=123,
-            exp_level=[pyroyale.models.player_base.PlayerBase(name='name')]
+            exp_level=[PlayerBase(name='name')]
         )
 
         modelDict = model.to_dict()
@@ -63,14 +63,14 @@ class TestPlayerBase(unittest.TestCase):
         assert modelDict['exp_level'][0]['name']=='name'
 
     def testToString(self):
-        model = pyroyale.models.player_base.PlayerBase('TestStringSequence')
+        model = PlayerBase('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.player_base.PlayerBase('TestStringSequence')
+        model = PlayerBase('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -84,9 +84,9 @@ class TestPlayerBase(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.player_base.PlayerBase('A')
-        model_a2 = pyroyale.models.player_base.PlayerBase('A')
-        model_b  = pyroyale.models.player_base.PlayerBase('B')
+        model_a  = PlayerBase('A')
+        model_a2 = PlayerBase('A')
+        model_b  = PlayerBase('B')
 
         assert model_a == model_a
         assert model_a == model_a2

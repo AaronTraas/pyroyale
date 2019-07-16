@@ -31,7 +31,7 @@ class TestWarLog(unittest.TestCase):
     def testWarLog(self):
         """Test WarLog"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.war_log.WarLog()  # noqa: E501
+        # model = WarLog()  # noqa: E501
         pass
 
 

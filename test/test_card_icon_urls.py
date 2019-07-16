@@ -31,47 +31,47 @@ class TestCardIconUrls(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.card_icon_urls.CardIconUrls()
+        model = CardIconUrls()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.card_icon_urls.CardIconUrls(
+        model = CardIconUrls(
             medium='medium'
         )
 
         assert model.medium=='medium'
 
     def testToDict(self):
-        model = pyroyale.models.card_icon_urls.CardIconUrls(
+        model = CardIconUrls(
             medium='medium',
         )
         modelDict = model.to_dict()
 
         assert modelDict['medium']=='medium'
 
-        model = pyroyale.models.card_icon_urls.CardIconUrls(
+        model = CardIconUrls(
             medium=123,
         )
         modelDict = model.to_dict()
 
         assert modelDict['medium']==123
 
-        model = pyroyale.models.card_icon_urls.CardIconUrls(
-            medium=pyroyale.models.card_icon_urls.CardIconUrls(medium='medium'),
+        model = CardIconUrls(
+            medium=CardIconUrls(medium='medium'),
         )
         modelDict = model.to_dict()
 
         assert modelDict['medium']['medium']=='medium'
 
     def testToString(self):
-        model = pyroyale.models.card_icon_urls.CardIconUrls('TestStringSequence')
+        model = CardIconUrls('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.card_icon_urls.CardIconUrls('TestStringSequence')
+        model = CardIconUrls('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -85,9 +85,9 @@ class TestCardIconUrls(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.card_icon_urls.CardIconUrls('A')
-        model_a2 = pyroyale.models.card_icon_urls.CardIconUrls('A')
-        model_b  = pyroyale.models.card_icon_urls.CardIconUrls('B')
+        model_a  = CardIconUrls('A')
+        model_a2 = CardIconUrls('A')
+        model_b  = CardIconUrls('B')
 
         assert model_a == model_a
         assert model_a == model_a2

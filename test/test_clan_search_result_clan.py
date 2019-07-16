@@ -31,11 +31,11 @@ class TestClanSearchResultClan(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.clan_search_result_clan.ClanSearchResultClan()
+        model = ClanSearchResultClan()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.clan_search_result_clan.ClanSearchResultClan(
+        model = ClanSearchResultClan(
             tag='tag',
             name='name',
             badge_id='badge_id',
@@ -63,10 +63,10 @@ class TestClanSearchResultClan(unittest.TestCase):
         assert model.location=='location'
 
     def testToDict(self):
-        model = pyroyale.models.clan_search_result_clan.ClanSearchResultClan(
+        model = ClanSearchResultClan(
             tag='tag',
             clan_score=123,
-            members=[pyroyale.models.clan_search_result_clan.ClanSearchResultClan(name='clanname')]
+            members=[ClanSearchResultClan(name='clanname')]
         )
 
         modelDict = model.to_dict()
@@ -76,14 +76,14 @@ class TestClanSearchResultClan(unittest.TestCase):
         assert modelDict['members'][0]['name']=='clanname'
 
     def testToString(self):
-        model = pyroyale.models.clan_search_result_clan.ClanSearchResultClan('TestStringSequence')
+        model = ClanSearchResultClan('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.clan_search_result_clan.ClanSearchResultClan('TestStringSequence')
+        model = ClanSearchResultClan('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -97,9 +97,9 @@ class TestClanSearchResultClan(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.clan_search_result_clan.ClanSearchResultClan('A')
-        model_a2 = pyroyale.models.clan_search_result_clan.ClanSearchResultClan('A')
-        model_b  = pyroyale.models.clan_search_result_clan.ClanSearchResultClan('B')
+        model_a  = ClanSearchResultClan('A')
+        model_a2 = ClanSearchResultClan('A')
+        model_b  = ClanSearchResultClan('B')
 
         assert model_a == model_a
         assert model_a == model_a2

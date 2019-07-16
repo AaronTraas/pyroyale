@@ -31,11 +31,11 @@ class TestClanMember(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.clan_member.ClanMember()
+        model = ClanMember()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.clan_member.ClanMember(
+        model = ClanMember(
             tag='tag',
             name='name',
             exp_level='exp_level',
@@ -61,10 +61,10 @@ class TestClanMember(unittest.TestCase):
         assert model.clan_chest_points=='clan_chest_points'
 
     def testToDict(self):
-        model = pyroyale.models.clan_member.ClanMember(
+        model = ClanMember(
             tag='tag',
             trophies=123,
-            clan_chest_points=[pyroyale.models.clan_member.ClanMember(name='name')]
+            clan_chest_points=[ClanMember(name='name')]
         )
 
         modelDict = model.to_dict()
@@ -74,14 +74,14 @@ class TestClanMember(unittest.TestCase):
         assert modelDict['clan_chest_points'][0]['name']=='name'
 
     def testToString(self):
-        model = pyroyale.models.clan_member.ClanMember('TestStringSequence')
+        model = ClanMember('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.clan_member.ClanMember('TestStringSequence')
+        model = ClanMember('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -95,9 +95,9 @@ class TestClanMember(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.clan_member.ClanMember('A')
-        model_a2 = pyroyale.models.clan_member.ClanMember('A')
-        model_b  = pyroyale.models.clan_member.ClanMember('B')
+        model_a  = ClanMember('A')
+        model_a2 = ClanMember('A')
+        model_b  = ClanMember('B')
 
         assert model_a == model_a
         assert model_a == model_a2

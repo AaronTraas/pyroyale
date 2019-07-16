@@ -31,7 +31,7 @@ class TestTournamentSearchResult(unittest.TestCase):
     def testTournamentSearchResult(self):
         """Test TournamentSearchResult"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pyroyale.models.tournament_search_result.TournamentSearchResult()  # noqa: E501
+        # model = TournamentSearchResult()  # noqa: E501
         pass
 
 

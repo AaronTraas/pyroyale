@@ -31,47 +31,47 @@ class TestClanMemberList(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.clan_member_list.ClanMemberList()
+        model = ClanMemberList()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.clan_member_list.ClanMemberList(
+        model = ClanMemberList(
             items='items'
         )
 
         assert model.items=='items'
 
     def testToDict(self):
-        model = pyroyale.models.clan_member_list.ClanMemberList(
+        model = ClanMemberList(
             items='items'
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']=='items'
 
-        model = pyroyale.models.clan_member_list.ClanMemberList(
+        model = ClanMemberList(
             items=123,
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']==123
 
-        model = pyroyale.models.clan_member_list.ClanMemberList(
-            items=pyroyale.models.clan_member_list.ClanMemberList(items='items'),
+        model = ClanMemberList(
+            items=ClanMemberList(items='items'),
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
 
     def testToString(self):
-        model = pyroyale.models.clan_member_list.ClanMemberList('TestStringSequence')
+        model = ClanMemberList('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.clan_member_list.ClanMemberList('TestStringSequence')
+        model = ClanMemberList('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -85,9 +85,9 @@ class TestClanMemberList(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.clan_member_list.ClanMemberList('A')
-        model_a2 = pyroyale.models.clan_member_list.ClanMemberList('A')
-        model_b  = pyroyale.models.clan_member_list.ClanMemberList('B')
+        model_a  = ClanMemberList('A')
+        model_a2 = ClanMemberList('A')
+        model_b  = ClanMemberList('B')
 
         assert model_a == model_a
         assert model_a == model_a2

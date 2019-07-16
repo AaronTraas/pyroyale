@@ -31,11 +31,11 @@ class TestCard(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.card.Card()
+        model = Card()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.card.Card(
+        model = Card(
             name='name',
             id='id',
             max_level='max_level',
@@ -48,10 +48,10 @@ class TestCard(unittest.TestCase):
         assert model.icon_urls=='icon_urls'
 
     def testToDict(self):
-        model = pyroyale.models.card.Card(
+        model = Card(
             id=123,
             name='name',
-            icon_urls=pyroyale.models.card.Card(name='name')
+            icon_urls=Card(name='name')
         )
 
         modelDict = model.to_dict()
@@ -61,14 +61,14 @@ class TestCard(unittest.TestCase):
         assert modelDict['icon_urls']['name']=='name'
 
     def testToString(self):
-        model = pyroyale.models.card.Card('TestStringSequence')
+        model = Card('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.card.Card('TestStringSequence')
+        model = Card('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -82,9 +82,9 @@ class TestCard(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.card.Card('A')
-        model_a2 = pyroyale.models.card.Card('A')
-        model_b  = pyroyale.models.card.Card('B')
+        model_a  = Card('A')
+        model_a2 = Card('A')
+        model_b  = Card('B')
 
         assert model_a == model_a
         assert model_a == model_a2

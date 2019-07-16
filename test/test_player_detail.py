@@ -31,11 +31,11 @@ class TestPlayerDetail(unittest.TestCase):
         pass
 
     def testDefaults(self):
-        model = pyroyale.models.player_detail.PlayerDetail()
+        model = PlayerDetail()
         pass
 
     def testConstructorInitializers(self):
-        model = pyroyale.models.player_detail.PlayerDetail(
+        model = PlayerDetail(
             tag='tag',
             name='name',
             exp_level='exp_level',
@@ -69,12 +69,30 @@ class TestPlayerDetail(unittest.TestCase):
         assert model.trophies=='trophies'
         assert model.arena=='arena'
         assert model.role=='role'
+        assert model.wins=='wins'
+        assert model.losses=='losses'
+        assert model.battle_count=='battle_count'
+        assert model.three_crown_wins=='three_crown_wins'
+        assert model.challenge_cards_won=='challenge_cards_won'
+        assert model.challenge_max_wins=='challenge_max_wins'
+        assert model.tournament_cards_won=='tournament_cards_won'
+        assert model.tournament_battle_count=='tournament_battle_count'
+        assert model.donations=='donations'
+        assert model.donations_received=='donations_received'
+        assert model.total_donations=='total_donations'
+        assert model.war_day_wins=='war_day_wins'
+        assert model.clan_cards_collected=='clan_cards_collected'
+        assert model.clan=='clan'
+        assert model.league_statistics=='league_statistics'
+        assert model.achievements=='achievements'
+        assert model.cards=='cards'
+        assert model.current_favourite_card=='current_favourite_card'
 
     def testToDict(self):
-        model = pyroyale.models.player_detail.PlayerDetail(
+        model = PlayerDetail(
             tag='tag',
             trophies=123,
-            arena=[pyroyale.models.player_detail.PlayerDetail(name='name')]
+            arena=[PlayerDetail(name='name')]
         )
 
         modelDict = model.to_dict()
@@ -84,14 +102,14 @@ class TestPlayerDetail(unittest.TestCase):
         assert modelDict['arena'][0]['name']=='name'
 
     def testToString(self):
-        model = pyroyale.models.player_detail.PlayerDetail('TestStringSequence')
+        model = PlayerDetail('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = pyroyale.models.player_detail.PlayerDetail('TestStringSequence')
+        model = PlayerDetail('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -105,9 +123,9 @@ class TestPlayerDetail(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = pyroyale.models.player_detail.PlayerDetail('A')
-        model_a2 = pyroyale.models.player_detail.PlayerDetail('A')
-        model_b  = pyroyale.models.player_detail.PlayerDetail('B')
+        model_a  = PlayerDetail('A')
+        model_a2 = PlayerDetail('A')
+        model_b  = PlayerDetail('B')
 
         assert model_a == model_a
         assert model_a == model_a2

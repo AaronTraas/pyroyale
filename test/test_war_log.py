@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -33,6 +35,70 @@ class TestWarLog(unittest.TestCase):
         # FIXME: construct object with mandatory attributes with example values
         # model = WarLog()  # noqa: E501
         pass
+
+    def testDefaults(self):
+        model = WarLog()
+        pass
+
+    def testConstructorInitializers(self):
+        model = WarLog(
+            items='items'
+        )
+
+        assert model.items=='items'
+
+    def testToDict(self):
+        model = WarLog(
+            items='items'
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']=='items'
+
+        model = WarLog(
+            items=123,
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items']==123
+
+        model = WarLog(
+            items=[WarLog(items='items')],
+        )
+        modelDict = model.to_dict()
+
+        assert modelDict['items'][0]['items']=='items'
+
+    def testToString(self):
+        model = WarLog('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = WarLog('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = WarLog('A')
+        model_a2 = WarLog('A')
+        model_b  = WarLog('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

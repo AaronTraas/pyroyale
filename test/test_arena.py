@@ -54,6 +54,16 @@ class TestArena(unittest.TestCase):
         assert modelDict['id']==123
         assert modelDict['name']=='name'
 
+        model = Arena(
+            id={'foo':'bar'},
+            name=[Arena(id='id')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['id']['foo']=='bar'
+        assert modelDict['name'][0]['id']=='id'
+
     def testToString(self):
         model = Arena('TestStringSequence')
 

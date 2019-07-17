@@ -57,10 +57,10 @@ class TestClanBase(unittest.TestCase):
             badge_id=123
         )
 
-        clanDict = model.to_dict()
+        modelDict = model.to_dict()
 
-        assert clanDict['tag']['foo']=='bar'
-        assert clanDict['badge_id']==123
+        assert modelDict['tag']['foo']=='bar'
+        assert modelDict['badge_id']==123
 
     def testToString(self):
         model = ClanBase(tag='TestStringSequence')

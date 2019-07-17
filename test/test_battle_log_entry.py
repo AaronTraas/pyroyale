@@ -59,12 +59,16 @@ class TestBattleLogEntry(unittest.TestCase):
         model = BattleLogEntry(
             type=123,
             battle_time='battle_time',
+            is_ladder_tournament={'foo':'bar'},
+            arena=[BattleLogEntry(team='team')]
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['type']==123
         assert modelDict['battle_time']=='battle_time'
+        assert modelDict['is_ladder_tournament']['foo']=='bar'
+        assert modelDict['arena'][0]['team']=='team'
 
     def testToString(self):
         model = BattleLogEntry('TestStringSequence')

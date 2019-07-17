@@ -12,6 +12,8 @@
 
 from __future__ import absolute_import
 
+import io
+import sys
 import unittest
 
 import pyroyale
@@ -28,11 +30,86 @@ class TestTournament(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testTournament(self):
-        """Test Tournament"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Tournament()  # noqa: E501
+    def testDefaults(self):
+        model = Tournament()
         pass
+
+    def testConstructorInitializers(self):
+        model = Tournament(
+            tag='tag',
+            name='name',
+            type='type',
+            status='status',
+            level_cap='level_cap',
+            first_place_card_prize='first_place_card_prize',
+            creator_tag='creator_tag',
+            description='description',
+            capacity='capacity',
+            max_capacity='max_capacity',
+            preparation_duration='preparation_duration',
+            duration='duration',
+            created_time='created_time',
+            game_mode='game_mode'
+        )
+
+        assert model.tag=='tag'
+        assert model.name=='name'
+        assert model.type=='type'
+        assert model.status=='status'
+        assert model.level_cap=='level_cap'
+        assert model.first_place_card_prize=='first_place_card_prize'
+        assert model.creator_tag=='creator_tag'
+        assert model.description=='description'
+        assert model.capacity=='capacity'
+        assert model.max_capacity=='max_capacity'
+        assert model.preparation_duration=='preparation_duration'
+        assert model.duration=='duration'
+        assert model.created_time=='created_time'
+        assert model.game_mode=='game_mode'
+
+    def testToDict(self):
+        model = Tournament(
+            tag='tag',
+            level_cap=123,
+            game_mode=[Tournament(name='name')]
+        )
+
+        modelDict = model.to_dict()
+
+        assert modelDict['tag']=='tag'
+        assert modelDict['level_cap']==123
+        assert modelDict['game_mode'][0]['name']=='name'
+
+    def testToString(self):
+        model = Tournament('TestStringSequence')
+
+        modelString = model.to_str()
+        assert len(modelString) > 1
+        assert 'TestStringSequence' in modelString
+
+    def testPrint(self):
+        model = Tournament('TestStringSequence')
+
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        print(model)
+        sys.stdout = sys.__stdout__
+
+        testString = capturedOutput.getvalue()
+
+        assert len(testString) > 1
+        assert 'TestStringSequence' in testString
+
+
+    def testEqual(self):
+        model_a  = Tournament('A')
+        model_a2 = Tournament('A')
+        model_b  = Tournament('B')
+
+        assert model_a == model_a
+        assert model_a == model_a2
+        assert model_a != model_b
+        assert model_a != 'not a'
 
 
 if __name__ == '__main__':

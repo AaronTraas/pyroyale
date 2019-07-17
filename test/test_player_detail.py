@@ -59,8 +59,10 @@ class TestPlayerDetail(unittest.TestCase):
             clan='clan',
             league_statistics='league_statistics',
             achievements='achievements',
+            badges='badges',
             cards='cards',
-            current_favourite_card='current_favourite_card'
+            current_favourite_card='current_favourite_card',
+            star_points='star_points'
         )
 
         assert model.tag=='tag'
@@ -85,19 +87,21 @@ class TestPlayerDetail(unittest.TestCase):
         assert model.clan=='clan'
         assert model.league_statistics=='league_statistics'
         assert model.achievements=='achievements'
+        assert model.badges=='badges'
         assert model.cards=='cards'
         assert model.current_favourite_card=='current_favourite_card'
+        assert model.star_points=='star_points'
 
     def testToDict(self):
         model = PlayerDetail(
-            tag='tag',
+            tag={'foo':'bar'},
             trophies=123,
             arena=[PlayerDetail(name='name')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['tag']=='tag'
+        assert modelDict['tag']['foo']=='bar'
         assert modelDict['trophies']==123
         assert modelDict['arena'][0]['name']=='name'
 

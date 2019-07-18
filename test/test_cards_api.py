@@ -13,26 +13,80 @@
 from __future__ import absolute_import
 
 import unittest
+from unittest.mock import patch
 
 import pyroyale
 from pyroyale.api.cards_api import CardsApi  # noqa: E501
 from pyroyale.rest import ApiException
 
+CARDS_API_URL = 'https://api.clashroyale.com/v1/cards'
 
 class TestCardsApi(unittest.TestCase):
     """CardsApi unit test stubs"""
 
     def setUp(self):
-        self.api = CardsApi()  # noqa: E501
+        self.api = CardsApi()
 
     def tearDown(self):
         pass
 
-    def test_get_cards(self):
-        """Test case for get_cards
+    @patch('urllib3.PoolManager.request')
+    def test_get_cards(self, mock_get):
 
-        Get list of available cards  # noqa: E501
-        """
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "items": [
+                {
+                  "name": "Knight",
+                  "id": 26000000,
+                  "maxLevel": 13,
+                  "iconUrls": {
+                    "medium": "https://api-assets.clashroyale.com/cards/300/jAj1Q5rclXxU9kVImGqSJxa4wEMfEhvwNQ_4jiGUuqg.png"
+                  }
+                },
+                {
+                  "name": "Archers",
+                  "id": 26000001,
+                  "maxLevel": 13,
+                  "iconUrls": {
+                    "medium": "https://api-assets.clashroyale.com/cards/300/W4Hmp8MTSdXANN8KdblbtHwtsbt0o749BbxNqmJYfA8.png"
+                  }
+                }
+              ]
+            }
+        """.encode('utf-8')
+
+        try:
+            # Get list of available cards
+            cardList = self.api.get_cards()
+            assert type(cardList.items) == list
+
+            assert cardList.items[0].name == 'Knight'
+            assert cardList.items[0].max_level == 13
+
+            assert cardList.items[1].name == 'Archers'
+            assert cardList.items[1].max_level == 13
+
+        except ApiException as e:
+            print("Exception when calling CardsApi->get_cards: %s\n" % e)
+            assert False
+        pass
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_cards_fail(self, mock_get):
+
+        mock_get.return_value.status=500
+
+        try:
+            # Get list of available cards
+            cardList = self.api.get_cards()
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling CardsApi->get_cards: %s\n" % e)
+            assert True
+
         pass
 
 

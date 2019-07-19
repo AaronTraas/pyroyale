@@ -27,9 +27,6 @@ class TestCardsApi(unittest.TestCase):
     def setUp(self):
         self.api = CardsApi()
 
-    def tearDown(self):
-        pass
-
     @patch('urllib3.PoolManager.request')
     def test_get_cards(self, mock_get):
 
@@ -71,7 +68,6 @@ class TestCardsApi(unittest.TestCase):
         except ApiException as e:
             print("Exception when calling CardsApi->get_cards: %s\n" % e)
             assert False
-        pass
 
     @patch('urllib3.PoolManager.request')
     def test_get_cards_fail(self, mock_get):
@@ -86,8 +82,6 @@ class TestCardsApi(unittest.TestCase):
         except ApiException as e:
             print("Exception when calling CardsApi->get_cards: %s\n" % e)
             assert True
-
-        pass
 
 
 if __name__ == '__main__':

@@ -36,6 +36,7 @@ class ClanMember(object):
         'trophies': 'int',
         'arena': 'Arena',
         'role': 'str',
+        'last_seen': 'str',
         'clan_rank': 'int',
         'previous_clan_rank': 'int',
         'donations': 'int',
@@ -50,6 +51,7 @@ class ClanMember(object):
         'trophies': 'trophies',
         'arena': 'arena',
         'role': 'role',
+        'last_seen': 'lastSeen',
         'clan_rank': 'clanRank',
         'previous_clan_rank': 'previousClanRank',
         'donations': 'donations',
@@ -57,7 +59,7 @@ class ClanMember(object):
         'clan_chest_points': 'clanChestPoints'
     }
 
-    def __init__(self, tag=None, name=None, exp_level=None, trophies=None, arena=None, role=None, clan_rank=None, previous_clan_rank=None, donations=None, donations_received=None, clan_chest_points=None):  # noqa: E501
+    def __init__(self, tag=None, name=None, exp_level=None, trophies=None, arena=None, role=None, last_seen=None, clan_rank=None, previous_clan_rank=None, donations=None, donations_received=None, clan_chest_points=None):  # noqa: E501
         """ClanMember - a model defined in Swagger"""  # noqa: E501
         self._tag = None
         self._name = None
@@ -65,6 +67,7 @@ class ClanMember(object):
         self._trophies = None
         self._arena = None
         self._role = None
+        self._last_seen = None
         self._clan_rank = None
         self._previous_clan_rank = None
         self._donations = None
@@ -83,6 +86,8 @@ class ClanMember(object):
             self.arena = arena
         if role is not None:
             self.role = role
+        if last_seen is not None:
+            self.last_seen = last_seen
         if clan_rank is not None:
             self.clan_rank = clan_rank
         if previous_clan_rank is not None:
@@ -219,6 +224,27 @@ class ClanMember(object):
         """
 
         self._role = role
+
+    @property
+    def last_seen(self):
+        """Gets the last_seen of this ClanMember.  # noqa: E501
+
+
+        :return: The last_seen of this ClanMember.  # noqa: E501
+        :rtype: str
+        """
+        return self._last_seen
+
+    @last_seen.setter
+    def last_seen(self, last_seen):
+        """Sets the last_seen of this ClanMember.
+
+
+        :param last_seen: The last_seen of this ClanMember.  # noqa: E501
+        :type: str
+        """
+
+        self._last_seen = last_seen
 
     @property
     def clan_rank(self):

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **trophies** | **int** |  | [optional] 
 **arena** | [**Arena**](Arena.md) |  | [optional] 
 **role** | **str** |  | [optional] 
+**last_seen** | **str** |  | [optional] 
 **clan_rank** | **int** |  | [optional] 
 **previous_clan_rank** | **int** |  | [optional] 
 **donations** | **int** |  | [optional] 

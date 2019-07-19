@@ -26,38 +26,183 @@ class TestClansApi(unittest.TestCase):
     def setUp(self):
         self.api = ClansApi()  # noqa: E501
 
-    def tearDown(self):
-        pass
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan(self, mock_get):
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "tag": "#JY8YVV",
+              "name": "Agrassar",
+              "type": "open",
+              "description": "fake description",
+              "badgeId": 16000010,
+              "clanScore": 49658,
+              "clanWarTrophies": 2620,
+              "location": {
+                "id": 57000006,
+                "name": "International",
+                "isCountry": false
+              },
+              "requiredTrophies": 4000,
+              "donationsPerWeek": 12415,
+              "clanChestStatus": "inactive",
+              "clanChestPoints": 1471,
+              "clanChestLevel": 9,
+              "clanChestMaxLevel": 10,
+              "members": 1,
+              "memberList": [
+                {
+                  "tag": "#9ULGLRCL",
+                  "name": "AaronTraas",
+                  "role": "leader",
+                  "lastSeen": "20190719T175902.000Z",
+                  "expLevel": 13,
+                  "trophies": 5600,
+                  "arena": {
+                    "id": 54000015,
+                    "name": "Master III"
+                  },
+                  "clanRank": 1,
+                  "previousClanRank": 2,
+                  "donations": 786,
+                  "donationsReceived": 480,
+                  "clanChestPoints": 72
+                }
+              ]
+            }
+        """.encode('utf-8')
 
-    def test_get_clan(self):
-        """Test case for get_clan
+        clan = self.api.get_clan('#JY8YVV')
+        assert type(clan.member_list) == list
+        assert clan.tag=='#JY8YVV'
+        assert clan.name=='Agrassar'
+        assert clan.type=='open'
+        assert clan.description=='fake description'
+        assert clan.badge_id==16000010
+        assert clan.clan_score==49658
+        assert clan.clan_war_trophies==2620
+        assert clan.location.id==57000006
+        assert clan.location.name=='International'
+        assert clan.location.is_country==False
+        assert clan.required_trophies==4000
+        assert clan.donations_per_week==12415
+        assert clan.clan_chest_status=='inactive'
+        assert clan.clan_chest_points==1471
+        assert clan.clan_chest_level==9
+        assert clan.clan_chest_max_level==10
+        assert clan.members==1
 
-        Get clan information  # noqa: E501
-        """
-        pass
+        assert type(clan.member_list) == list
+        assert len(clan.member_list) == clan.members
 
-    def test_get_clan_members(self):
-        """Test case for get_clan_members
+        member = clan.member_list[0]
+        assert member.tag=='#9ULGLRCL'
+        assert member.name=='AaronTraas'
+        assert member.role=='leader'
+        assert member.last_seen=='20190719T175902.000Z'
+        assert member.exp_level==13
+        assert member.trophies==5600
+        assert member.arena.id==54000015
+        assert member.arena.name=='Master III'
+        assert member.clan_rank==1
+        assert member.previous_clan_rank==2
+        assert member.donations==786
+        assert member.donations_received==480
+        assert member.clan_chest_points==72
 
-        List clan members  # noqa: E501
-        """
-        pass
+    @patch('urllib3.PoolManager.request')
+    def test_get_cards_fail(self, mock_get):
 
-    def test_get_clan_war_log(self):
+        mock_get.return_value.status=500
+
+        try:
+            clan = self.api.get_clan('#JY8YVV')
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling ClansApi->get_clan: %s\n" % e)
+            assert True
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan_members(self, mock_get):
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "items": [
+                {
+                  "tag": "#9ULGLRCL",
+                  "name": "AaronTraas",
+                  "role": "leader",
+                  "lastSeen": "20190719T175902.000Z",
+                  "expLevel": 13,
+                  "trophies": 5600,
+                  "arena": {
+                    "id": 54000015,
+                    "name": "Master III"
+                  },
+                  "clanRank": 1,
+                  "previousClanRank": 2,
+                  "donations": 786,
+                  "donationsReceived": 480,
+                  "clanChestPoints": 72
+                }
+              ],
+              "paging": {
+                "cursors": {}
+              }
+            }
+        """.encode('utf-8')
+
+        members = self.api.get_clan_members('#JY8YVV')
+
+        assert type(members.items) == list
+        member = members.items[0]
+        assert member.tag=='#9ULGLRCL'
+        assert member.name=='AaronTraas'
+        assert member.role=='leader'
+        assert member.last_seen=='20190719T175902.000Z'
+        assert member.exp_level==13
+        assert member.trophies==5600
+        assert member.arena.id==54000015
+        assert member.arena.name=='Master III'
+        assert member.clan_rank==1
+        assert member.previous_clan_rank==2
+        assert member.donations==786
+        assert member.donations_received==480
+        assert member.clan_chest_points==72
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_cards_fail(self, mock_get):
+
+        mock_get.return_value.status=500
+
+        try:
+            clan = self.api.get_clan_members('#JY8YVV')
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling ClansApi->get_clan_members: %s\n" % e)
+            assert True
+
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan_war_log(self, mock_get):
         """Test case for get_clan_war_log
 
         Retrieve clan's clan war log  # noqa: E501
         """
         pass
 
-    def test_get_current_war(self):
+    @patch('urllib3.PoolManager.request')
+    def test_get_current_war(self, mock_get):
         """Test case for get_current_war
 
         Information about clan's current clan war  # noqa: E501
         """
         pass
 
-    def test_search_clans(self):
+    @patch('urllib3.PoolManager.request')
+    def test_search_clans(self, mock_get):
         """Test case for search_clans
 
         Search clans  # noqa: E501

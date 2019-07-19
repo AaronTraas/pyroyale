@@ -14,6 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
+from pyroyale.models.search_paging import SearchPaging  # noqa: F401,E501
 from pyroyale.models.tournament import Tournament  # noqa: F401,E501
 
 
@@ -30,19 +31,24 @@ class TournamentSearchResult(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[Tournament]'
+        'items': 'list[Tournament]',
+        'paging': 'SearchPaging'
     }
 
     attribute_map = {
-        'items': 'items'
+        'items': 'items',
+        'paging': 'paging'
     }
 
-    def __init__(self, items=None):  # noqa: E501
+    def __init__(self, items=None, paging=None):  # noqa: E501
         """TournamentSearchResult - a model defined in Swagger"""  # noqa: E501
         self._items = None
+        self._paging = None
         self.discriminator = None
         if items is not None:
             self.items = items
+        if paging is not None:
+            self.paging = paging
 
     @property
     def items(self):
@@ -64,6 +70,27 @@ class TournamentSearchResult(object):
         """
 
         self._items = items
+
+    @property
+    def paging(self):
+        """Gets the paging of this TournamentSearchResult.  # noqa: E501
+
+
+        :return: The paging of this TournamentSearchResult.  # noqa: E501
+        :rtype: SearchPaging
+        """
+        return self._paging
+
+    @paging.setter
+    def paging(self, paging):
+        """Sets the paging of this TournamentSearchResult.
+
+
+        :param paging: The paging of this TournamentSearchResult.  # noqa: E501
+        :type: SearchPaging
+        """
+
+        self._paging = paging
 
     def to_dict(self):
         """Returns the model properties as a dict"""

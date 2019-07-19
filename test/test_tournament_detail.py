@@ -32,25 +32,53 @@ class TestTournamentDetailDetail(unittest.TestCase):
 
     def testConstructorInitializers(self):
         model = TournamentDetail(
-            items='items',
+            tag='tag',
+            name='name',
+            type='type',
+            status='status',
+            level_cap='level_cap',
+            first_place_card_prize='first_place_card_prize',
+            creator_tag='creator_tag',
+            description='description',
+            capacity='capacity',
+            max_capacity='max_capacity',
+            preparation_duration='preparation_duration',
+            duration='duration',
+            created_time='created_time',
+            game_mode='game_mode',
             started_time='started_time',
             members_list='members_list'
         )
 
-        assert model.items=='items'
+        assert model.tag=='tag'
+        assert model.name=='name'
+        assert model.type=='type'
+        assert model.status=='status'
+        assert model.level_cap=='level_cap'
+        assert model.first_place_card_prize=='first_place_card_prize'
+        assert model.creator_tag=='creator_tag'
+        assert model.description=='description'
+        assert model.capacity=='capacity'
+        assert model.max_capacity=='max_capacity'
+        assert model.preparation_duration=='preparation_duration'
+        assert model.duration=='duration'
+        assert model.created_time=='created_time'
+        assert model.game_mode=='game_mode'
         assert model.started_time=='started_time'
         assert model.members_list=='members_list'
 
     def testToDict(self):
         model = TournamentDetail(
+            tag={'foo':'bar'},
             started_time=123,
-            members_list=[TournamentDetail(items='items')]
+            members_list=[TournamentDetail(name='name')]
         )
 
         modelDict = model.to_dict()
 
+        assert modelDict['tag']['foo']=='bar'
         assert modelDict['started_time']==123
-        assert modelDict['members_list'][0]['items']=='items'
+        assert modelDict['members_list'][0]['name']=='name'
 
     def testToString(self):
         model = TournamentDetail('TestStringSequence')

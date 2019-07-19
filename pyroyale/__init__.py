@@ -53,6 +53,8 @@ from pyroyale.models.player_detail import PlayerDetail
 from pyroyale.models.player_league_statistics import PlayerLeagueStatistics
 from pyroyale.models.player_ranked import PlayerRanked
 from pyroyale.models.player_ranking_list import PlayerRankingList
+from pyroyale.models.search_paging import SearchPaging
+from pyroyale.models.search_paging_cursors import SearchPagingCursors
 from pyroyale.models.season_statistics import SeasonStatistics
 from pyroyale.models.tournament import Tournament
 from pyroyale.models.tournament_detail import TournamentDetail

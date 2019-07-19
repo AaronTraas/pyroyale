@@ -69,14 +69,14 @@ class TestTournament(unittest.TestCase):
 
     def testToDict(self):
         model = Tournament(
-            tag='tag',
+            tag={'foo':'bar'},
             level_cap=123,
             game_mode=[Tournament(name='name')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['tag']=='tag'
+        assert modelDict['tag']['foo']=='bar'
         assert modelDict['level_cap']==123
         assert modelDict['game_mode'][0]['name']=='name'
 

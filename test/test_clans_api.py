@@ -13,6 +13,7 @@
 from __future__ import absolute_import
 
 import unittest
+from unittest.mock import patch
 
 import pyroyale
 from pyroyale.api.clans_api import ClansApi  # noqa: E501

@@ -123,6 +123,8 @@ Class | Method | HTTP request | Description
  - [PlayerLeagueStatistics](docs/PlayerLeagueStatistics.md)
  - [PlayerRanked](docs/PlayerRanked.md)
  - [PlayerRankingList](docs/PlayerRankingList.md)
+ - [SearchPaging](docs/SearchPaging.md)
+ - [SearchPagingCursors](docs/SearchPagingCursors.md)
  - [SeasonStatistics](docs/SeasonStatistics.md)
  - [Tournament](docs/Tournament.md)
  - [TournamentDetail](docs/TournamentDetail.md)

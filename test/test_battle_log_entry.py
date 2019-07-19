@@ -60,7 +60,8 @@ class TestBattleLogEntry(unittest.TestCase):
             type=123,
             battle_time='battle_time',
             is_ladder_tournament={'foo':'bar'},
-            arena=[BattleLogEntry(team='team')]
+            arena=[BattleLogEntry(team='team')],
+            team=BattleLogEntry(team='team')
         )
 
         modelDict = model.to_dict()
@@ -69,6 +70,7 @@ class TestBattleLogEntry(unittest.TestCase):
         assert modelDict['battle_time']=='battle_time'
         assert modelDict['is_ladder_tournament']['foo']=='bar'
         assert modelDict['arena'][0]['team']=='team'
+        assert modelDict['team']['team']=='team'
 
     def testToString(self):
         model = BattleLogEntry('TestStringSequence')

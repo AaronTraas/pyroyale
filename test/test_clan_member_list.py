@@ -46,22 +46,31 @@ class TestClanMemberList(unittest.TestCase):
             items='items'
         )
         modelDict = model.to_dict()
-
         assert modelDict['items']=='items'
 
         model = ClanMemberList(
-            items=123,
+            items=123
         )
         modelDict = model.to_dict()
-
         assert modelDict['items']==123
 
         model = ClanMemberList(
-            items=ClanMemberList(items='items'),
+            items={'foo': 'bar'}
         )
         modelDict = model.to_dict()
+        assert modelDict['items']['foo']=='bar'
 
+        model = ClanMemberList(
+            items=ClanMemberList(items='items')
+        )
+        modelDict = model.to_dict()
         assert modelDict['items']['items']=='items'
+
+        model = ClanMemberList(
+            items=[ClanMemberList(items='items')]
+        )
+        modelDict = model.to_dict()
+        assert modelDict['items'][0]['items']=='items'
 
     def testToString(self):
         model = ClanMemberList('TestStringSequence')

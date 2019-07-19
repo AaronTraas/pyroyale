@@ -46,13 +46,13 @@ class TestArena(unittest.TestCase):
     def testToDict(self):
         model = Arena(
             id=123,
-            name='name'
+            name=Arena(name='name')
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['id']==123
-        assert modelDict['name']=='name'
+        assert modelDict['name']['name']=='name'
 
         model = Arena(
             id={'foo':'bar'},

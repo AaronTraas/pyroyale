@@ -46,22 +46,31 @@ class TestCardList(unittest.TestCase):
             items='items'
         )
         modelDict = model.to_dict()
-
         assert modelDict['items']=='items'
 
         model = CardList(
-            items=123,
+            items=123
         )
         modelDict = model.to_dict()
-
         assert modelDict['items']==123
 
         model = CardList(
-            items=CardList(items='items'),
+            items={'foo': 'bar'}
         )
         modelDict = model.to_dict()
+        assert modelDict['items']['foo']=='bar'
 
+        model = CardList(
+            items=CardList(items='items')
+        )
+        modelDict = model.to_dict()
         assert modelDict['items']['items']=='items'
+
+        model = CardList(
+            items=[CardList(items='items')]
+        )
+        modelDict = model.to_dict()
+        assert modelDict['items'][0]['items']=='items'
 
     def testToString(self):
         model = CardList('TestStringSequence')

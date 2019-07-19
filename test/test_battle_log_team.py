@@ -63,14 +63,18 @@ class TestBattleLogTeam(unittest.TestCase):
         model = BattleLogTeam(
             tag='tag',
             starting_trophies=123,
-            clan=BattleLogTeam(tag='tag'),
+            crowns=BattleLogTeam(tag='tag'),
+            clan=[BattleLogTeam(tag='tag')],
+            cards={'foo': 'bar'}
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['tag']=='tag'
         assert modelDict['starting_trophies']==123
-        assert modelDict['clan']['tag']=='tag'
+        assert modelDict['crowns']['tag']=='tag'
+        assert modelDict['clan'][0]['tag']=='tag'
+        assert modelDict['cards']['foo']=='bar'
 
     def testToString(self):
         model = BattleLogTeam('TestStringSequence')

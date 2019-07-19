@@ -17,12 +17,12 @@ import sys
 import unittest
 
 import pyroyale
-from pyroyale.models.chest import Chest  # noqa: E501
+from pyroyale.models.search_paging import SearchPaging  # noqa: E501
 from pyroyale.rest import ApiException
 
 
-class TestChest(unittest.TestCase):
-    """Chest unit test stubs"""
+class TestSearchPaging(unittest.TestCase):
+    """SearchPaging unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,43 +30,53 @@ class TestChest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDefaults(self):
-        model = Chest()
-        pass
-
     def testConstructorInitializers(self):
-        model = Chest(
-            index='index',
-            name='name'
+        model = SearchPaging(
+            cursors='cursors'
         )
 
-        assert model.index=='index'
-        assert model.name=='name'
+        assert model.cursors=='cursors'
 
     def testToDict(self):
-        model = Chest(
-            index={'foo':'bar'},
+        model = SearchPaging(
+            cursors='cursors'
         )
         modelDict = model.to_dict()
-        assert modelDict['index']['foo']=='bar'
+        assert modelDict['cursors']=='cursors'
 
-        model = Chest(
-            index=Chest(index=123),
-            name=[Chest(name='name')],
+        model = SearchPaging(
+            cursors=123,
         )
         modelDict = model.to_dict()
-        assert modelDict['index']['index']==123
-        assert modelDict['name'][0]['name']=='name'
+        assert modelDict['cursors']==123
+
+        model = SearchPaging(
+            cursors={'foo': 'bar'},
+        )
+        modelDict = model.to_dict()
+        assert modelDict['cursors']['foo']=='bar'
+
+        model = SearchPaging(
+            cursors=SearchPaging(cursors='cursors'),
+        )
+        modelDict = model.to_dict()
+        assert modelDict['cursors']['cursors']=='cursors'
+
+        model = SearchPaging(
+            cursors=[SearchPaging(cursors='cursors')],
+        )
+        modelDict = model.to_dict()
+        assert modelDict['cursors'][0]['cursors']=='cursors'
 
     def testToString(self):
-        model = Chest('TestStringSequence')
+        model = SearchPaging('TestStringSequence')
 
         modelString = model.to_str()
         assert len(modelString) > 1
         assert 'TestStringSequence' in modelString
 
     def testPrint(self):
-        model = Chest('TestStringSequence')
+        model = SearchPaging('TestStringSequence')
 
         capturedOutput = io.StringIO()
         sys.stdout = capturedOutput
@@ -80,14 +90,15 @@ class TestChest(unittest.TestCase):
 
 
     def testEqual(self):
-        model_a  = Chest('A')
-        model_a2 = Chest('A')
-        model_b  = Chest('B')
+        model_a  = SearchPaging('A')
+        model_a2 = SearchPaging('A')
+        model_b  = SearchPaging('B')
 
         assert model_a == model_a
         assert model_a == model_a2
         assert model_a != model_b
         assert model_a != 'not a'
+
 
 if __name__ == '__main__':
     unittest.main()

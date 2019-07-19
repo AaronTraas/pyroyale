@@ -49,15 +49,15 @@ class TestCard(unittest.TestCase):
 
     def testToDict(self):
         model = Card(
-            id=123,
-            name='name',
+            id={'foo':'bar'},
+            name=[Card(id=123)],
             icon_urls=Card(name='name')
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['id']==123
-        assert modelDict['name']=='name'
+        assert modelDict['id']['foo']=='bar'
+        assert modelDict['name'][0]['id']==123
         assert modelDict['icon_urls']['name']=='name'
 
     def testToString(self):

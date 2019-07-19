@@ -47,6 +47,7 @@ class TestWarStandingClan(unittest.TestCase):
             badge_id='badge_id',
             clan_score='clan_score',
             participants='participants',
+            battles_played='battles_played',
             crowns = 'crowns',
             wins = 'wins'
         )
@@ -56,20 +57,21 @@ class TestWarStandingClan(unittest.TestCase):
         assert model.badge_id=='badge_id'
         assert model.clan_score=='clan_score'
         assert model.participants=='participants'
+        assert model.battles_played=='battles_played'
         assert model.crowns=='crowns'
         assert model.wins=='wins'
 
     def testToDict(self):
         model = WarStandingClan(
             tag={'foo':'bar'},
-            clan_score=123,
+            clan_score=WarStandingClan(wins=123),
             participants=[WarStandingClan(name='clanname')]
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['tag']['foo']=='bar'
-        assert modelDict['clan_score']==123
+        assert modelDict['clan_score']['wins']==123
         assert modelDict['participants'][0]['name']=='clanname'
 
     def testToString(self):

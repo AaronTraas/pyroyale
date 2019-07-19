@@ -43,25 +43,34 @@ class TestCardIconUrls(unittest.TestCase):
 
     def testToDict(self):
         model = CardIconUrls(
-            medium='medium',
+            medium='medium'
         )
         modelDict = model.to_dict()
-
         assert modelDict['medium']=='medium'
 
         model = CardIconUrls(
-            medium=123,
+            medium=123
         )
         modelDict = model.to_dict()
-
         assert modelDict['medium']==123
 
         model = CardIconUrls(
-            medium=CardIconUrls(medium='medium'),
+            medium={'foo': 'bar'}
         )
         modelDict = model.to_dict()
+        assert modelDict['medium']['foo']=='bar'
 
+        model = CardIconUrls(
+            medium=CardIconUrls(medium='medium')
+        )
+        modelDict = model.to_dict()
         assert modelDict['medium']['medium']=='medium'
+
+        model = CardIconUrls(
+            medium=[CardIconUrls(medium='medium')]
+        )
+        modelDict = model.to_dict()
+        assert modelDict['medium'][0]['medium']=='medium'
 
     def testToString(self):
         model = CardIconUrls('TestStringSequence')

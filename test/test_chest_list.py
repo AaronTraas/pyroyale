@@ -46,22 +46,31 @@ class TestChestList(unittest.TestCase):
             items='items'
         )
         modelDict = model.to_dict()
-
         assert modelDict['items']=='items'
 
         model = ChestList(
-            items=123,
+            items=123
         )
         modelDict = model.to_dict()
-
         assert modelDict['items']==123
 
         model = ChestList(
-            items=ChestList(items='items'),
+            items={'foo': 'bar'}
         )
         modelDict = model.to_dict()
+        assert modelDict['items']['foo']=='bar'
 
+        model = ChestList(
+            items=ChestList(items='items')
+        )
+        modelDict = model.to_dict()
         assert modelDict['items']['items']=='items'
+
+        model = ChestList(
+            items=[ChestList(items='items')]
+        )
+        modelDict = model.to_dict()
+        assert modelDict['items'][0]['items']=='items'
 
     def testToString(self):
         model = ChestList('TestStringSequence')

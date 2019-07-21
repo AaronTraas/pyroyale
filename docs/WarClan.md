@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tag** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
-**badge_id** | **str** |  | [optional] 
+**badge_id** | **int** |  | [optional] 
 **clan_score** | **int** |  | [optional] 
 **participants** | **int** |  | [optional] 
 **crowns** | **int** |  | [optional] 

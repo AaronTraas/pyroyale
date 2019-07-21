@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **battles_played** | **int** |  | [optional] 
 **collection_day_battles_played** | **int** |  | [optional] 
 **wins** | **int** |  | [optional] 
+**number_of_battles** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

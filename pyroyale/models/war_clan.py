@@ -31,7 +31,7 @@ class WarClan(object):
     swagger_types = {
         'tag': 'str',
         'name': 'str',
-        'badge_id': 'str',
+        'badge_id': 'int',
         'clan_score': 'int',
         'participants': 'int',
         'crowns': 'int',
@@ -131,7 +131,7 @@ class WarClan(object):
 
 
         :return: The badge_id of this WarClan.  # noqa: E501
-        :rtype: str
+        :rtype: int
         """
         return self._badge_id
 
@@ -141,7 +141,7 @@ class WarClan(object):
 
 
         :param badge_id: The badge_id of this WarClan.  # noqa: E501
-        :type: str
+        :type: int
         """
 
         self._badge_id = badge_id

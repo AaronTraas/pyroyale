@@ -15,6 +15,7 @@ import re  # noqa: F401
 
 import six
 from pyroyale.models.clan_search_result_clan import ClanSearchResultClan  # noqa: F401,E501
+from pyroyale.models.search_paging import SearchPaging  # noqa: F401,E501
 
 
 class ClanSearchResult(object):
@@ -30,19 +31,24 @@ class ClanSearchResult(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'list[ClanSearchResultClan]'
+        'items': 'list[ClanSearchResultClan]',
+        'paging': 'SearchPaging'
     }
 
     attribute_map = {
-        'items': 'items'
+        'items': 'items',
+        'paging': 'paging'
     }
 
-    def __init__(self, items=None):  # noqa: E501
+    def __init__(self, items=None, paging=None):  # noqa: E501
         """ClanSearchResult - a model defined in Swagger"""  # noqa: E501
         self._items = None
+        self._paging = None
         self.discriminator = None
         if items is not None:
             self.items = items
+        if paging is not None:
+            self.paging = paging
 
     @property
     def items(self):
@@ -64,6 +70,27 @@ class ClanSearchResult(object):
         """
 
         self._items = items
+
+    @property
+    def paging(self):
+        """Gets the paging of this ClanSearchResult.  # noqa: E501
+
+
+        :return: The paging of this ClanSearchResult.  # noqa: E501
+        :rtype: SearchPaging
+        """
+        return self._paging
+
+    @paging.setter
+    def paging(self, paging):
+        """Sets the paging of this ClanSearchResult.
+
+
+        :param paging: The paging of this ClanSearchResult.  # noqa: E501
+        :type: SearchPaging
+        """
+
+        self._paging = paging
 
     def to_dict(self):
         """Returns the model properties as a dict"""

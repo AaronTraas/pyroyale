@@ -34,7 +34,8 @@ class WarParticipant(object):
         'cards_earned': 'int',
         'battles_played': 'int',
         'collection_day_battles_played': 'int',
-        'wins': 'int'
+        'wins': 'int',
+        'number_of_battles': 'int'
     }
 
     attribute_map = {
@@ -43,10 +44,11 @@ class WarParticipant(object):
         'cards_earned': 'cardsEarned',
         'battles_played': 'battlesPlayed',
         'collection_day_battles_played': 'collectionDayBattlesPlayed',
-        'wins': 'wins'
+        'wins': 'wins',
+        'number_of_battles': 'numberOfBattles'
     }
 
-    def __init__(self, tag=None, name=None, cards_earned=None, battles_played=None, collection_day_battles_played=None, wins=None):  # noqa: E501
+    def __init__(self, tag=None, name=None, cards_earned=None, battles_played=None, collection_day_battles_played=None, wins=None, number_of_battles=None):  # noqa: E501
         """WarParticipant - a model defined in Swagger"""  # noqa: E501
         self._tag = None
         self._name = None
@@ -54,6 +56,7 @@ class WarParticipant(object):
         self._battles_played = None
         self._collection_day_battles_played = None
         self._wins = None
+        self._number_of_battles = None
         self.discriminator = None
         if tag is not None:
             self.tag = tag
@@ -67,6 +70,8 @@ class WarParticipant(object):
             self.collection_day_battles_played = collection_day_battles_played
         if wins is not None:
             self.wins = wins
+        if number_of_battles is not None:
+            self.number_of_battles = number_of_battles
 
     @property
     def tag(self):
@@ -193,6 +198,27 @@ class WarParticipant(object):
         """
 
         self._wins = wins
+
+    @property
+    def number_of_battles(self):
+        """Gets the number_of_battles of this WarParticipant.  # noqa: E501
+
+
+        :return: The number_of_battles of this WarParticipant.  # noqa: E501
+        :rtype: int
+        """
+        return self._number_of_battles
+
+    @number_of_battles.setter
+    def number_of_battles(self, number_of_battles):
+        """Sets the number_of_battles of this WarParticipant.
+
+
+        :param number_of_battles: The number_of_battles of this WarParticipant.  # noqa: E501
+        :type: int
+        """
+
+        self._number_of_battles = number_of_battles
 
     def to_dict(self):
         """Returns the model properties as a dict"""

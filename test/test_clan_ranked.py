@@ -57,15 +57,15 @@ class TestClanRanked(unittest.TestCase):
 
     def testToDict(self):
         model = ClanRanked(
-            tag='tag',
-            clan_score=123,
+            tag={'foo':'bar'},
+            clan_score=ClanRanked(tag=123),
             members=[ClanRanked(name='clanname')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['tag']=='tag'
-        assert modelDict['clan_score']==123
+        assert modelDict['tag']['foo']=='bar'
+        assert modelDict['clan_score']['tag']==123
         assert modelDict['members'][0]['name']=='clanname'
 
     def testToString(self):

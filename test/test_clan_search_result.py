@@ -42,32 +42,23 @@ class TestClanSearchResult(unittest.TestCase):
 
     def testConstructorInitializers(self):
         model = ClanSearchResult(
-            items='items'
+            items='items',
+            paging='paging'
         )
 
         assert model.items=='items'
+        assert model.paging=='paging'
 
     def testToDict(self):
         model = ClanSearchResult(
-            items='items'
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']=='items'
-
-        model = ClanSearchResult(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = ClanSearchResult(
-            items=ClanSearchResult(items='items'),
+            items=ClanSearchResult(items='items', paging=123),
+            paging=[ClanSearchResult(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = ClanSearchResult('TestStringSequence')

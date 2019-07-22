@@ -26,44 +26,285 @@ class TestLocationsApi(unittest.TestCase):
     def setUp(self):
         self.api = LocationsApi()  # noqa: E501
 
-    def tearDown(self):
-        pass
+    @patch('urllib3.PoolManager.request')
+    def test_get_location(self, mock_get):
 
-    def test_get_clan_ranking(self):
-        """Test case for get_clan_ranking
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "id": 57000001,
+              "name": "North America",
+              "isCountry": false
+            }
+        """.encode('utf-8')
 
-        Get clan rankings for a specific location  # noqa: E501
-        """
-        pass
+        location = self.api.get_location(57000001)
 
-    def test_get_clan_wars_ranking(self):
-        """Test case for get_clan_wars_ranking
+        assert location.id==57000001
+        assert location.name=='North America'
+        assert location.is_country==False
 
-        Get clan war rankings for a specific location  # noqa: E501
-        """
-        pass
+    @patch('urllib3.PoolManager.request')
+    def test_get_location(self, mock_get):
 
-    def test_get_location(self):
-        """Test case for get_location
+        mock_get.return_value.status=500
 
-        Get location information  # noqa: E501
-        """
-        pass
+        try:
+            location = self.api.get_location(57000001)
+            assert False
 
-    def test_get_locations(self):
-        """Test case for get_locations
+        except ApiException as e:
+            print("Exception when calling LocationsApi->get_location: %s\n" % e)
+            assert True
 
-        List locations  # noqa: E501
-        """
-        pass
+    @patch('urllib3.PoolManager.request')
+    def test_get_locations(self, mock_get):
 
-    def test_get_player_ranking(self):
-        """Test case for get_player_ranking
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "items": [
+                {
+                  "id": 57000000,
+                  "name": "Europe",
+                  "isCountry": false
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "after": "after"
+                }
+              }
+            }
+        """.encode('utf-8')
+        locations = self.api.get_locations(
+            limit=1,
+            after='after',
+            before='before'
+        )
 
-        Get player rankings for a specific location  # noqa: E501
-        """
-        pass
+        assert type(locations.items) == list
 
+        location = locations.items[0]
+        assert location.id==57000000
+        assert location.name=='Europe'
+        assert location.is_country==False
+
+        assert locations.paging.cursors.after=='after'
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_locations(self, mock_get):
+
+        mock_get.return_value.status=500
+
+        try:
+            locations = self.api.get_locations(
+                limit=1,
+                after='after',
+                before='before'
+            )
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling LocationsApi->get_locations: %s\n" % e)
+            assert True
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan_ranking(self, mock_get):
+
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "items": [
+                {
+                  "tag": "#JY8YVV",
+                  "name": "Agrassar",
+                  "rank": 1,
+                  "previousRank": 1,
+                  "location": {
+                    "id": 57000001,
+                    "name": "North America",
+                    "isCountry": false
+                  },
+                  "clanScore": 2620,
+                  "badgeId": 16000010,
+                  "members": 48
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "after": "after"
+                }
+              }
+            }
+        """.encode('utf-8')
+
+        clans = self.api.get_clan_ranking(
+            location_id='aaa',
+            limit=1,
+            after='after',
+            before='before'
+        )
+
+        assert type(clans.items) == list
+
+        clan = clans.items[0]
+        assert clan.tag=='#JY8YVV'
+        assert clan.name=='Agrassar'
+        assert clan.rank==1
+        assert clan.previous_rank==1
+        assert clan.location.id==57000001
+        assert clan.location.name=='North America'
+        assert clan.location.is_country==False
+        assert clan.badge_id==16000010
+        assert clan.clan_score==2620
+        assert clan.members==48
+
+        assert clans.paging.cursors.after=='after'
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan_ranking_fail(self, mock_get):
+
+        mock_get.return_value.status=500
+
+        try:
+            clan = self.api.get_clan_ranking('57000001')
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling LocationsApi->get_clan_ranking: %s\n" % e)
+            assert True
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan_wars_ranking(self, mock_get):
+
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "items": [
+                {
+                  "tag": "#JY8YVV",
+                  "name": "Agrassar",
+                  "rank": 1,
+                  "previousRank": 1,
+                  "location": {
+                    "id": 57000001,
+                    "name": "North America",
+                    "isCountry": false
+                  },
+                  "clanScore": 2620,
+                  "badgeId": 16000010,
+                  "members": 48
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "after": "after"
+                }
+              }
+            }
+        """.encode('utf-8')
+
+        clans = self.api.get_clan_wars_ranking(
+            location_id='aaa',
+            limit=1,
+            after='after',
+            before='before'
+        )
+
+        clan = clans.items[0]
+        assert clan.tag=='#JY8YVV'
+        assert clan.name=='Agrassar'
+        assert clan.rank==1
+        assert clan.previous_rank==1
+        assert clan.location.id==57000001
+        assert clan.location.name=='North America'
+        assert clan.location.is_country==False
+        assert clan.badge_id==16000010
+        assert clan.clan_score==2620
+        assert clan.members==48
+
+        assert clans.paging.cursors.after=='after'
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_clan_ranking_fail(self, mock_get):
+
+        mock_get.return_value.status=500
+
+        try:
+            clan = self.api.get_clan_wars_ranking('57000001')
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling LocationsApi->get_clan_wars_ranking: %s\n" % e)
+            assert True
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_player_ranking(self, mock_get):
+
+        mock_get.return_value.status=200
+        mock_get.return_value.data = """
+            {
+              "items": [
+                {
+                  "tag": "#AAAAAA",
+                  "name": "Fake Player",
+                  "expLevel": 13,
+                  "trophies": 7000,
+                  "rank": 1,
+                  "previousRank": 1,
+                  "clan": {
+                    "tag": "#BBBBBB",
+                    "name": "Fake Clan",
+                    "badgeId": 16000000
+                  },
+                  "arena": {
+                    "id": 54000031,
+                    "name": "Ultimate Champion"
+                  }
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "after": "after"
+                }
+              }
+            }
+        """.encode('utf-8')
+        players = self.api.get_player_ranking(
+            location_id=57000249,
+            limit=1,
+            after='after',
+            before='before'
+        )
+
+        player = players.items[0]
+        assert player.tag=='#AAAAAA'
+        assert player.name=='Fake Player'
+        assert player.trophies==7000
+        assert player.exp_level==13
+        assert player.rank==1
+        assert player.previous_rank==1
+        assert player.clan.tag=='#BBBBBB'
+        assert player.clan.name=='Fake Clan'
+        assert player.clan.badge_id==16000000
+        assert player.arena.id==54000031
+        assert player.arena.name=='Ultimate Champion'
+
+        assert players.paging.cursors.after=='after'
 
 if __name__ == '__main__':
     unittest.main()
+
+    @patch('urllib3.PoolManager.request')
+    def test_get_player_ranking_fail(self, mock_get):
+
+        mock_get.return_value.status=500
+
+        try:
+            clan = self.api.get_player_ranking(57000001)
+            assert False
+
+        except ApiException as e:
+            print("Exception when calling LocationsApi->get_player_ranking: %s\n" % e)
+            assert True

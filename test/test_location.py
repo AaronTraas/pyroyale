@@ -44,14 +44,12 @@ class TestLocation(unittest.TestCase):
         model = Location(
             id='id',
             name='name',
-            is_country='is_country',
-            country_code='country_code'
+            is_country='is_country'
         )
 
         assert model.id=='id'
         assert model.name=='name'
         assert model.is_country=='is_country'
-        assert model.country_code=='country_code'
 
     def testToDict(self):
         model = Location(

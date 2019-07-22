@@ -45,21 +45,14 @@ class TestError(unittest.TestCase):
 
     def testToDict(self):
         model = Error(
-            reason='reason',
-            message=123
-        )
-
-        modelDict = model.to_dict()
-
-        assert modelDict['reason']=='reason'
-        assert modelDict['message']==123
-
-        model = Error(
-            reason=Error(reason='reason'),
+            reason=Error(reason='reason', message=123),
+            message=[Error(reason={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['reason']['reason']=='reason'
+        assert modelDict['reason']['message']==123
+        assert modelDict['message'][0]['reason']['foo']=='bar'
 
     def testToString(self):
         model = Error('TestStringSequence')

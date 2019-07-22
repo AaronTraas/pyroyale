@@ -36,32 +36,23 @@ class TestClanWarsRankingList(unittest.TestCase):
 
     def testConstructorInitializers(self):
         model = ClanWarsRankingList(
-            items='items'
+            items='items',
+            paging='paging'
         )
 
         assert model.items=='items'
+        assert model.paging=='paging'
 
     def testToDict(self):
         model = ClanWarsRankingList(
-            items='items'
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']=='items'
-
-        model = ClanWarsRankingList(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = ClanWarsRankingList(
-            items=ClanWarsRankingList(items='items'),
+            items=ClanWarsRankingList(items='items', paging=123),
+            paging=[ClanWarsRankingList(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = ClanWarsRankingList('TestStringSequence')

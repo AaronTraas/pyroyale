@@ -45,21 +45,14 @@ class TestGameMode(unittest.TestCase):
 
     def testToDict(self):
         model = GameMode(
-            id='id',
-            name=123
-        )
-
-        modelDict = model.to_dict()
-
-        assert modelDict['id']=='id'
-        assert modelDict['name']==123
-
-        model = GameMode(
-            id=GameMode(id='id'),
+            id=GameMode(id='id', name=123),
+            name=[GameMode(id={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['id']['id']=='id'
+        assert modelDict['id']['name']==123
+        assert modelDict['name'][0]['id']['foo']=='bar'
 
     def testToString(self):
         model = GameMode('TestStringSequence')

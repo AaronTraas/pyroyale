@@ -31,23 +31,20 @@ class Location(object):
     swagger_types = {
         'id': 'int',
         'name': 'str',
-        'is_country': 'bool',
-        'country_code': 'str'
+        'is_country': 'bool'
     }
 
     attribute_map = {
         'id': 'id',
         'name': 'name',
-        'is_country': 'isCountry',
-        'country_code': 'countryCode'
+        'is_country': 'isCountry'
     }
 
-    def __init__(self, id=None, name=None, is_country=None, country_code=None):  # noqa: E501
+    def __init__(self, id=None, name=None, is_country=None):  # noqa: E501
         """Location - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._name = None
         self._is_country = None
-        self._country_code = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -55,8 +52,6 @@ class Location(object):
             self.name = name
         if is_country is not None:
             self.is_country = is_country
-        if country_code is not None:
-            self.country_code = country_code
 
     @property
     def id(self):
@@ -120,27 +115,6 @@ class Location(object):
         """
 
         self._is_country = is_country
-
-    @property
-    def country_code(self):
-        """Gets the country_code of this Location.  # noqa: E501
-
-
-        :return: The country_code of this Location.  # noqa: E501
-        :rtype: str
-        """
-        return self._country_code
-
-    @country_code.setter
-    def country_code(self, country_code):
-        """Sets the country_code of this Location.
-
-
-        :param country_code: The country_code of this Location.  # noqa: E501
-        :type: str
-        """
-
-        self._country_code = country_code
 
     def to_dict(self):
         """Returns the model properties as a dict"""

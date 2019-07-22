@@ -43,25 +43,14 @@ class TestClanRankingList(unittest.TestCase):
 
     def testToDict(self):
         model = ClanRankingList(
-            items='items'
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']=='items'
-
-        model = ClanRankingList(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = ClanRankingList(
-            items=ClanRankingList(items='items'),
+            items=ClanRankingList(items='items', paging=123),
+            paging=[ClanRankingList(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = ClanRankingList('TestStringSequence')

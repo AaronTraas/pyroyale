@@ -51,17 +51,15 @@ class TestTournamentPlayer(unittest.TestCase):
 
     def testToDict(self):
         model = TournamentPlayer(
-            tag='tag',
-            score=123,
+            score=TournamentPlayer(name=123),
             rank={'foo':'bar'},
             clan=[TournamentPlayer(name='name')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['tag']=='tag'
         assert modelDict['rank']['foo']=='bar'
-        assert modelDict['score']==123
+        assert modelDict['score']['name']==123
         assert modelDict['clan'][0]['name']=='name'
 
     def testToString(self):

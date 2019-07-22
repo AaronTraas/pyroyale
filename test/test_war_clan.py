@@ -24,15 +24,9 @@ from pyroyale.rest import ApiException
 class TestWarClan(unittest.TestCase):
     """WarClan unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = WarClan()
-        pass
+        assert True
 
     def testConstructorInitializers(self):
         model = WarClan(
@@ -59,15 +53,15 @@ class TestWarClan(unittest.TestCase):
 
     def testToDict(self):
         model = WarClan(
-            tag='tag',
-            clan_score=123,
+            tag={'foo':'bar'},
+            clan_score=WarClan(name=123),
             participants=[WarClan(name='clanname')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['tag']=='tag'
-        assert modelDict['clan_score']==123
+        assert modelDict['tag']['foo']=='bar'
+        assert modelDict['clan_score']['name']==123
         assert modelDict['participants'][0]['name']=='clanname'
 
     def testToString(self):

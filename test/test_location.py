@@ -53,15 +53,15 @@ class TestLocation(unittest.TestCase):
 
     def testToDict(self):
         model = Location(
-            id='id',
-            name=123,
+            id={'foo':'bar'},
+            name=Location(id=123),
             is_country=[Location(name='clanname')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['id']=='id'
-        assert modelDict['name']==123
+        assert modelDict['id']['foo']=='bar'
+        assert modelDict['name']['id']==123
         assert modelDict['is_country'][0]['name']=='clanname'
 
     def testToString(self):

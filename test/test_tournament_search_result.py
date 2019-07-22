@@ -24,50 +24,28 @@ from pyroyale.rest import ApiException
 class TestTournamentSearchResult(unittest.TestCase):
     """TournamentSearchResult unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testTournamentSearchResult(self):
-        """Test TournamentSearchResult"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = TournamentSearchResult()  # noqa: E501
-        pass
-
     def testDefaults(self):
         model = TournamentSearchResult()
-        pass
 
     def testConstructorInitializers(self):
         model = TournamentSearchResult(
-            items='items'
+            items='items',
+            paging='paging'
         )
 
         assert model.items=='items'
+        assert model.paging=='paging'
 
     def testToDict(self):
         model = TournamentSearchResult(
-            items='items'
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']=='items'
-
-        model = TournamentSearchResult(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = TournamentSearchResult(
-            items=TournamentSearchResult(items='items'),
+            items=TournamentSearchResult(items='items', paging=123),
+            paging=[TournamentSearchResult(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = TournamentSearchResult('TestStringSequence')

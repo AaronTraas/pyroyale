@@ -12,11 +12,9 @@ from pyroyale.rest import ApiException
 class TestWarParticipant(unittest.TestCase):
     """WarParticipant unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
+    def testDefaults(self):
+        model = WarParticipant()
+        assert True
 
     def testConstructorInitializers(self):
         model = WarParticipant(
@@ -38,14 +36,14 @@ class TestWarParticipant(unittest.TestCase):
     def testToDict(self):
         model = WarParticipant(
             tag={'foo':'bar'},
-            battles_played=123,
+            battles_played=WarParticipant(name=123),
             collection_day_battles_played=[WarParticipant(name='name')]
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['tag']['foo']=='bar'
-        assert modelDict['battles_played']==123
+        assert modelDict['battles_played']['name']==123
         assert modelDict['collection_day_battles_played'][0]['name']=='name'
 
     def testToString(self):

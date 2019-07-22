@@ -24,15 +24,9 @@ from pyroyale.rest import ApiException
 class TestWarStanding(unittest.TestCase):
     """WarStanding unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = WarStanding()
-        pass
+        assert True
 
     def testConstructorInitializers(self):
         model = WarStanding(
@@ -45,24 +39,14 @@ class TestWarStanding(unittest.TestCase):
 
     def testToDict(self):
         model = WarStanding(
-            clan=123,
-            trophy_change='trophy_change'
+            clan=WarStanding(clan='clan', trophy_change=123),
+            trophy_change=[WarStanding(clan={'foo': 'bar'})]
         )
-
         modelDict = model.to_dict()
 
-        assert modelDict['clan']==123
-        assert modelDict['trophy_change']=='trophy_change'
-
-        model = WarStanding(
-            clan={'foo':'bar'},
-            trophy_change=[WarStanding(clan='clan')]
-        )
-
-        modelDict = model.to_dict()
-
-        assert modelDict['clan']['foo']=='bar'
-        assert modelDict['trophy_change'][0]['clan']=='clan'
+        assert modelDict['clan']['clan']=='clan'
+        assert modelDict['clan']['trophy_change']==123
+        assert modelDict['trophy_change'][0]['clan']['foo']=='bar'
 
     def testToString(self):
         model = WarStanding('TestStringSequence')

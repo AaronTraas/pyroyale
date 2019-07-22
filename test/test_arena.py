@@ -24,15 +24,9 @@ from pyroyale.rest import ApiException
 class TestArena(unittest.TestCase):
     """Arena unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = Arena()
-        pass
+        assert True
 
     def testConstructorInitializers(self):
         model = Arena(

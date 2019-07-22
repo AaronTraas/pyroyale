@@ -24,11 +24,9 @@ from pyroyale.rest import ApiException
 class TestTournamentDetailDetail(unittest.TestCase):
     """TournamentDetailDetail unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
+    def testDefaults(self):
+        model = TournamentDetail()
+        assert True
 
     def testConstructorInitializers(self):
         model = TournamentDetail(
@@ -70,14 +68,14 @@ class TestTournamentDetailDetail(unittest.TestCase):
     def testToDict(self):
         model = TournamentDetail(
             tag={'foo':'bar'},
-            started_time=123,
+            started_time=TournamentDetail(name=123),
             members_list=[TournamentDetail(name='name')]
         )
 
         modelDict = model.to_dict()
 
         assert modelDict['tag']['foo']=='bar'
-        assert modelDict['started_time']==123
+        assert modelDict['started_time']['name']==123
         assert modelDict['members_list'][0]['name']=='name'
 
     def testToString(self):

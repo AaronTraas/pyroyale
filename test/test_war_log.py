@@ -24,50 +24,29 @@ from pyroyale.rest import ApiException
 class TestWarLog(unittest.TestCase):
     """WarLog unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testWarLog(self):
-        """Test WarLog"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = WarLog()  # noqa: E501
-        pass
-
     def testDefaults(self):
         model = WarLog()
-        pass
+        assert True
 
     def testConstructorInitializers(self):
         model = WarLog(
-            items='items'
+            items='items',
+            paging='paging'
         )
 
         assert model.items=='items'
+        assert model.paging=='paging'
 
     def testToDict(self):
         model = WarLog(
-            items='items'
+            items=WarLog(items='items', paging=123),
+            paging=[WarLog(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
-        assert modelDict['items']=='items'
-
-        model = WarLog(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = WarLog(
-            items=[WarLog(items='items')],
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items'][0]['items']=='items'
+        assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = WarLog('TestStringSequence')

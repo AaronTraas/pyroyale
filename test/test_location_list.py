@@ -24,44 +24,28 @@ from pyroyale.rest import ApiException
 class TestLocationList(unittest.TestCase):
     """LocationList unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = LocationList()
-        pass
 
     def testConstructorInitializers(self):
         model = LocationList(
-            items='items'
+            items='items',
+            paging='paging'
         )
 
         assert model.items=='items'
+        assert model.paging=='paging'
 
     def testToDict(self):
         model = LocationList(
-            items='items'
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']=='items'
-
-        model = LocationList(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = LocationList(
-            items=LocationList(items='items'),
+            items=LocationList(items='items', paging=123),
+            paging=[LocationList(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = LocationList('TestStringSequence')

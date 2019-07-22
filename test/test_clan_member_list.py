@@ -24,15 +24,8 @@ from pyroyale.rest import ApiException
 class TestClanMemberList(unittest.TestCase):
     """ClanMemberList unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = ClanMemberList()
-        pass
 
     def testConstructorInitializers(self):
         model = ClanMemberList(

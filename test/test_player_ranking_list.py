@@ -36,32 +36,23 @@ class TestPlayerRankingList(unittest.TestCase):
 
     def testConstructorInitializers(self):
         model = PlayerRankingList(
-            items='items'
+            items='items',
+            paging='paging'
         )
 
         assert model.items=='items'
+        assert model.paging=='paging'
 
     def testToDict(self):
         model = PlayerRankingList(
-            items='items'
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']=='items'
-
-        model = PlayerRankingList(
-            items=123,
-        )
-        modelDict = model.to_dict()
-
-        assert modelDict['items']==123
-
-        model = PlayerRankingList(
-            items=PlayerRankingList(items='items'),
+            items=PlayerRankingList(items='items', paging=123),
+            paging=[PlayerRankingList(items={'foo': 'bar'})]
         )
         modelDict = model.to_dict()
 
         assert modelDict['items']['items']=='items'
+        assert modelDict['items']['paging']==123
+        assert modelDict['paging'][0]['items']['foo']=='bar'
 
     def testToString(self):
         model = PlayerRankingList('TestStringSequence')

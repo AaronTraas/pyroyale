@@ -46,6 +46,8 @@ upload:
 
 swagger: delete-models
 	swagger-codegen generate -i https://raw.githubusercontent.com/AaronTraas/clashroyale-swagger/master/swagger.yaml -l python -DpackageName=pyroyale -o .
+	cat templates/README_suffix.md >> README.md
 
 swagger-local: delete-models
 	swagger-codegen generate -i ../clashroyale-swagger/swagger.yaml -l python -DpackageName=pyroyale -o .
+	cat templates/README_suffix.md >> README.md

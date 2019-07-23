@@ -38,9 +38,10 @@ class TestClansApi(unittest.TestCase):
               "clanScore": 49658,
               "clanWarTrophies": 2620,
               "location": {
-                "id": 57000006,
-                "name": "International",
-                "isCountry": false
+                "id": 57000248,
+                "name": "United Kingdom",
+                "isCountry": true,
+                "countryCode": "GB"
               },
               "requiredTrophies": 4000,
               "donationsPerWeek": 12415,
@@ -80,9 +81,10 @@ class TestClansApi(unittest.TestCase):
         assert clan.badge_id==16000010
         assert clan.clan_score==49658
         assert clan.clan_war_trophies==2620
-        assert clan.location.id==57000006
-        assert clan.location.name=='International'
-        assert clan.location.is_country==False
+        assert clan.location.id==57000248
+        assert clan.location.name=='United Kingdom'
+        assert clan.location.country_code=='GB'
+        assert clan.location.is_country==True
         assert clan.required_trophies==4000
         assert clan.donations_per_week==12415
         assert clan.clan_chest_status=='inactive'

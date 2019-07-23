@@ -5,6 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
 **id** | **int** |  | [optional] 
+**level** | **int** |  | [optional] 
+**count** | **int** |  | [optional] 
 **max_level** | **int** |  | [optional] 
 **icon_urls** | [**CardIconUrls**](CardIconUrls.md) |  | [optional] 
 

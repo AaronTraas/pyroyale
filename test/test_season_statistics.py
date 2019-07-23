@@ -24,15 +24,8 @@ from pyroyale.rest import ApiException
 class TestSeasonStatistics(unittest.TestCase):
     """SeasonStatistics unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = SeasonStatistics()
-        pass
 
     def testConstructorInitializers(self):
         model = SeasonStatistics(
@@ -47,13 +40,15 @@ class TestSeasonStatistics(unittest.TestCase):
 
     def testToDict(self):
         model = SeasonStatistics(
-            id=123,
+            id={'foo': 'bar'},
+            trophies=SeasonStatistics(trophies=123),
             best_trophies=[SeasonStatistics(trophies='trophies')],
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['id']==123
+        assert modelDict['id']['foo']=='bar'
+        assert modelDict['trophies']['trophies']==123
         assert modelDict['best_trophies'][0]['trophies']=='trophies'
 
     def testToString(self):

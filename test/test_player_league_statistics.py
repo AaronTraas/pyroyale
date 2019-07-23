@@ -24,15 +24,8 @@ from pyroyale.rest import ApiException
 class TestPlayerLeagueStatistics(unittest.TestCase):
     """PlayerLeagueStatistics unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = PlayerLeagueStatistics()
-        pass
 
     def testConstructorInitializers(self):
         model = PlayerLeagueStatistics(
@@ -47,15 +40,16 @@ class TestPlayerLeagueStatistics(unittest.TestCase):
 
     def testToDict(self):
         model = PlayerLeagueStatistics(
-            current_season=123,
-            previous_season='previous_season',
+            current_season={'foo': 'bar'},
+            previous_season=PlayerLeagueStatistics(previous_season=123),
             best_season=[PlayerLeagueStatistics(previous_season='previous_season')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['current_season']==123
-        assert modelDict['best_season'][0]['previous_season']=='previous_season'
+        assert modelDict['current_season']['foo'] == 'bar'
+        assert modelDict['previous_season']['previous_season'] == 123
+        assert modelDict['best_season'][0]['previous_season'] == 'previous_season'
 
     def testToString(self):
         model = PlayerLeagueStatistics('TestStringSequence')

@@ -24,15 +24,8 @@ from pyroyale.rest import ApiException
 class TestChest(unittest.TestCase):
     """Chest unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = Chest()
-        pass
 
     def testConstructorInitializers(self):
         model = Chest(

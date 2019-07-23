@@ -54,20 +54,15 @@ class TestCardsApi(unittest.TestCase):
             }
         """.encode('utf-8')
 
-        try:
-            # Get list of available cards
-            cardList = self.api.get_cards()
-            assert type(cardList.items) == list
+        # Get list of available cards
+        cardList = self.api.get_cards()
+        assert type(cardList.items) == list
 
-            assert cardList.items[0].name == 'Knight'
-            assert cardList.items[0].max_level == 13
+        assert cardList.items[0].name == 'Knight'
+        assert cardList.items[0].max_level == 13
 
-            assert cardList.items[1].name == 'Archers'
-            assert cardList.items[1].max_level == 13
-
-        except ApiException as e:
-            print("Exception when calling CardsApi->get_cards: %s\n" % e)
-            assert False
+        assert cardList.items[1].name == 'Archers'
+        assert cardList.items[1].max_level == 13
 
     @patch('urllib3.PoolManager.request')
     def test_get_cards_fail(self, mock_get):
@@ -82,7 +77,6 @@ class TestCardsApi(unittest.TestCase):
         except ApiException as e:
             print("Exception when calling CardsApi->get_cards: %s\n" % e)
             assert True
-
 
 if __name__ == '__main__':
     unittest.main()

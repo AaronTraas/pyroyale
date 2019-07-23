@@ -14,7 +14,7 @@ import pprint
 import re  # noqa: F401
 
 import six
-from pyroyale.models.card_list import CardList  # noqa: F401,E501
+from pyroyale.models.card import Card  # noqa: F401,E501
 from pyroyale.models.clan_base import ClanBase  # noqa: F401,E501
 
 
@@ -36,8 +36,10 @@ class BattleLogTeam(object):
         'starting_trophies': 'int',
         'trophy_change': 'int',
         'crowns': 'int',
+        'king_tower_hit_points': 'int',
+        'princess_towers_hit_points': 'list[int]',
         'clan': 'ClanBase',
-        'cards': 'CardList'
+        'cards': 'list[Card]'
     }
 
     attribute_map = {
@@ -46,17 +48,21 @@ class BattleLogTeam(object):
         'starting_trophies': 'startingTrophies',
         'trophy_change': 'trophyChange',
         'crowns': 'crowns',
+        'king_tower_hit_points': 'kingTowerHitPoints',
+        'princess_towers_hit_points': 'princessTowersHitPoints',
         'clan': 'clan',
         'cards': 'cards'
     }
 
-    def __init__(self, tag=None, name=None, starting_trophies=None, trophy_change=None, crowns=None, clan=None, cards=None):  # noqa: E501
+    def __init__(self, tag=None, name=None, starting_trophies=None, trophy_change=None, crowns=None, king_tower_hit_points=None, princess_towers_hit_points=None, clan=None, cards=None):  # noqa: E501
         """BattleLogTeam - a model defined in Swagger"""  # noqa: E501
         self._tag = None
         self._name = None
         self._starting_trophies = None
         self._trophy_change = None
         self._crowns = None
+        self._king_tower_hit_points = None
+        self._princess_towers_hit_points = None
         self._clan = None
         self._cards = None
         self.discriminator = None
@@ -70,6 +76,10 @@ class BattleLogTeam(object):
             self.trophy_change = trophy_change
         if crowns is not None:
             self.crowns = crowns
+        if king_tower_hit_points is not None:
+            self.king_tower_hit_points = king_tower_hit_points
+        if princess_towers_hit_points is not None:
+            self.princess_towers_hit_points = princess_towers_hit_points
         if clan is not None:
             self.clan = clan
         if cards is not None:
@@ -181,6 +191,48 @@ class BattleLogTeam(object):
         self._crowns = crowns
 
     @property
+    def king_tower_hit_points(self):
+        """Gets the king_tower_hit_points of this BattleLogTeam.  # noqa: E501
+
+
+        :return: The king_tower_hit_points of this BattleLogTeam.  # noqa: E501
+        :rtype: int
+        """
+        return self._king_tower_hit_points
+
+    @king_tower_hit_points.setter
+    def king_tower_hit_points(self, king_tower_hit_points):
+        """Sets the king_tower_hit_points of this BattleLogTeam.
+
+
+        :param king_tower_hit_points: The king_tower_hit_points of this BattleLogTeam.  # noqa: E501
+        :type: int
+        """
+
+        self._king_tower_hit_points = king_tower_hit_points
+
+    @property
+    def princess_towers_hit_points(self):
+        """Gets the princess_towers_hit_points of this BattleLogTeam.  # noqa: E501
+
+
+        :return: The princess_towers_hit_points of this BattleLogTeam.  # noqa: E501
+        :rtype: list[int]
+        """
+        return self._princess_towers_hit_points
+
+    @princess_towers_hit_points.setter
+    def princess_towers_hit_points(self, princess_towers_hit_points):
+        """Sets the princess_towers_hit_points of this BattleLogTeam.
+
+
+        :param princess_towers_hit_points: The princess_towers_hit_points of this BattleLogTeam.  # noqa: E501
+        :type: list[int]
+        """
+
+        self._princess_towers_hit_points = princess_towers_hit_points
+
+    @property
     def clan(self):
         """Gets the clan of this BattleLogTeam.  # noqa: E501
 
@@ -207,7 +259,7 @@ class BattleLogTeam(object):
 
 
         :return: The cards of this BattleLogTeam.  # noqa: E501
-        :rtype: CardList
+        :rtype: list[Card]
         """
         return self._cards
 
@@ -217,7 +269,7 @@ class BattleLogTeam(object):
 
 
         :param cards: The cards of this BattleLogTeam.  # noqa: E501
-        :type: CardList
+        :type: list[Card]
         """
 
         self._cards = cards

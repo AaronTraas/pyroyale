@@ -23,18 +23,6 @@ from pyroyale.rest import ApiException
 class TestPlayerBadge(unittest.TestCase):
     """PlayerBadge unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPlayerBadge(self):
-        """Test PlayerBadge"""
-        # FIXME: construct object with mandatory attributes with example max_levels
-        # model = PlayerBadge()  # noqa: E501
-        pass
-
     def testDefaults(self):
         model = PlayerBadge()
         pass
@@ -54,13 +42,15 @@ class TestPlayerBadge(unittest.TestCase):
 
     def testToDict(self):
         model = PlayerBadge(
-            level=123,
+            name={'foo':'bar'},
+            level=PlayerBadge(name=123),
             progress=[PlayerBadge(name='clanname')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['level']==123
+        assert modelDict['name']['foo']=='bar'
+        assert modelDict['level']['name']==123
         assert modelDict['progress'][0]['name']=='clanname'
 
     def testToString(self):

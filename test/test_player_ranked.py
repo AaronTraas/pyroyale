@@ -57,16 +57,16 @@ class TestPlayerRanked(unittest.TestCase):
 
     def testToDict(self):
         model = PlayerRanked(
-            tag='tag',
-            trophies=123,
-            arena=[PlayerRanked(name='name')]
+            tag={'foo':'bar'},
+            name=PlayerRanked(tag=123),
+            exp_level=[PlayerRanked(name='name')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['tag']=='tag'
-        assert modelDict['trophies']==123
-        assert modelDict['arena'][0]['name']=='name'
+        assert modelDict['tag']['foo']=='bar'
+        assert modelDict['name']['tag']==123
+        assert modelDict['exp_level'][0]['name']=='name'
 
     def testToString(self):
         model = PlayerRanked('TestStringSequence')

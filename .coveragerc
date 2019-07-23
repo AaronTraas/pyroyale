@@ -1,2 +1,9 @@
 [run]
 source = pyroyale/
+
+[report]
+show_missing = True
+omit =
+    pyroyale/api_client.py
+    pyroyale/configuration.py
+    pyroyale/rest.py

@@ -24,15 +24,8 @@ from pyroyale.rest import ApiException
 class TestPlayerAchievement(unittest.TestCase):
     """PlayerAchievement unit test stubs"""
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def testDefaults(self):
         model = PlayerAchievement()
-        pass
 
     def testConstructorInitializers(self):
         model = PlayerAchievement(
@@ -51,14 +44,16 @@ class TestPlayerAchievement(unittest.TestCase):
 
     def testToDict(self):
         model = PlayerAchievement(
-            target=123,
-            info=[PlayerAchievement(name='clanname')]
+            name={'foo':'bar'},
+            stars=PlayerAchievement(name=123),
+            value=[PlayerAchievement(name='clanname')]
         )
 
         modelDict = model.to_dict()
 
-        assert modelDict['target']==123
-        assert modelDict['info'][0]['name']=='clanname'
+        assert modelDict['name']['foo']=='bar'
+        assert modelDict['stars']['name']==123
+        assert modelDict['value'][0]['name']=='clanname'
 
     def testToString(self):
         model = PlayerAchievement('TestStringSequence')

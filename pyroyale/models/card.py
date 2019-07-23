@@ -32,6 +32,8 @@ class Card(object):
     swagger_types = {
         'name': 'str',
         'id': 'int',
+        'level': 'int',
+        'count': 'int',
         'max_level': 'int',
         'icon_urls': 'CardIconUrls'
     }
@@ -39,14 +41,18 @@ class Card(object):
     attribute_map = {
         'name': 'name',
         'id': 'id',
+        'level': 'level',
+        'count': 'count',
         'max_level': 'maxLevel',
         'icon_urls': 'iconUrls'
     }
 
-    def __init__(self, name=None, id=None, max_level=None, icon_urls=None):  # noqa: E501
+    def __init__(self, name=None, id=None, level=None, count=None, max_level=None, icon_urls=None):  # noqa: E501
         """Card - a model defined in Swagger"""  # noqa: E501
         self._name = None
         self._id = None
+        self._level = None
+        self._count = None
         self._max_level = None
         self._icon_urls = None
         self.discriminator = None
@@ -54,6 +60,10 @@ class Card(object):
             self.name = name
         if id is not None:
             self.id = id
+        if level is not None:
+            self.level = level
+        if count is not None:
+            self.count = count
         if max_level is not None:
             self.max_level = max_level
         if icon_urls is not None:
@@ -100,6 +110,48 @@ class Card(object):
         """
 
         self._id = id
+
+    @property
+    def level(self):
+        """Gets the level of this Card.  # noqa: E501
+
+
+        :return: The level of this Card.  # noqa: E501
+        :rtype: int
+        """
+        return self._level
+
+    @level.setter
+    def level(self, level):
+        """Sets the level of this Card.
+
+
+        :param level: The level of this Card.  # noqa: E501
+        :type: int
+        """
+
+        self._level = level
+
+    @property
+    def count(self):
+        """Gets the count of this Card.  # noqa: E501
+
+
+        :return: The count of this Card.  # noqa: E501
+        :rtype: int
+        """
+        return self._count
+
+    @count.setter
+    def count(self, count):
+        """Sets the count of this Card.
+
+
+        :param count: The count of this Card.  # noqa: E501
+        :type: int
+        """
+
+        self._count = count
 
     @property
     def max_level(self):

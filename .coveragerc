@@ -2,7 +2,7 @@
 source = pyroyale/
 
 [report]
-show_missing = True
+show_missing = False
 omit =
     pyroyale/api_client.py
     pyroyale/configuration.py

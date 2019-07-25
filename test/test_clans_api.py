@@ -18,7 +18,7 @@ from unittest.mock import patch
 import pyroyale
 from pyroyale.api.clans_api import ClansApi  # noqa: E501
 from pyroyale.rest import ApiException
-
+from pyroyale.exceptions import ApiTypeError, ApiValueError
 
 class TestClansApi(unittest.TestCase):
 
@@ -124,6 +124,14 @@ class TestClansApi(unittest.TestCase):
             print("Exception when calling ClansApi->get_clan: %s\n" % e)
             assert True
 
+    def test_get_clan_bad_param(self):
+        try:
+            cardList = self.api.get_clan('#JY8YVV', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
     @patch('urllib3.PoolManager.request')
     def test_get_clan_members(self, mock_get):
         mock_get.return_value.status=200
@@ -185,6 +193,13 @@ class TestClansApi(unittest.TestCase):
             print("Exception when calling ClansApi->get_clan_members: %s\n" % e)
             assert True
 
+    def test_get_clan_members_fail_bad_param(self):
+        try:
+            cardList = self.api.get_clan_members('#JY8YVV', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
 
     @patch('urllib3.PoolManager.request')
     def test_get_clan_war_log(self, mock_get):
@@ -268,6 +283,14 @@ class TestClansApi(unittest.TestCase):
             print("Exception when calling ClansApi->get_clan_war_log: %s\n" % e)
             assert True
 
+    def test_get_clan_war_log_bad_param(self):
+        try:
+            cardList = self.api.get_clan_war_log('#JY8YVV', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
     @patch('urllib3.PoolManager.request')
     def test_get_current_war(self, mock_get):
         mock_get.return_value.status=200
@@ -346,6 +369,14 @@ class TestClansApi(unittest.TestCase):
             print("Exception when calling ClansApi->get_current_war: %s\n" % e)
             assert True
 
+    def test_get_clan_current_war_bad_param(self):
+        try:
+            cardList = self.api.get_current_war('#JY8YVV', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
     @patch('urllib3.PoolManager.request')
     def test_search_clans(self, mock_get):
         mock_get.return_value.status=200
@@ -413,6 +444,14 @@ class TestClansApi(unittest.TestCase):
 
         except ApiException as e:
             print("Exception when calling ClansApi->get_current_war: %s\n" % e)
+            assert True
+
+    def test_search_clans_param(self):
+        try:
+            cardList = self.api.search_clans(garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
             assert True
 
 if __name__ == '__main__':

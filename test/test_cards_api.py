@@ -18,6 +18,7 @@ from unittest.mock import patch
 import pyroyale
 from pyroyale.api.cards_api import CardsApi  # noqa: E501
 from pyroyale.rest import ApiException
+from pyroyale.exceptions import ApiTypeError
 
 CARDS_API_URL = 'https://api.clashroyale.com/v1/cards'
 
@@ -70,12 +71,18 @@ class TestCardsApi(unittest.TestCase):
         mock_get.return_value.status=500
 
         try:
-            # Get list of available cards
             cardList = self.api.get_cards()
             assert False
 
         except ApiException as e:
-            print("Exception when calling CardsApi->get_cards: %s\n" % e)
+            assert True
+
+    def test_get_cards_bad_param(self):
+        try:
+            cardList = self.api.get_cards(garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
             assert True
 
 if __name__ == '__main__':

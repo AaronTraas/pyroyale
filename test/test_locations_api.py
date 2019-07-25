@@ -18,7 +18,7 @@ from unittest.mock import patch
 import pyroyale
 from pyroyale.api.locations_api import LocationsApi  # noqa: E501
 from pyroyale.rest import ApiException
-
+from pyroyale.exceptions import ApiTypeError, ApiValueError
 
 class TestLocationsApi(unittest.TestCase):
     """LocationsApi unit test stubs"""
@@ -45,7 +45,7 @@ class TestLocationsApi(unittest.TestCase):
         assert location.is_country==False
 
     @patch('urllib3.PoolManager.request')
-    def test_get_location(self, mock_get):
+    def test_get_location_fail(self, mock_get):
 
         mock_get.return_value.status=500
 
@@ -54,7 +54,14 @@ class TestLocationsApi(unittest.TestCase):
             assert False
 
         except ApiException as e:
-            print("Exception when calling LocationsApi->get_location: %s\n" % e)
+            assert True
+
+    def test_get_location_bad_param(self):
+        try:
+            cardList = self.api.get_location(57000001, garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
             assert True
 
     @patch('urllib3.PoolManager.request')
@@ -93,7 +100,7 @@ class TestLocationsApi(unittest.TestCase):
         assert locations.paging.cursors.after=='after'
 
     @patch('urllib3.PoolManager.request')
-    def test_get_locations(self, mock_get):
+    def test_get_locations_fail(self, mock_get):
 
         mock_get.return_value.status=500
 
@@ -106,7 +113,14 @@ class TestLocationsApi(unittest.TestCase):
             assert False
 
         except ApiException as e:
-            print("Exception when calling LocationsApi->get_locations: %s\n" % e)
+            assert True
+
+    def test_get_locations_bad_param(self):
+        try:
+            cardList = self.api.get_locations(garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
             assert True
 
     @patch('urllib3.PoolManager.request')
@@ -175,6 +189,14 @@ class TestLocationsApi(unittest.TestCase):
             print("Exception when calling LocationsApi->get_clan_ranking: %s\n" % e)
             assert True
 
+    def test_get_clan_ranking_bad_param(self):
+        try:
+            cardList = self.api.get_clan_ranking(57000001, garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
     @patch('urllib3.PoolManager.request')
     def test_get_clan_wars_ranking(self, mock_get):
 
@@ -239,6 +261,14 @@ class TestLocationsApi(unittest.TestCase):
             print("Exception when calling LocationsApi->get_clan_wars_ranking: %s\n" % e)
             assert True
 
+    def est_get_clan_ranking_bad_param(self):
+        try:
+            cardList = self.api.get_clan_wars_ranking('57000001', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
     @patch('urllib3.PoolManager.request')
     def test_get_player_ranking(self, mock_get):
 
@@ -293,9 +323,6 @@ class TestLocationsApi(unittest.TestCase):
 
         assert players.paging.cursors.after=='after'
 
-if __name__ == '__main__':
-    unittest.main()
-
     @patch('urllib3.PoolManager.request')
     def test_get_player_ranking_fail(self, mock_get):
 
@@ -308,3 +335,15 @@ if __name__ == '__main__':
         except ApiException as e:
             print("Exception when calling LocationsApi->get_player_ranking: %s\n" % e)
             assert True
+
+    def test_get_player_ranking_bad_param(self):
+        try:
+            cardList = self.api.get_player_ranking(57000001, garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
+if __name__ == '__main__':
+    unittest.main()
+

@@ -18,16 +18,13 @@ from unittest.mock import patch
 import pyroyale
 from pyroyale.api.tournaments_api import TournamentsApi  # noqa: E501
 from pyroyale.rest import ApiException
-
+from pyroyale.exceptions import ApiTypeError, ApiValueError
 
 class TestTournamentsApi(unittest.TestCase):
     """TournamentsApi unit test stubs"""
 
     def setUp(self):
         self.api = TournamentsApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     @patch('urllib3.PoolManager.request')
     def test_get_tournament(self, mock_get):
@@ -78,28 +75,23 @@ class TestTournamentsApi(unittest.TestCase):
             }
         """.encode('utf-8')
 
-        try:
-            tournament = self.api.get_tournament('#AAAAAA')
-            assert type(tournament.members_list) == list
-            assert len(tournament.members_list) == 2
-            assert tournament.tag=="#AAAAAA"
-            assert tournament.type=="open"
-            assert tournament.status=="inProgress"
-            assert tournament.name=="fake tournament"
-            assert tournament.description=="fake tournament"
-            assert tournament.level_cap==9
-            assert tournament.first_place_card_prize==0
-            assert tournament.capacity==608
-            assert tournament.max_capacity==1000
-            assert tournament.preparation_duration==3600
-            assert tournament.duration==86400
-            assert tournament.created_time=="20190718T093058.000Z"
-            assert tournament.game_mode.id==72000027
+        tournament = self.api.get_tournament('#AAAAAA')
+        assert type(tournament.members_list) == list
+        assert len(tournament.members_list) == 2
+        assert tournament.tag=="#AAAAAA"
+        assert tournament.type=="open"
+        assert tournament.status=="inProgress"
+        assert tournament.name=="fake tournament"
+        assert tournament.description=="fake tournament"
+        assert tournament.level_cap==9
+        assert tournament.first_place_card_prize==0
+        assert tournament.capacity==608
+        assert tournament.max_capacity==1000
+        assert tournament.preparation_duration==3600
+        assert tournament.duration==86400
+        assert tournament.created_time=="20190718T093058.000Z"
+        assert tournament.game_mode.id==72000027
 
-        except ApiException as e:
-            print("Exception when calling TournamentsApi->get_tournament(): %s\n" % e)
-            assert False
-        pass
 
     @patch('urllib3.PoolManager.request')
     def test_get_tournament_fail(self, mock_get):
@@ -111,10 +103,15 @@ class TestTournamentsApi(unittest.TestCase):
             assert False
 
         except ApiException as e:
-            print("Exception when calling TournamentsApi->get_tournament(): %s\n" % e)
             assert True
 
-        pass
+    def test_get_tournament_param(self):
+        try:
+            cardList = self.api.get_tournament('fail', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
 
     @patch('urllib3.PoolManager.request')
     def test_search_tournaments(self, mock_get):
@@ -149,32 +146,47 @@ class TestTournamentsApi(unittest.TestCase):
             }
         """.encode('utf-8')
 
+        tournaments = self.api.search_tournaments(name='a', limit='a', after='a', before='a')
+
+        assert type(tournaments.items) == list
+        assert tournaments.paging.cursors.after=='after'
+
+        tournament = tournaments.items[0]
+
+        assert tournament.tag=="#AAAAAA"
+        assert tournament.type=="open"
+        assert tournament.status=="inProgress"
+        assert tournament.name=="fake tournament"
+        assert tournament.description=="fake tournament"
+        assert tournament.level_cap==9
+        assert tournament.first_place_card_prize==0
+        assert tournament.capacity==608
+        assert tournament.max_capacity==1000
+        assert tournament.preparation_duration==3600
+        assert tournament.duration==86400
+        assert tournament.created_time=="20190718T093058.000Z"
+        assert tournament.game_mode.id==72000027
+
+
+    @patch('urllib3.PoolManager.request')
+    def test_search_tournaments_fail(self, mock_get):
+
+        mock_get.return_value.status=500
+
         try:
-            tournaments = self.api.search_tournaments(name='a', limit='a', after='a', before='a')
-
-            assert type(tournaments.items) == list
-            assert tournaments.paging.cursors.after=='after'
-
-            tournament = tournaments.items[0]
-
-            assert tournament.tag=="#AAAAAA"
-            assert tournament.type=="open"
-            assert tournament.status=="inProgress"
-            assert tournament.name=="fake tournament"
-            assert tournament.description=="fake tournament"
-            assert tournament.level_cap==9
-            assert tournament.first_place_card_prize==0
-            assert tournament.capacity==608
-            assert tournament.max_capacity==1000
-            assert tournament.preparation_duration==3600
-            assert tournament.duration==86400
-            assert tournament.created_time=="20190718T093058.000Z"
-            assert tournament.game_mode.id==72000027
+            cardList = self.api.search_tournaments(name='aaa')
+            assert False
 
         except ApiException as e:
-            print("Exception when calling TournamentsApi->search_tournaments(): %s\n" % e)
+            assert True
+
+    def test_get_global_tournaments_bad_param(self):
+        try:
+            cardList = self.api.search_tournaments(garbage='garbage')
             assert False
-        pass
+
+        except ApiTypeError as e:
+            assert True
 
     @patch('urllib3.PoolManager.request')
     def test_get_global_tournaments(self, mock_get):
@@ -190,9 +202,7 @@ class TestTournamentsApi(unittest.TestCase):
             tournaments = self.api.get_global_tournaments()
             assert type(tournaments.items) == list
         except ApiException as e:
-            print("Exception when calling TournamentsApi->get_global_tournaments(): %s\n" % e)
             assert False
-        pass
 
     @patch('urllib3.PoolManager.request')
     def test_get_global_tournaments_fail(self, mock_get):
@@ -207,7 +217,13 @@ class TestTournamentsApi(unittest.TestCase):
             print("Exception when calling TournamentsApi->get_global_tournaments(): %s\n" % e)
             assert True
 
-        pass
+    def test_get_global_tournament_param(self):
+        try:
+            cardList = self.api.get_global_tournaments(garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
 
 if __name__ == '__main__':
     unittest.main()

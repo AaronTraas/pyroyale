@@ -6,4 +6,5 @@ show_missing = False
 omit =
     pyroyale/api_client.py
     pyroyale/configuration.py
+    pyroyale/exceptions.py
     pyroyale/rest.py

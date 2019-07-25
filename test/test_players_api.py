@@ -18,7 +18,7 @@ from unittest.mock import patch
 import pyroyale
 from pyroyale.api.players_api import PlayersApi  # noqa: E501
 from pyroyale.rest import ApiException
-
+from pyroyale.exceptions import ApiTypeError
 
 class TestPlayersApi(unittest.TestCase):
     """PlayersApi unit test stubs"""
@@ -170,6 +170,14 @@ class TestPlayersApi(unittest.TestCase):
             print("Exception when calling PlayersApi->get_player: %s\n" % e)
             assert True
 
+    def test_get_player_param(self):
+        try:
+            cardList = self.api.get_player('#9ULGLRCL', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
+            assert True
+
     @patch('urllib3.PoolManager.request')
     def test_get_player_battles(self, mock_get):
 
@@ -295,7 +303,7 @@ class TestPlayersApi(unittest.TestCase):
 
 
     @patch('urllib3.PoolManager.request')
-    def test_get_player_fail(self, mock_get):
+    def test_get_player_battles_fail(self, mock_get):
 
         mock_get.return_value.status=500
 
@@ -305,6 +313,14 @@ class TestPlayersApi(unittest.TestCase):
 
         except ApiException as e:
             print("Exception when calling PlayersApi->get_player_battles: %s\n" % e)
+            assert True
+
+    def test_get_player_battles_bad_param(self):
+        try:
+            cardList = self.api.get_player_battles('#9ULGLRCL', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
             assert True
 
     @patch('urllib3.PoolManager.request')
@@ -345,6 +361,14 @@ class TestPlayersApi(unittest.TestCase):
 
         except ApiException as e:
             print("Exception when calling PlayersApi->get_player_upcoming_chests: %s\n" % e)
+            assert True
+
+    def test_get_player_upcoming_chests_bad_param(self):
+        try:
+            cardList = self.api.get_player_upcoming_chests('#9ULGLRCL', garbage='garbage')
+            assert False
+
+        except ApiTypeError as e:
             assert True
 
 if __name__ == '__main__':

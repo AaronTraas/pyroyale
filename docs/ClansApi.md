@@ -6,9 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_clan**](ClansApi.md#get_clan) | **GET** /clans/{clanTag} | Get clan information
 [**get_clan_members**](ClansApi.md#get_clan_members) | **GET** /clans/{clanTag}/members | List clan members
-[**get_clan_war_log**](ClansApi.md#get_clan_war_log) | **GET** /clans/{clanTag}/warlog | Retrieve clan&#x27;s clan war log
-[**get_current_war**](ClansApi.md#get_current_war) | **GET** /clans/{clanTag}/currentwar | Information about clan&#x27;s current clan war
+[**get_clan_war_log**](ClansApi.md#get_clan_war_log) | **GET** /clans/{clanTag}/warlog | Retrieve clan&#39;s clan war log
+[**get_current_war**](ClansApi.md#get_current_war) | **GET** /clans/{clanTag}/currentwar | Information about clan&#39;s current clan war
 [**search_clans**](ClansApi.md#search_clans) | **GET** /clans | Search clans
+
 
 # **get_clan**
 > Clan get_clan(clan_tag)
@@ -18,20 +19,23 @@ Get clan information
 Get information about a single clan by clan tag. Clan tags can be found using clan search operation. Note that clan tags start with hash character '#' and that needs to be URL-encoded properly to work in URL, so for example clan tag '#2ABC' would become '%232ABC' in the URL. 
 
 ### Example
+
+* Api Key Authentication (JWT):
 ```python
 from __future__ import print_function
 import time
 import pyroyale
 from pyroyale.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: JWT
 configuration = pyroyale.Configuration()
+# Configure API key authorization: JWT
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
-# create an instance of the API class
+# Defining host is optional and default to https://api.clashroyale.com/v1
+configuration.host = "https://api.clashroyale.com/v1"
+# Create an instance of the API class
 api_instance = pyroyale.ClansApi(pyroyale.ApiClient(configuration))
 clan_tag = 'clan_tag_example' # str | Tag of the clan to retrieve.
 
@@ -62,6 +66,17 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Client provided incorrect parameters for the request. |  -  |
+**403** | Access denied, either because of missing/incorrect credentials or used API token does not grant access to the requested resource.  |  -  |
+**404** | Resource was not found. |  -  |
+**429** | Request was throttled, because amount of requests was above the threshold defined for the used API token.  |  -  |
+**500** | Unknown error happened when handling the request.  |  -  |
+**503** | Service is temprorarily unavailable because of maintenance.  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clan_members**
@@ -72,20 +87,23 @@ List clan members
 List clan members
 
 ### Example
+
+* Api Key Authentication (JWT):
 ```python
 from __future__ import print_function
 import time
 import pyroyale
 from pyroyale.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: JWT
 configuration = pyroyale.Configuration()
+# Configure API key authorization: JWT
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
-# create an instance of the API class
+# Defining host is optional and default to https://api.clashroyale.com/v1
+configuration.host = "https://api.clashroyale.com/v1"
+# Create an instance of the API class
 api_instance = pyroyale.ClansApi(pyroyale.ApiClient(configuration))
 clan_tag = 'clan_tag_example' # str | Tag of the clan whose members to retrieve.
 limit = 56 # int | Limit the number of items returned in the response. (optional)
@@ -106,8 +124,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **clan_tag** | **str**| Tag of the clan whose members to retrieve. | 
  **limit** | **int**| Limit the number of items returned in the response. | [optional] 
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#39;paging&#39; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#39;paging&#39; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -122,6 +140,17 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Client provided incorrect parameters for the request. |  -  |
+**403** | Access denied, either because of missing/incorrect credentials or used API token does not grant access to the requested resource.  |  -  |
+**404** | Resource was not found. |  -  |
+**429** | Request was throttled, because amount of requests was above the threshold defined for the used API token.  |  -  |
+**500** | Unknown error happened when handling the request.  |  -  |
+**503** | Service is temprorarily unavailable because of maintenance.  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clan_war_log**
@@ -132,20 +161,23 @@ Retrieve clan's clan war log
 Retrieve clan's clan war log
 
 ### Example
+
+* Api Key Authentication (JWT):
 ```python
 from __future__ import print_function
 import time
 import pyroyale
 from pyroyale.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: JWT
 configuration = pyroyale.Configuration()
+# Configure API key authorization: JWT
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
-# create an instance of the API class
+# Defining host is optional and default to https://api.clashroyale.com/v1
+configuration.host = "https://api.clashroyale.com/v1"
+# Create an instance of the API class
 api_instance = pyroyale.ClansApi(pyroyale.ApiClient(configuration))
 clan_tag = 'clan_tag_example' # str | Tag of the clan whose war log to retrieve.
 limit = 56 # int | Limit the number of items returned in the response. (optional)
@@ -166,8 +198,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **clan_tag** | **str**| Tag of the clan whose war log to retrieve. | 
  **limit** | **int**| Limit the number of items returned in the response. | [optional] 
- **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from the response, inside the &#39;paging&#39; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#39;paging&#39; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -182,6 +214,17 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Client provided incorrect parameters for the request. |  -  |
+**403** | Access denied, either because of missing/incorrect credentials or used API token does not grant access to the requested resource.  |  -  |
+**404** | Resource was not found. |  -  |
+**429** | Request was throttled, because amount of requests was above the threshold defined for the used API token.  |  -  |
+**500** | Unknown error happened when handling the request.  |  -  |
+**503** | Service is temprorarily unavailable because of maintenance.  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_current_war**
@@ -192,20 +235,23 @@ Information about clan's current clan war
 Retrieve information about clan's current clan war
 
 ### Example
+
+* Api Key Authentication (JWT):
 ```python
 from __future__ import print_function
 import time
 import pyroyale
 from pyroyale.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: JWT
 configuration = pyroyale.Configuration()
+# Configure API key authorization: JWT
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
-# create an instance of the API class
+# Defining host is optional and default to https://api.clashroyale.com/v1
+configuration.host = "https://api.clashroyale.com/v1"
+# Create an instance of the API class
 api_instance = pyroyale.ClansApi(pyroyale.ApiClient(configuration))
 clan_tag = 'clan_tag_example' # str | Tag of the clan whose war log to retrieve.
 
@@ -236,6 +282,17 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Client provided incorrect parameters for the request. |  -  |
+**403** | Access denied, either because of missing/incorrect credentials or used API token does not grant access to the requested resource.  |  -  |
+**404** | Resource was not found. |  -  |
+**429** | Request was throttled, because amount of requests was above the threshold defined for the used API token.  |  -  |
+**500** | Unknown error happened when handling the request.  |  -  |
+**503** | Service is temprorarily unavailable because of maintenance.  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **search_clans**
@@ -246,20 +303,23 @@ Search clans
 Search all clans by name and/or filtering the results using various criteria. At least one filtering criteria must be defined and if name is used as part of search, it is required to be at least three characters long. It is not possible to specify ordering for results so clients should not rely on any specific ordering as that may change in the future releases of the API. 
 
 ### Example
+
+* Api Key Authentication (JWT):
 ```python
 from __future__ import print_function
 import time
 import pyroyale
 from pyroyale.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: JWT
 configuration = pyroyale.Configuration()
+# Configure API key authorization: JWT
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
-# create an instance of the API class
+# Defining host is optional and default to https://api.clashroyale.com/v1
+configuration.host = "https://api.clashroyale.com/v1"
+# Create an instance of the API class
 api_instance = pyroyale.ClansApi(pyroyale.ApiClient(configuration))
 name = 'name_example' # str | Search clans by name. If name is used as part of search query, it needs to be at least three characters long. Name search parameter is interpreted as wild card search, so it may appear anywhere in the clan name.  (optional)
 location_id = 56 # int | Filter by clan location identifier. For list of available locations, refer to getLocations operation.  (optional)
@@ -288,8 +348,8 @@ Name | Type | Description  | Notes
  **max_members** | **int**| Filter by maximum amount of clan members.  | [optional] 
  **min_score** | **int**| Filter by minimum amount of clan score.  | [optional] 
  **limit** | **int**| Limit the number of items returned in the response.  | [optional] 
- **after** | **int**| Return only items that occur after this marker. After marker can be found from theresponse, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
- **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#x27;paging&#x27; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **after** | **int**| Return only items that occur after this marker. After marker can be found from theresponse, inside the &#39;paging&#39; property. Note that only after or before can be specified for a request, not both.  | [optional] 
+ **before** | **int**| Return only items that occur before this marker. Before marker can be found from the response, inside the &#39;paging&#39; property. Note that only after or before can be specified for a request, not both.  | [optional] 
 
 ### Return type
 
@@ -303,6 +363,17 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Client provided incorrect parameters for the request. |  -  |
+**403** | Access denied, either because of missing/incorrect credentials or used API token does not grant access to the requested resource.  |  -  |
+**404** | Resource was not found. |  -  |
+**429** | Request was throttled, because amount of requests was above the threshold defined for the used API token.  |  -  |
+**500** | Unknown error happened when handling the request.  |  -  |
+**503** | Service is temprorarily unavailable because of maintenance.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

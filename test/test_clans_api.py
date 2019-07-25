@@ -408,7 +408,7 @@ class TestClansApi(unittest.TestCase):
         mock_get.return_value.status=500
 
         try:
-            clan = self.api.search_clans(name='a')
+            clan = self.api.search_clans(name='aaa')
             assert False
 
         except ApiException as e:

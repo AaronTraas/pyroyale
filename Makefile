@@ -6,7 +6,7 @@ TESTDIR = ./tests
 
 clean:
 	python3 setup.py clean
-	rm -rf build dist .pytest_cache *.egg-info $(SRCDIR)/__pycache__ $(TESTDIR)/__pycache__ MANIFEST
+	rm -rf build dist .pytest_cache *.egg-info $(SRCDIR)/__pycache__ $(TESTDIR)/__pycache__ MANIFEST .scannerwork .openapi-generator/ htmlcov/ .coverage coverage.xml
 
 delete-models:
 	rm -rf docs
@@ -45,9 +45,9 @@ upload:
 	twine upload dist/*
 
 swagger: delete-models
-	swagger-codegen generate -i https://raw.githubusercontent.com/AaronTraas/clashroyale-swagger/master/swagger.yaml -l python -DpackageName=pyroyale -o .
+	openapi-generator generate -i https://raw.githubusercontent.com/AaronTraas/clashroyale-swagger/master/swagger.yaml -g python -DpackageName=pyroyale -o .
 	cat templates/README_suffix.md >> README.md
 
 swagger-local: delete-models
-	swagger-codegen generate -i ../clashroyale-swagger/swagger.yaml -l python -DpackageName=pyroyale -o .
+	openapi-generator generate -i ../clashroyale-swagger/swagger.yaml -g python -DpackageName=pyroyale -o .
 	cat templates/README_suffix.md >> README.md

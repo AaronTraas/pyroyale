@@ -1,6 +1,4 @@
-==================================================
-NOTE - this project is no longer maintained. If you are a pyroyale user, and wish to take over maintaintainership of this project, please contact me.
-==================================================
+# NOTE - this project is no longer maintained. If you are a pyroyale user, and wish to take over maintaintainership of this project, please contact me.
 
 # pyroyale
 Unofficial python client for the official Clash Royale API
